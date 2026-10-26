@@ -10,7 +10,7 @@ import { DemoBanner } from "./DemoBanner";
 let lenis = null;
 
 export function Layout() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
@@ -22,9 +22,19 @@ export function Layout() {
   }, []);
 
   useEffect(() => {
+    if (hash) {
+      const t = setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (!el) return;
+        if (lenis) lenis.scrollTo(el, { offset: -120 });
+        else el.scrollIntoView({ behavior: "smooth" });
+      }, 350);
+      return () => clearTimeout(t);
+    }
     if (lenis) lenis.scrollTo(0, { immediate: true });
     else window.scrollTo(0, 0);
-  }, [pathname]);
+    return undefined;
+  }, [pathname, hash]);
 
   return (
     <div className="min-h-screen flex flex-col">

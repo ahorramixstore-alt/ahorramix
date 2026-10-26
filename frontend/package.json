@@ -64,6 +64,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "postbuild": "node scripts/generate-sitemap.js",
+    "sitemap": "node scripts/generate-sitemap.js",
     "test": "craco test"
   },
   "browserslist": {

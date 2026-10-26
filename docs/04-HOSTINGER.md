@@ -24,7 +24,7 @@ Alternativa: WordPress en `tudominio.es` y React en un subdominio (`www` no reco
    yarn install && yarn build
    ```
 6. **Subir**: hPanel › Administrador de archivos › `public_html` del dominio principal › sube el **contenido** de `frontend/build/` (incluye `.htaccess`, que activa HTTPS y las rutas limpias). Activa «mostrar archivos ocultos» para verlo.
-7. **robots.txt y sitemap**: edita `robots.txt` con tu dominio. Genera el sitemap (ver `08-MANTENIMIENTO.md`).
+7. **robots.txt y sitemap**: se generan solos al compilar (`yarn build`) si `REACT_APP_SITE_URL` está definido. Comprueba `https://tudominio.es/sitemap.xml` y envíalo en Google Search Console (ver `08-MANTENIMIENTO.md`).
 8. **Prueba completa**: `docs/07-PRUEBAS.md`.
 
 ## Ajustes manuales obligatorios en Hostinger / WordPress

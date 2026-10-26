@@ -59,31 +59,40 @@ export function Header() {
 
         <Link to="/" aria-label="Ahorramix, inicio"><Logo /></Link>
 
-        <nav className="hidden lg:flex items-center gap-7 ml-10" aria-label="Principal">
+        <SearchForm id="header-search" className="hidden md:block flex-1 max-w-xl mx-auto" />
+
+        <div className="ml-auto md:ml-0 flex items-center gap-1">
+          <Link to="/cuenta" data-testid="header-account-link" aria-label="Mi cuenta" className="p-2.5 rounded-full hover:bg-[var(--am-bg-2)] transition-colors"><User className="h-5 w-5" /></Link>
+          <button data-testid="cart-drawer-toggle" onClick={() => setOpen(true)} aria-label="Abrir carrito" className="relative p-2.5 rounded-full hover:bg-[var(--am-bg-2)] transition-colors">
+            <ShoppingBag className="h-5 w-5" />
+            {count > 0 && <span data-testid="cart-count-badge" className="absolute -top-0.5 -right-0.5 min-w-[20px] h-5 px-1 rounded-full bg-[var(--am-orange)] text-[var(--am-ink)] text-[11px] font-extrabold grid place-items-center">{count}</span>}
+          </button>
+        </div>
+      </div>
+      <div className="md:hidden am-container pb-3"><SearchForm id="mobile-search" /></div>
+      <div className="lg:hidden am-container pb-3 -mt-1 flex gap-2 overflow-x-auto [scrollbar-width:none]" data-lenis-prevent>
+        <Link to="/tienda?ofertas=1" data-testid="mobile-chip-ofertas" className="shrink-0 px-3.5 py-1.5 rounded-full bg-[var(--am-orange)] text-[var(--am-ink)] text-[13px] font-bold">Ofertas</Link>
+        {tops.map((c) => <Link key={c.slug} to={`/categoria/${c.slug}`} className="shrink-0 px-3.5 py-1.5 rounded-full bg-[var(--am-bg-2)] text-[13px] font-medium">{c.name}</Link>)}
+      </div>
+      <nav className="hidden lg:block border-t border-[var(--am-line)]" aria-label="Principal">
+        <div className="am-container flex items-center gap-8 h-12">
           {tops.map((c) => (
-            <div key={c.slug} className="relative group">
+            <div key={c.slug} className="relative group h-full flex items-center">
               <NavLink to={`/categoria/${c.slug}`} data-testid={`nav-${c.slug}`} className={link}>{c.name}</NavLink>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 pointer-events-none translate-y-1 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-[opacity,transform] duration-200">
-                <div className="min-w-[200px] rounded-2xl bg-white border border-[var(--am-line)] shadow-[0_18px_40px_rgba(14,16,21,0.08)] p-2">
+              <div className="absolute left-0 top-full pt-2 opacity-0 pointer-events-none translate-y-1 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-[opacity,transform] duration-200">
+                <div className="min-w-[220px] rounded-2xl bg-white border border-[var(--am-line)] shadow-[0_18px_40px_rgba(14,16,21,0.10)] p-2">
                   {subs(c.slug).map((s) => <Link key={s.slug} to={`/categoria/${s.slug}`} className="block px-3 py-2 rounded-lg text-sm hover:bg-[var(--am-bg-2)]">{s.name}</Link>)}
                 </div>
               </div>
             </div>
           ))}
-          <NavLink to="/tienda?ofertas=1" data-testid="nav-ofertas" className="text-[14px] font-semibold text-[var(--am-amber)]">Ofertas</NavLink>
-        </nav>
-
-        <SearchForm id="header-search" className="ml-auto hidden md:block w-56 xl:w-72" />
-
-        <div className="ml-auto md:ml-2 flex items-center gap-1">
-          <Link to="/cuenta" data-testid="header-account-link" aria-label="Mi cuenta" className="p-2.5 rounded-full hover:bg-[var(--am-bg-2)] transition-colors"><User className="h-5 w-5" /></Link>
-          <button data-testid="cart-drawer-toggle" onClick={() => setOpen(true)} aria-label="Abrir carrito" className="relative p-2.5 rounded-full hover:bg-[var(--am-bg-2)] transition-colors">
-            <ShoppingBag className="h-5 w-5" />
-            {count > 0 && <span data-testid="cart-count-badge" className="absolute -top-0.5 -right-0.5 min-w-[20px] h-5 px-1 rounded-full bg-[var(--am-emerald)] text-white text-[11px] font-bold grid place-items-center">{count}</span>}
-          </button>
+          <Link to="/sobre-nosotros" className={link}>Sobre nosotros</Link>
+          <div className="ml-auto flex items-center gap-2">
+            <Link to="/#ofertas-del-dia" data-testid="nav-daily-deals" className="px-4 py-1.5 rounded-full bg-[var(--am-ink)] text-white text-[13px] font-bold hover:bg-[var(--am-price)] transition-colors">Ofertas del día</Link>
+            <NavLink to="/tienda?ofertas=1" data-testid="nav-ofertas" className="px-4 py-1.5 rounded-full bg-[var(--am-orange)] text-[var(--am-ink)] text-[13px] font-bold hover:bg-[var(--am-yellow)] transition-colors">Todas las ofertas</NavLink>
+          </div>
         </div>
-      </div>
-      <div className="md:hidden am-container pb-3"><SearchForm id="mobile-search" /></div>
+      </nav>
     </header>
   );
 }

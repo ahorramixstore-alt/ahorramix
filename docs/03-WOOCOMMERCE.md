@@ -32,6 +32,7 @@ Comprueba que responde: `https://tienda.tudominio.es/wp-json/wc/store/v1/product
 | Categorías y subcategorías | Productos › Categorías (categoría padre = subcategoría) |
 | Menú principal | `NAV_CATEGORIES` en `frontend/src/config/store.js` (slugs de categorías) |
 | Destacados / Más vendidos / Novedades | Etiquetas de producto con slug `destacado`, `mas-vendido`, `novedad` |
+| Ofertas del día (portada, con cuenta atrás) | Etiqueta `oferta-del-dia` + precio rebajado; fecha de fin en `src/config/promos.js` |
 | Ofertas | Productos con «Precio rebajado» |
 | Variantes (talla, color, modelo) | Producto variable con atributos «usados para variaciones» |
 | Galería | Imagen principal + galería del producto (rellena el texto alternativo) |

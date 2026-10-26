@@ -22,10 +22,16 @@ Respuestas del usuario: Arquitectura "Diseño React conectado a WooCommerce"; ti
 - Evaluador con cálculo de margen neto, ROI, precio mínimo, puntuación y CSV WooCommerce (verificado).
 - `yarn build` verificado; .htaccess, robots.txt, favicon SVG, .env.example.
 
+## Iteración 2 (2026-10-26)
+- Sitemap automático (`frontend/scripts/generate-sitemap.js`, postbuild + `yarn sitemap`) desde la Store API; probado con WooCommerce simulado.
+- Vista rápida («Añadir rápido») en cada tarjeta: variantes, cantidad y añadir al carrito; componente compartido `PurchaseControls`.
+- Rediseño comercial a petición del usuario («se ve muy simple» → «Más llamativa y comercial»): portada con vídeo (Pexels 5889617, mp4+webm, móvil y escritorio), carrusel de ofertas (embla) + tarjetas laterales, barra de garantías, tira de categorías, ofertas del día con cuenta atrás (fecha configurable en `config/promos.js`), carruseles por categoría, pestañas más vendidos/ofertas/novedades, barra de categorías en cabecera, paleta naranja #FF5A1F / amarillo #FFD84D / tinta.
+- 7 productos de ejemplo ficticios más (18 en total) y 4 subcategorías nuevas.
+
 ## Backlog
 - P0 (usuario, en Hostinger): instalar WP/WooCommerce, plugin puente, pasarela, envíos, datos vendedor, legales revisados.
-- P1: sitemap automático desde la Store API; prerenderizado SEO; formulario contacto vía WordPress.
-- P2: mostrar plazo de entrega real desde WooCommerce; vista rápida de producto; comparación de candidatos en el evaluador.
+- P1: prerenderizado SEO; formulario contacto vía WordPress.
+- P2: mostrar plazo de entrega real desde WooCommerce; comparación de candidatos en el evaluador.
 
 ## Próximas tareas
 - Probar plugin puente en staging real de WordPress.

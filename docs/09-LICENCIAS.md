@@ -23,10 +23,28 @@ Todas descargadas de **Unsplash** bajo la [Licencia Unsplash](https://unsplash.c
 | serum-ambar.jpg | photo-1626897844971-aef92643f056 |
 | florero-vidrio.jpg | photo-1506543730435-e2c1d4553a84 |
 | dog-hueso.jpg | photo-1535294435445-d7249524ef2e |
+| speaker-onda.jpg | photo-1608043152269-423dbba4e7e1 |
+| speaker-onda-2.jpg | photo-1589003077984-894e133dabab |
+| gafas-sol.jpg | photo-1610136649349-0f646f318053 |
+| gafas-sol-2.jpg | photo-1618677366787-9727aacca7ea |
+| botella-termo.jpg | photo-1625708458528-802ec79b1ed8 |
+| botella-termo-2.jpg | photo-1586277419671-f34cf56500a0 |
+| cojin-lino.jpg | photo-1691256676366-370303d55b61 |
+| cojin-lino-2.jpg | photo-1629949009765-40fc74c9ec21 |
+| cama-perro.jpg | photo-1581888227599-779811939961 |
+| cama-perro-2.jpg | photo-1492748046438-4b6d9ebe0c11 |
+| esterilla-yoga.jpg | photo-1637157216470-d92cd2edb2e8 |
+| esterilla-yoga-2.jpg | photo-1592432678016-e910b452f9a2 |
+| cargador-mag.jpg | photo-1631037561126-0782ab7e666e |
+| cable-usb.jpg | photo-1603539444875-76e7684265f6 |
+
+## Vídeo de portada (`frontend/public/video/`)
+
+`hero-ofertas.mp4/.webm`, `hero-ofertas-movil.mp4/.webm` y `hero-poster.jpg` proceden del vídeo de **Pexels** «Shopping bags with printed sale sign» (ID 5889617, https://www.pexels.com/video/shopping-bags-with-printed-sale-sign-5889617/), bajo la [Licencia Pexels](https://www.pexels.com/license/): uso comercial gratuito y sin atribución obligatoria; está permitido modificarlo. Se ha recomprimido para web. Para cambiar el vídeo, sustituye los archivos o edita `HERO_VIDEO` en `src/config/promos.js`.
 
 URL de origen: `https://unsplash.com/photos/<ID>` o `https://images.unsplash.com/<ID>`.
 
-Nota: algunas fotos muestran productos de marcas reconocibles (p. ej. zapatillas). Para la tienda real, usa fotos de tus propios productos.
+Nota: algunas fotos muestran marcas reconocibles (p. ej. zapatillas Nike, altavoz JBL). No las uses para vender productos de otra marca: sustitúyelas por fotos de tus propios productos antes de abrir la tienda.
 
 ## Logotipo
 

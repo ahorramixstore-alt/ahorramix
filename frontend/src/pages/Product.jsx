@@ -1,14 +1,14 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Minus, Plus, RotateCcw, Truck } from "lucide-react";
+import { RotateCcw, Truck } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Seo } from "@/components/layout/Seo";
 import { Price, ProductGrid } from "@/components/shop/ProductCard";
+import { PurchaseControls } from "@/components/shop/PurchaseControls";
 import { useCatalog, parentOf } from "@/hooks/useCatalog";
-import { useCart } from "@/context/CartContext";
-import { findVariationId, IS_DEMO } from "@/lib/commerce";
-import { discountPct, slugify } from "@/lib/format";
+import { IS_DEMO } from "@/lib/commerce";
+import { discountPct } from "@/lib/format";
 import { STORE } from "@/config/store";
 import NotFound from "./NotFound";
 
@@ -36,32 +36,10 @@ function Gallery({ images, name }) {
   );
 }
 
-function VariantPicker({ attributes, selected, onChange }) {
-  return attributes.map((a) => (
-    <div key={a.name} className="mt-6">
-      <p className="text-sm font-medium mb-2.5">{a.name}: <span className="text-[var(--am-ink-2)] font-normal">{selected[a.name]}</span></p>
-      <div className="flex flex-wrap gap-2">
-        {a.options.map((o) => (
-          <button key={o} onClick={() => onChange({ ...selected, [a.name]: o })} data-testid={`variant-${slugify(a.name)}-${slugify(o)}`}
-            className={`min-w-[48px] px-4 h-11 rounded-full border text-sm transition-colors ${selected[a.name] === o ? "bg-[var(--am-ink)] text-white border-[var(--am-ink)]" : "border-[var(--am-line)] hover:border-[var(--am-ink)]"}`}>{o}</button>
-        ))}
-      </div>
-    </div>
-  ));
-}
-
 export default function Product() {
   const { slug } = useParams();
   const { products, categories, loading } = useCatalog();
-  const { add } = useCart();
   const product = products.find((p) => p.slug === slug);
-  const [selected, setSelected] = useState({});
-  const [qty, setQty] = useState(1);
-
-  useEffect(() => {
-    setQty(1);
-    setSelected(Object.fromEntries((product?.attributes || []).map((a) => [a.name, a.options[0]])));
-  }, [product]);
 
   const related = useMemo(() => {
     if (!product) return [];
@@ -72,9 +50,6 @@ export default function Product() {
   if (loading) return <p className="am-container py-32 text-center text-[var(--am-ink-2)]">Cargando…</p>;
   if (!product) return <NotFound />;
 
-  const variationId = findVariationId(product, selected);
-  const needsVariation = !IS_DEMO && product.variations.length > 0;
-  const blocked = product.stockStatus !== "instock" || (needsVariation && !variationId);
   const cat = categories.find((c) => c.slug === product.category);
   const top = cat?.parent ? categories.find((c) => c.slug === cat.parent) : null;
   const jsonLd = {
@@ -100,18 +75,7 @@ export default function Product() {
             <div className="mt-5 flex items-center gap-3"><Price product={product} size="lg" />{discountPct(product) > 0 && <span className="px-2.5 py-1 rounded-full bg-[var(--am-ink)] text-white text-[12px] font-semibold">−{discountPct(product)}%</span>}</div>
             <p className="mt-1 text-[13px] text-[var(--am-ink-2)]">IVA incluido. Envío calculado en el checkout.</p>
             <p className="mt-6 text-[var(--am-ink-2)] leading-relaxed">{product.shortDescription}</p>
-            <VariantPicker attributes={product.attributes} selected={selected} onChange={setSelected} />
-            <div className="mt-8 flex gap-3">
-              <div className="inline-flex items-center rounded-full border border-[var(--am-line)] h-14">
-                <button className="px-4" aria-label="Restar" data-testid="product-qty-decrease" onClick={() => setQty((q) => Math.max(1, q - 1))}><Minus className="h-4 w-4" /></button>
-                <span className="w-8 text-center" data-testid="product-qty">{qty}</span>
-                <button className="px-4" aria-label="Sumar" data-testid="product-qty-increase" onClick={() => setQty((q) => Math.min(99, q + 1))}><Plus className="h-4 w-4" /></button>
-              </div>
-              <button disabled={blocked} onClick={() => add(product, selected, qty, variationId)} data-testid="add-to-cart-button"
-                className="flex-1 h-14 rounded-full bg-[var(--am-ink)] hover:bg-[var(--am-emerald)] disabled:bg-[var(--am-bg-2)] disabled:text-[var(--am-ink-2)] text-white font-semibold transition-colors">
-                {product.stockStatus !== "instock" ? "Agotado" : blocked ? "Combinación no disponible" : "Añadir al carrito"}
-              </button>
-            </div>
+            <PurchaseControls product={product} />
             <div className="mt-8 rounded-2xl border border-[var(--am-line)] divide-y divide-[var(--am-line)] text-[14px]">
               <div className="flex gap-3 p-4"><Truck className="h-5 w-5 shrink-0 text-[var(--am-emerald)]" strokeWidth={1.6} /><div><p className="font-medium">{product.deliveryTime || "Plazo de entrega indicado en el checkout"}</p><p className="text-[var(--am-ink-2)]">{product.shippingNote}</p></div></div>
               <div className="flex gap-3 p-4"><RotateCcw className="h-5 w-5 shrink-0 text-[var(--am-emerald)]" strokeWidth={1.6} /><p>Consulta plazos y condiciones en la <Link to="/legal/devoluciones" className="underline">política de devoluciones</Link>.</p></div>

@@ -4,5 +4,4 @@ Disallow: /carrito
 Disallow: /cuenta
 Disallow: /evaluador
 
-# Sustituye por tu dominio real tras la migración:
-# Sitemap: https://[tudominio.es]/sitemap.xml
+# La línea Sitemap se añade automáticamente al compilar (yarn build) si REACT_APP_SITE_URL está definido.

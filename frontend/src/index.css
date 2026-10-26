@@ -13,6 +13,9 @@
     --am-emerald-soft: #e8f5f1;
     --am-amber: #b45309;
     --am-dark: #111317;
+    --am-orange: #ff5a1f;
+    --am-yellow: #ffd84d;
+    --am-price: #c2410c;
 }
 
 html.lenis, html.lenis body { height: auto; }
