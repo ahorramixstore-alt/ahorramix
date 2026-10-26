@@ -1,0 +1,164 @@
+{
+  "project_info": {
+    "name": "Ahorramix",
+    "tagline": "Curaduría inteligente y productos esenciales al mejor precio",
+    "market": "España",
+    "style": "Limpio y elegante",
+    "theme": "Light mode high-contrast editorial minimalism",
+    "tech_stack": [
+      "React 19 (CRA + craco)",
+      "Tailwind CSS v3.4",
+      "shadcn/ui primitives",
+      "Framer Motion",
+      "Lucide React",
+      "Sonner (Toast notifications)",
+      "Recharts (Analytics/Margin visualization)"
+    ]
+  },
+  "visual_identity": {
+    "archetype": "Swiss & Editorial Clean (High Contrast, Refined Neutrality)",
+    "typography": {
+      "headline_font": "Cabinet Grotesk / Plus Jakarta Sans",
+      "body_font": "Inter / General Sans",
+      "mono_font": "JetBrains Mono",
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-snug",
+      "h3": "text-xl sm:text-2xl font-semibold tracking-tight",
+      "subtext": "text-base sm:text-lg text-slate-600 font-normal leading-relaxed",
+      "eyebrow": "text-xs uppercase tracking-[0.25em] font-semibold text-emerald-800"
+    },
+    "colors": {
+      "background": {
+        "primary": "#FBFBF9",
+        "secondary": "#F3F3EF",
+        "card": "#FFFFFF",
+        "muted": "#EFEFEA",
+        "dark_accent": "#111317"
+      },
+      "text": {
+        "primary": "#0E1015",
+        "secondary": "#525866",
+        "muted": "#868C98",
+        "inverse": "#FBFBF9"
+      },
+      "brand_accents": {
+        "emerald_primary": "#0F5A47",
+        "emerald_hover": "#0A4234",
+        "emerald_light": "#E8F5F1",
+        "amber_gold": "#D97706",
+        "amber_light": "#FEF3C7",
+        "slate_border": "#E2E4E9",
+        "focus_ring": "#0F5A47"
+      }
+    },
+    "surface_effects": {
+      "card_style": "bg-white border border-[#E2E4E9] rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.07)] transition-all duration-300",
+      "header_glass": "backdrop-blur-xl bg-[#FBFBF9]/85 border-b border-[#E2E4E9]/80 sticky top-0 z-50",
+      "marquee_ribbon": "bg-[#111317] text-[#FBFBF9] py-3 text-xs uppercase tracking-[0.3em] font-mono border-y border-black"
+    }
+  },
+  "key_features_and_views": {
+    "navigation": {
+      "logo_mark": "SVG custom geometric 'A' badge with emerald dot accent",
+      "desktop_links": ["Inicio", "Catálogo", "Destacados", "Ofertas", "Evaluador Dropshipping", "Sobre Nosotros"],
+      "actions": ["Buscador inteligente (Cmd+K)", "Cuenta cliente (Redirect Woo)", "Carrito Drawer (Badge con count)"]
+    },
+    "hero_section": {
+      "motion": "Masked line-by-line text reveal using Framer Motion (y: 100% to 0% with stagger Children)",
+      "interactive_element": "3D interactive tilt product showcase card with parallax float badge",
+      "headline": "Encuentra lo extraordinario en lo cotidiano.",
+      "subtitle": "Selección curada de productos con envío rápido desde España, garantía local y precios optimizados.",
+      "ctas": ["Explorar Catálogo", "Ver Ofertas de la Semana"]
+    },
+    "editorial_marquee": {
+      "content": "ENVÍO EXPRÉS 24/48H ESPAÑA • GARANTÍA DE DEVOLUCIÓN 14 DÍAS • PAGO SEGURO STRIPE & BIZUM • SOPORTE EN ESPAÑOL",
+      "style": "Slow drift, high tracking monospace typography"
+    },
+    "bento_grid_categories": {
+      "mode": "MODE A: TETRIS GRID (8-col / 12-col asymmetric layout)",
+      "items": [
+        {"title": "Hogar & Vanguardia", "span": "col-span-12 md:col-span-8 row-span-2", "badge": "Tendencia"},
+        {"title": "Tech & Gadgets", "span": "col-span-12 md:col-span-4 row-span-1", "badge": "Novedades"},
+        {"title": "Estilo & Accesorios", "span": "col-span-12 md:col-span-4 row-span-1", "badge": "Selección"},
+        {"title": "Bienestar & Salud", "span": "col-span-12 md:col-span-6 row-span-1", "badge": "Top Ventas"},
+        {"title": "Ofertas Flashing", "span": "col-span-12 md:col-span-6 row-span-1", "badge": "-30% Dto."}
+      ]
+    },
+    "product_catalog": {
+      "filters": ["Todas las categorías", "Hogar", "Tecnología", "Moda & Estilo", "Bienestar", "En Oferta"],
+      "sorting": ["Más populares", "Precio: Menor a Mayor", "Precio: Mayor a Menor", "Mejor valorados"],
+      "card_features": ["Imagen recortada studio", "Badge descuento", "Variantes rápidas", "Precio original vs rebajado", "Botonera Vista Rápida + Añadir al Carrito"]
+    },
+    "product_detail_sheet": {
+      "gallery": "Main high-res display + 4 thumbnail selector + zoom modal",
+      "variant_picker": ["Talla / Tamaño", "Color / Acabado", "Modelo / Pack"],
+      "pricing": "Current price in prominent emerald, strike-through original price, saved amount tag",
+      "trust_pills": ["Envío en 24-48h desde Almacén España", "Devolución en 14 días sin preguntas", "Garantía de 3 años oficial"],
+      "tabs": ["Descripción detallada", "Especificaciones técnicas", "Políticas de Envío & Devolución"]
+    },
+    "cart_experience": {
+      "drawer": "Slide-over drawer with progress bar for free shipping (€50 threshold)",
+      "page": "Full screen `/carrito` view with item counter, promo code input, checkout simulation & Hostinger static info modal",
+      "persistency": "LocalStorage synced state"
+    },
+    "product_evaluator_tool": {
+      "description": "Herramienta interna para dropshippers de Ahorramix: analiza rentabilidad real antes de importar a WooCommerce",
+      "inputs": [
+        "Nombre producto",
+        "Categoría",
+        "Coste Proveedor (€)",
+        "Envío Proveedor (€)",
+        "Comisión Pasarela Pago (%)",
+        "IVA aplicable (21%)",
+        "Precio Venta Competencia (€)",
+        "Nivel Demanda (Baja, Media, Alta, Muy Alta)",
+        "Tasa Devoluciones estimada (%)"
+      ],
+      "metrics_calculated": [
+        "Margen Bruto y Margen Neto (€)",
+        "ROI % (Retorno sobre Inversión)",
+        "Puntuación de Viabilidad (0 - 100 Score con semáforo)",
+        "Recomendación estratégica (Ganador / Neutral / Riesgo)"
+      ],
+      "actions": [
+        "Guardar en lista de candidatos",
+        "Exportar CSV en formato WooCommerce Products Ready (CSV UTF-8)"
+      ]
+    },
+    "customer_account_mock": {
+      "description": "Página / Modal de acceso a cuenta cliente con aviso de sincronización WooCommerce Headless"
+    },
+    "institutional_pages": {
+      "pages": ["Sobre Nosotros", "FAQ (Preguntas Frecuentes)", "Contacto", "Envíos y Devoluciones", "Política de Privacidad", "Términos y Condiciones", "Exportación a Hostinger"],
+      "trust_note": "Confianza basada en términos claros, transparencia de costes y envíos locales reales sin falsas reseñas."
+    }
+  },
+  "curated_image_urls": {
+    "hero_tech_setup": "https://images.unsplash.com/photo-1594636797501-ef436e157819?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBtaW5pbWFsaXN0JTIwaG9tZSUyMHRlY2glMjBwcm9kdWN0JTIwc2xlZWslMjBhZXN0aGV0aWN8ZW58MHx8fHwxNzkzMDUyNzUyfDA&ixlib=rb-4.1.0&q=85",
+    "minimal_desk_monitor": "https://images.unsplash.com/photo-1587522384446-64daf3e2689a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBtaW5pbWFsaXN0JTIwaG9tZSUyMHRlY2glMjBwcm9kdWN0JTIwc2xlZWslMjBhZXN0aGV0aWN8ZW58MHx8fHwxNzkzMDUyNzUyfDA&ixlib=rb-4.1.0&q=85",
+    "audio_headphones_mouse": "https://images.unsplash.com/photo-1548611716-e54944b9a959?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBtaW5pbWFsaXN0JTIwaG9tZSUyMHRlY2glMjBwcm9kdWN0JTIwc2xlZWslMjBhZXN0aGV0aWN8ZW58MHx8fHwxNzkzMDUyNzUyfDA&ixlib=rb-4.1.0&q=85",
+    "fashion_pumps_jewelry": "https://images.unsplash.com/photo-1549439602-43ebca2327af?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2OTV8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwbGlmZXN0eWxlJTIwcHJvZHVjdHMlMjBtaW5pbWFsaXNtJTIwZGlzcGxheXxlbnwwfHx8fDE3OTMwNTI3NTJ8MA&ixlib=rb-4.1.0&q=85",
+    "beauty_flatlay": "https://images.unsplash.com/photo-1685527645763-2cd1b47a2cd2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2OTV8MHwxfHNlYXJjaHwzfHxmYXNoaW9uJTIwbGlmZXN0eWxlJTIwcHJvZHVjdHMlMjBtaW5pbWFsaXNtJTIwZGlzcGxheXxlbnwwfHx8fDE3OTMwNTI3NTJ8MA&ixlib=rb-4.1.0&q=85",
+    "luxury_watch": "https://images.unsplash.com/photo-1774389992420-44d11d49f16b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDV8MHwxfHNlYXJjaHw0fHxtaW5pbWFsaXN0JTIwbHV4dXJ5JTIwcHJvZHVjdCUyMHBob3RvZ3JhcGh5JTIwc3R1ZGlvJTIwbGlnaHR8ZW58MHx8fHwxNzkzMDUyNzU1fDA&ixlib=rb-4.1.0&q=85"
+  },
+  "testing_requirements": {
+    "data_testid_rule": "ALL interactive components, filter buttons, catalog search inputs, evaluator inputs, add to cart buttons, and cart totals MUST have explicit kebab-case data-testid attributes.",
+    "examples": [
+      "data-testid='hero-explore-button'",
+      "data-testid='catalog-search-input'",
+      "data-testid='category-filter-hogar'",
+      "data-testid='product-card-add-to-cart-1'",
+      "data-testid='cart-drawer-toggle'",
+      "data-testid='evaluator-calculate-btn'",
+      "data-testid='evaluator-export-csv-btn'"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "1. Maintain strict high-end e-commerce aesthetic with off-white (#FBFBF9) background and crisp obsidian text.",
+    "2. Ensure header features the SVG logo mark for Ahorramix and visible desktop navigation.",
+    "3. Implement Lenis smooth scroll and Framer Motion staggered reveals for hero typography and bento grids.",
+    "4. Include 'Evaluador de productos' with live calculation of net margin, ROI %, viability score, and CSV export format matching WooCommerce standard headers (ID, Name, Regular Price, Sale Price, SKU, Categories, Stock).",
+    "5. Ensure cart drawer + full page cart work seamlessly with local state and clear checkout CTA.",
+    "6. Include a Hostinger static export banner / modal guiding how to build `npm run build` and upload to Hostinger hPanel + connecting WooCommerce REST API."
+  ]
+}

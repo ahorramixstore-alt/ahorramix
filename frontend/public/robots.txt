@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /carrito
+Disallow: /cuenta
+Disallow: /evaluador
+
+# Sustituye por tu dominio real tras la migración:
+# Sitemap: https://[tudominio.es]/sitemap.xml

@@ -1,0 +1,16 @@
+export const DEMO_CATEGORIES = [
+  { slug: "hogar", name: "Hogar", parent: null, image: "/images/vase-aro.jpg", description: "Decoración, iluminación y cocina para el día a día." },
+  { slug: "decoracion", name: "Decoración", parent: "hogar" },
+  { slug: "iluminacion", name: "Iluminación", parent: "hogar" },
+  { slug: "cocina", name: "Cocina", parent: "hogar" },
+  { slug: "tecnologia", name: "Tecnología", parent: null, image: "/images/headphones-eco.jpg", description: "Audio y accesorios inteligentes." },
+  { slug: "audio", name: "Audio", parent: "tecnologia" },
+  { slug: "relojes-inteligentes", name: "Relojes inteligentes", parent: "tecnologia" },
+  { slug: "moda", name: "Moda", parent: null, image: "/images/sneaker-brisa.jpg", description: "Calzado, bolsos y mochilas." },
+  { slug: "bolsos-mochilas", name: "Bolsos y mochilas", parent: "moda" },
+  { slug: "calzado", name: "Calzado", parent: "moda" },
+  { slug: "bienestar", name: "Bienestar", parent: null, image: "/images/serum-ambar.jpg", description: "Cuidado personal." },
+  { slug: "cuidado-personal", name: "Cuidado personal", parent: "bienestar" },
+  { slug: "mascotas", name: "Mascotas", parent: null, image: "/images/dog-hueso.jpg", description: "Juguetes y accesorios." },
+  { slug: "juguetes-mascotas", name: "Juguetes", parent: "mascotas" },
+];
