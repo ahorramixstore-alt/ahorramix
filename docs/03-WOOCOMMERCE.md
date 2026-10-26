@@ -14,7 +14,7 @@
 
 ## 2. Conectar el frontend
 
-En `frontend/.env` antes de `yarn build`:
+Recomendado: edita `public_html/ahorramix-config.js` en Hostinger (ver `export/LEEME.md`). Alternativa, en `frontend/.env` antes de `yarn build`:
 
 ```
 REACT_APP_COMMERCE_MODE=woocommerce

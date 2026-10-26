@@ -8,8 +8,9 @@ Proyecto desarrollado en Emergent para **exportarlo y alojarlo en Hostinger**. N
 
 | Carpeta | Contenido | ¿Se sube a Hostinger? |
 |---|---|---|
-| `frontend/` | Tienda React (diseño, catálogo, carrito, páginas legales, evaluador) | Sí, la carpeta `build/` tras compilar |
-| `wordpress/ahorramix-bridge/` | Plugin de WordPress que conecta el frontend con WooCommerce | Sí, como plugin |
+| `export/` | **Paquetes listos**: `ahorramix-tienda-hostinger.zip`, `ahorramix-bridge.zip` y `LEEME.md` con el paso a paso | Sí: los dos ZIP |
+| `frontend/` | Código fuente de la tienda React | No directamente (se genera el ZIP con `yarn export:hostinger`) |
+| `wordpress/ahorramix-bridge/` | Código fuente del plugin de WordPress | Ya incluido en `export/ahorramix-bridge.zip` |
 | `docs/` | Documentación de arquitectura, migración, pruebas y mantenimiento | No |
 | `backend/` | Plantilla FastAPI de Emergent **no utilizada** por la tienda | No |
 

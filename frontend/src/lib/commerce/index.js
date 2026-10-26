@@ -1,8 +1,9 @@
 import * as demo from "./demo";
 import * as woo from "./woocommerce";
 import { slugify } from "@/lib/format";
+import { COMMERCE_MODE, WC_STORE_URL } from "@/config/runtime";
 
-export const MODE = process.env.REACT_APP_COMMERCE_MODE === "woocommerce" && process.env.REACT_APP_WC_STORE_URL ? "woocommerce" : "demo";
+export const MODE = COMMERCE_MODE === "woocommerce" && WC_STORE_URL ? "woocommerce" : "demo";
 export const IS_DEMO = MODE === "demo";
 
 const provider = IS_DEMO ? demo : woo;

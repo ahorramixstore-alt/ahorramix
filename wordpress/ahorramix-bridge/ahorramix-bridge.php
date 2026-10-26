@@ -8,6 +8,7 @@
  *
  * Configuración en wp-config.php (encima de "That's all, stop editing!"):
  *   define( 'AHORRAMIX_FRONTEND_ORIGINS', 'https://tudominio.es,https://www.tudominio.es' );
+ *   define( 'AHORRAMIX_SITE_URL', 'https://tudominio.es' );   // para el sitemap dinámico
  *
  * NOTA: este archivo no se ha podido probar en una instalación real de WordPress desde Emergent.
  * Pruébalo primero en un entorno de staging de Hostinger (ver docs/07-PRUEBAS.md).
@@ -75,5 +76,40 @@ add_action( 'template_redirect', function () {
 
 	// WooCommerce recalcula precios, impuestos, envío y cupones con sus propios datos.
 	wp_safe_redirect( wc_get_checkout_url() );
+	exit;
+} );
+
+// Sitemap dinámico con las URLs del frontend React: /?ahorramix_sitemap=1  (siempre actualizado)
+add_action( 'template_redirect', function () {
+	if ( empty( $_GET['ahorramix_sitemap'] ) || ! defined( 'AHORRAMIX_SITE_URL' ) ) {
+		return;
+	}
+	$site  = untrailingslashit( AHORRAMIX_SITE_URL );
+	$paths = array( '/', '/tienda', '/preguntas-frecuentes', '/contacto', '/sobre-nosotros', '/legal/aviso-legal', '/legal/privacidad', '/legal/cookies', '/legal/condiciones', '/legal/envios', '/legal/devoluciones' );
+
+	$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => true ) );
+	if ( ! is_wp_error( $terms ) ) {
+		foreach ( $terms as $term ) {
+			$paths[] = '/categoria/' . $term->slug;
+		}
+	}
+
+	$ids = get_posts( array(
+		'post_type'   => 'product',
+		'post_status' => 'publish',
+		'numberposts' => -1,
+		'fields'      => 'ids',
+		'tax_query'   => array( array( 'taxonomy' => 'product_visibility', 'field' => 'name', 'terms' => array( 'exclude-from-catalog' ), 'operator' => 'NOT IN' ) ),
+	) );
+	foreach ( $ids as $id ) {
+		$paths[] = '/producto/' . get_post_field( 'post_name', $id );
+	}
+
+	header( 'Content-Type: application/xml; charset=UTF-8' );
+	echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+	foreach ( array_unique( $paths ) as $path ) {
+		echo '  <url><loc>' . esc_url( $site . $path ) . '</loc></url>' . "\n";
+	}
+	echo '</urlset>';
 	exit;
 } );

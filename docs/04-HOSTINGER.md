@@ -1,36 +1,36 @@
 # 04 · Migración a Hostinger
 
-> Requiere un plan de Hostinger con soporte para WordPress (hosting web/business o superior) y tu dominio.
+**La guía paso a paso está en [`export/LEEME.md`](../export/LEEME.md).** Allí se usan los paquetes ya generados: no hace falta instalar Node ni compilar.
 
-## Topología recomendada
+## Topología
 
 | Dominio | Contenido |
 |---|---|
-| `tudominio.es` (`public_html`) | Tienda React compilada |
-| `tienda.tudominio.es` | WordPress + WooCommerce (checkout, cuenta, admin) |
+| `tudominio.es` (`public_html`) | Tienda React (contenido de `ahorramix-tienda-hostinger.zip`) |
+| `tienda.tudominio.es` | WordPress + WooCommerce + plugin `ahorramix-bridge` (checkout, cuenta, administración) |
 
-Alternativa: WordPress en `tudominio.es` y React en un subdominio (`www` no recomendado). Elige una y no cambies después las URLs para no perder SEO.
+Elige la topología una vez y no cambies después las URLs, para no perder posicionamiento.
 
-## Pasos
+## Ajustes sin recompilar
 
-1. **Dominio y SSL**: hPanel › Dominios › conecta el dominio. hPanel › Seguridad › SSL › activa SSL en el dominio y en el subdominio.
-2. **Subdominio**: hPanel › Dominios › Subdominios › crea `tienda`.
-3. **WordPress**: hPanel › Sitio web › Instalador automático › WordPress en `tienda.tudominio.es`. Instala WooCommerce y sigue `docs/03-WOOCOMMERCE.md`.
-4. **Plugin puente**: comprime `wordpress/ahorramix-bridge` en zip › Plugins › Añadir nuevo › Subir › Activar. Añade `AHORRAMIX_FRONTEND_ORIGINS` en `wp-config.php` (hPanel › Administrador de archivos).
-5. **Compilar el frontend** en tu ordenador:
-   ```bash
-   cd frontend
-   # .env con REACT_APP_COMMERCE_MODE=woocommerce, REACT_APP_WC_STORE_URL, REACT_APP_SITE_URL, REACT_APP_SHOW_EVALUATOR=false
-   yarn install && yarn build
-   ```
-6. **Subir**: hPanel › Administrador de archivos › `public_html` del dominio principal › sube el **contenido** de `frontend/build/` (incluye `.htaccess`, que activa HTTPS y las rutas limpias). Activa «mostrar archivos ocultos» para verlo.
-7. **robots.txt y sitemap**: se generan solos al compilar (`yarn build`) si `REACT_APP_SITE_URL` está definido. Comprueba `https://tudominio.es/sitemap.xml` y envíalo en Google Search Console (ver `08-MANTENIMIENTO.md`).
-8. **Prueba completa**: `docs/07-PRUEBAS.md`.
+`public_html/ahorramix-config.js` controla el modo (`demo` / `woocommerce`), la URL de WooCommerce y la URL pública. Es un archivo público: nunca pongas claves en él.
 
-## Ajustes manuales obligatorios en Hostinger / WordPress
+## Regenerar los paquetes
 
-- Datos del vendedor en `frontend/src/config/store.js` y textos legales en `frontend/src/data/legal.js` (revisados por un profesional).
+```bash
+cd frontend
+yarn install
+yarn export:hostinger   # crea export/ahorramix-tienda-hostinger.zip y export/ahorramix-bridge.zip
+```
+
+El proceso compila sin el evaluador interno, elimina los scripts de vista previa de Emergent y, si `REACT_APP_SITE_URL` y WooCommerce están configurados en `.env`, genera también un `sitemap.xml` estático. El sitemap dinámico del plugin (`/?ahorramix_sitemap=1`) es la opción recomendada porque se actualiza solo.
+
+## Tareas manuales obligatorias (solo puedes hacerlas tú)
+
+- Dirección, email y teléfono del vendedor en `frontend/src/config/store.js`. Si el NIF/NIE es de persona física, añade nombre y apellidos del titular.
+- Revisión profesional de los textos legales (`frontend/src/data/legal.js`).
 - Pasarela de pago, zonas y tarifas de envío, impuestos, correos de WooCommerce.
 - Plugin(s) de proveedores y sus credenciales (en WordPress, nunca en el frontend).
-- Copias de seguridad (hPanel › Copias de seguridad) y actualizaciones automáticas.
-- Correo profesional (hPanel › Correos) para `[email@tudominio.es]`.
+- Sustituir productos y fotos de ejemplo por los reales.
+- Copias de seguridad y actualizaciones automáticas en hPanel.
+- Correo profesional (hPanel › Correos).

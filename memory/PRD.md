@@ -32,6 +32,13 @@ Respuestas del usuario: Arquitectura "Diseño React conectado a WooCommerce"; ti
 - Datos del vendedor: titular "Ahorramix", NIF/NIE Y0447650S (facilitados por el usuario). Pendientes: dirección, email, teléfono.
 - Barra de avisos rotativa (config/announcements.js), con flechas, pausa al pasar el ratón y cierre por sesión.
 
+## Iteración 4 · Paquete de exportación (2026-10-26)
+- Ajustes en tiempo de ejecución `public/ahorramix-config.js` (modo, URL WooCommerce, URL pública): se conecta en Hostinger sin recompilar.
+- `yarn export:hostinger` → /app/export/ahorramix-tienda-hostinger.zip (sin evaluador, sin scripts de Emergent) + ahorramix-bridge.zip + LEEME.md.
+- Plugin: sitemap dinámico `/?ahorramix_sitemap=1` (constante AHORRAMIX_SITE_URL).
+- Verificado: ZIP servido de forma independiente (rutas, vídeo, 0 referencias a Emergent, /evaluador → 404) y modo WooCommerce con Store API simulada (catálogo, variación → checkout `?ahorramix_cart=22:1`, cuenta).
+- Pendiente del usuario: dirección/email/teléfono, revisión legal, WordPress+WooCommerce, pasarela, envíos, proveedores, productos reales. Plugin PHP no ejecutado en WordPress real.
+
 ## Backlog
 - P0 (usuario, en Hostinger): instalar WP/WooCommerce, plugin puente, pasarela, envíos, datos vendedor, legales revisados.
 - P1: prerenderizado SEO; formulario contacto vía WordPress.

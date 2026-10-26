@@ -13,7 +13,7 @@ Lo que necesitas de la descarga: `frontend/`, `wordpress/`, `docs/`, `README.md`
 |---|---|---|
 | `backend/` (FastAPI + MongoDB) | No. Ninguna llamada desde el frontend | Ignorar / borrar |
 | `REACT_APP_BACKEND_URL` en `.env` | No se usa en el código de la tienda | Puedes borrarla |
-| `<script src="https://assets.emergent.sh/scripts/emergent-main.js">` y el script previo en `public/index.html` | No (solo vista previa de Emergent) | **Elimínalos** antes de `yarn build` (están marcados con `EMERGENT-ONLY`) |
+| `<script src="https://assets.emergent.sh/scripts/emergent-main.js">` y el script previo en `public/index.html` | No (solo vista previa de Emergent) | Se eliminan automáticamente al compilar (`scripts/clean-build.js`). Verificado: el ZIP exportado no contiene ninguna referencia a Emergent |
 | `@emergentbase/overlay`, `@emergentbase/visual-edits` (devDependencies) | No | Opcional: `yarn remove @emergentbase/overlay @emergentbase/visual-edits`. `craco.config.js` funciona sin ellos |
 | `frontend/plugins/health-check` | No (desactivado por defecto) | Puede quedarse |
 | Fuentes (Fontshare y Google Fonts) | CDN externos públicos | Opcional: autoalojarlas (ver licencias) |
@@ -31,5 +31,12 @@ Archivo `frontend/.env` (plantilla en `frontend/.env.example`). **Ninguna es sec
 | `REACT_APP_WC_STORE_URL` | `https://tienda.tudominio.es` | URL de WordPress con WooCommerce |
 | `REACT_APP_SITE_URL` | `https://tudominio.es` | URLs canónicas y datos estructurados |
 | `REACT_APP_SHOW_EVALUATOR` | `false` en producción | Incluye o no la ruta `/evaluador` |
+
+**Ajustes en tiempo de ejecución (recomendado):** `public/ahorramix-config.js` (`commerceMode`, `wcStoreUrl`, `siteUrl`) tiene prioridad sobre las tres primeras variables y se edita directamente en Hostinger sin recompilar.
+
+## Scripts de exportación
+
+- `yarn export:hostinger`: compila, limpia y crea los dos ZIP en `export/`.
+- `postbuild` (automático tras `yarn build`): `scripts/clean-build.js` elimina los scripts de Emergent de `build/index.html` y `scripts/generate-sitemap.js` genera el sitemap si hay URL configurada.
 
 Variables de WordPress (`wp-config.php`): `AHORRAMIX_FRONTEND_ORIGINS`. Las claves de pasarelas y proveedores se configuran **dentro de WordPress** en cada plugin.

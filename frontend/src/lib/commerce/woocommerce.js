@@ -1,7 +1,8 @@
 // Adaptador para la Store API pública de WooCommerce (/wp-json/wc/store/v1). Solo lectura, sin claves.
 import { decodeEntities, stripHtml } from "@/lib/format";
+import { WC_STORE_URL } from "@/config/runtime";
 
-const WC = (process.env.REACT_APP_WC_STORE_URL || "").replace(/\/$/, "");
+const WC = WC_STORE_URL;
 const API = `${WC}/wp-json/wc/store/v1`;
 
 const money = (p, key) => {

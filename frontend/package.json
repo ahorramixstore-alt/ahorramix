@@ -64,8 +64,9 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "postbuild": "node scripts/generate-sitemap.js",
+    "postbuild": "node scripts/clean-build.js && node scripts/generate-sitemap.js",
     "sitemap": "node scripts/generate-sitemap.js",
+    "export:hostinger": "bash scripts/export-hostinger.sh",
     "test": "craco test"
   },
   "browserslist": {

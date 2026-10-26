@@ -1,11 +1,13 @@
 // Datos editables de la tienda. Los valores entre [corchetes] son marcadores que debes sustituir.
+import { SITE_URL } from "./runtime";
+
 export const STORE = {
   name: "Ahorramix",
   tagline: "Lo esencial, bien elegido, a buen precio.",
   locale: "es-ES",
   currency: "EUR",
   country: "España",
-  siteUrl: process.env.REACT_APP_SITE_URL || "",
+  siteUrl: SITE_URL,
   // Umbral de envío gratuito en euros. null = no se muestra (configúralo también en WooCommerce).
   freeShippingThreshold: null,
   seller: {
