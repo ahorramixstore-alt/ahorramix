@@ -28,6 +28,10 @@ Respuestas del usuario: Arquitectura "Diseño React conectado a WooCommerce"; ti
 - Rediseño comercial a petición del usuario («se ve muy simple» → «Más llamativa y comercial»): portada con vídeo (Pexels 5889617, mp4+webm, móvil y escritorio), carrusel de ofertas (embla) + tarjetas laterales, barra de garantías, tira de categorías, ofertas del día con cuenta atrás (fecha configurable en `config/promos.js`), carruseles por categoría, pestañas más vendidos/ofertas/novedades, barra de categorías en cabecera, paleta naranja #FF5A1F / amarillo #FFD84D / tinta.
 - 7 productos de ejemplo ficticios más (18 en total) y 4 subcategorías nuevas.
 
+## Iteración 3 (2026-10-26)
+- Datos del vendedor: titular "Ahorramix", NIF/NIE Y0447650S (facilitados por el usuario). Pendientes: dirección, email, teléfono.
+- Barra de avisos rotativa (config/announcements.js), con flechas, pausa al pasar el ratón y cierre por sesión.
+
 ## Backlog
 - P0 (usuario, en Hostinger): instalar WP/WooCommerce, plugin puente, pasarela, envíos, datos vendedor, legales revisados.
 - P1: prerenderizado SEO; formulario contacto vía WordPress.

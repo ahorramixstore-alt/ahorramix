@@ -6,6 +6,7 @@ import { Footer } from "./Footer";
 import { CartDrawer } from "./CartDrawer";
 import { CookieNotice } from "./CookieNotice";
 import { DemoBanner } from "./DemoBanner";
+import { AnnouncementBar } from "./AnnouncementBar";
 
 let lenis = null;
 
@@ -39,6 +40,7 @@ export function Layout() {
   return (
     <div className="min-h-screen flex flex-col">
       <DemoBanner />
+      <AnnouncementBar />
       <Header />
       <main className="flex-1">
         <Outlet />

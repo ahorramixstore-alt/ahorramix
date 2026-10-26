@@ -9,8 +9,8 @@ export const STORE = {
   // Umbral de envío gratuito en euros. null = no se muestra (configúralo también en WooCommerce).
   freeShippingThreshold: null,
   seller: {
-    legalName: "[Nombre o razón social]",
-    taxId: "[NIF / CIF]",
+    legalName: "Ahorramix",
+    taxId: "Y0447650S",
     address: "[Dirección completa, código postal, ciudad]",
     email: "[email@tudominio.es]",
     phone: "[Teléfono de contacto]",

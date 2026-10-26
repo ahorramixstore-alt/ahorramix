@@ -9,6 +9,7 @@
 | Marcar destacados / novedades | Etiquetas `destacado`, `novedad`, `mas-vendido` | No |
 | Cambiar logo, colores, textos de inicio | `components/layout/Logo.jsx`, `index.css`, `components/home/*` | Sí |
 | Textos legales y datos del vendedor | `data/legal.js`, `config/store.js` | Sí |
+| Mensajes de la barra de avisos (cupones, envíos…) | `config/announcements.js` (lista vacía = barra oculta) | Sí |
 | Preguntas frecuentes | `pages/Faq.jsx` | Sí |
 | Vídeo de portada, carrusel de ofertas, tarjetas laterales | `config/promos.js` (+ archivos en `public/video` e `public/images`) | Sí |
 | Ofertas del día | Etiqueta `oferta-del-dia` + precio rebajado en WooCommerce; fecha de fin en `DAILY_DEAL.endsAt` de `config/promos.js` | Productos: no. Fecha de fin: sí |
