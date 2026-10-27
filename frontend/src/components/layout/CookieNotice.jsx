@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const KEY = "ahorramix_cookie_choice";
+export const cookieChosen = () => Boolean(localStorage.getItem(KEY));
 
 // Aviso básico: la tienda no carga cookies analíticas ni publicitarias hasta que configures una herramienta de consentimiento.
 export function CookieNotice() {
   const [choice, setChoice] = useState(() => localStorage.getItem(KEY));
   if (choice) return null;
-  const save = (v) => { localStorage.setItem(KEY, v); setChoice(v); };
+  const save = (v) => { localStorage.setItem(KEY, v); setChoice(v); window.dispatchEvent(new Event("am-cookie-choice")); };
   return (
     <div data-testid="cookie-notice" className="fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-sm z-[60] rounded-2xl bg-white border border-[var(--am-line)] shadow-[0_20px_50px_rgba(14,16,21,0.12)] p-5">
       <p className="text-sm text-[var(--am-ink-2)] leading-relaxed">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Copy, Check } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { NEWSLETTER_ACTION, NEWSLETTER_FIELD, WELCOME } from "@/config/runtime";
+import { cookieChosen } from "./CookieNotice";
 
 const KEY = "am_welcome_seen";
 
@@ -33,10 +34,13 @@ function EmailStep({ onDone }) {
 export function WelcomeOffer() {
   const [open, setOpen] = useState(false);
   const [revealed, setRevealed] = useState(!NEWSLETTER_ACTION);
+  // Espera a que el visitante responda al aviso de cookies para no mostrar dos avisos a la vez.
   useEffect(() => {
     if (!WELCOME.code || localStorage.getItem(KEY)) return undefined;
-    const t = setTimeout(() => { setOpen(true); localStorage.setItem(KEY, "1"); }, WELCOME.delay);
-    return () => clearTimeout(t);
+    let t;
+    const start = () => { t = setTimeout(() => { setOpen(true); localStorage.setItem(KEY, "1"); }, WELCOME.delay); };
+    if (cookieChosen()) start(); else window.addEventListener("am-cookie-choice", start, { once: true });
+    return () => { clearTimeout(t); window.removeEventListener("am-cookie-choice", start); };
   }, []);
   if (!WELCOME.code) return null;
   return (

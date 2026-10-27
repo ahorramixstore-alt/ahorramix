@@ -51,6 +51,13 @@ Respuestas del usuario: Arquitectura "Diseño React conectado a WooCommerce"; ti
 - Negro de marca del logo original (#001326, variable `--am-black`) aplicado al logo, botones, chips y paneles oscuros.
 - Vista previa al compartir: `images/brand/og-ahorramix.jpg` (1200×630) con etiquetas Open Graph/Twitter estáticas en index.html (usa REACT_APP_SITE_URL; si está vacío, el usuario añade su dominio, ver LEEME paso 7).
 
+## Iteración 7 · Vista previa por producto, bienvenida y cuentas Google (2026-10-27)
+- `public/share.php` + regla en `.htaccess`: los robots de WhatsApp/Facebook/X/Telegram en `/producto/<slug>` reciben OG con foto, nombre y precio desde la Store API (caché 15 min). Probado con PHP y WooCommerce simulado.
+- Aviso de bienvenida `WelcomeOffer.jsx`: código `welcomeCode` (BIENVENIDA10, 10 %) a los `welcomeDelaySeconds` (8 s) tras responder al aviso de cookies, una sola vez; pide email si hay `newsletterAction`. Nota del código en el carrito. El cupón debe crearse en WooCommerce.
+- Cuentas de cliente: icono de cuenta abre `LoginDialog` solo con «Iniciar sesión con Google» (Google Identity Services, `@react-oauth/google`, `googleClientId` en ahorramix-config.js). Perfil en `/cuenta` (foto, nombre, email, pedidos, cerrar sesión). Modo demo = perfil de prueba local. `AuthContext` + `lib/commerce/account.js`.
+- Plugin Bridge 1.1.0 `includes/accounts.php`: POST auth/google (verifica ID token con Google: aud, iss, exp, email_verified), GET me, POST auth/logout, POST auth/handoff (código 2 min → `?ahorramix_sso=` inicia sesión en el checkout). Tokens hash HMAC en user meta, 30 días, cabecera `X-Ahorramix-Token`. Bloquea cuentas con `edit_posts`. NO probado en WordPress real.
+- docs/11-LOGIN-GOOGLE.md (copiado a export/LOGIN-GOOGLE.md). Testing agent iteración 1: 14/14 frontend OK.
+
 
 ## Backlog
 - P0 (usuario, en Hostinger): instalar WP/WooCommerce, plugin puente, pasarela, envíos, datos vendedor, legales revisados.
