@@ -19,7 +19,7 @@ export default function Account() {
             <Link to="/tienda" className="mt-6 inline-flex px-6 py-3 rounded-full border border-[var(--am-ink)]/15 font-medium">Seguir comprando</Link>
           </div>
         ) : (
-          <a href={url} data-testid="account-login-link" className="inline-flex px-8 py-4 rounded-full bg-[var(--am-ink)] text-white font-semibold hover:bg-[var(--am-emerald)] transition-colors">Acceder o crear cuenta</a>
+          <a href={url} data-testid="account-login-link" className="inline-flex px-8 py-4 rounded-full bg-[var(--am-black)] text-white font-semibold hover:bg-[var(--am-emerald)] transition-colors">Acceder o crear cuenta</a>
         )}
       </div>
     </>

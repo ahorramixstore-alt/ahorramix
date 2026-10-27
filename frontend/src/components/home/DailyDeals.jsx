@@ -49,7 +49,7 @@ export function DailyDeals({ products }) {
   if (!deals.length || (c && c.left === 0)) return null;
   return (
     <section id="ofertas-del-dia" className="am-container py-16 md:py-20 scroll-mt-28" data-testid="daily-deals">
-      <div className="rounded-[32px] bg-[var(--am-ink)] text-white p-6 md:p-10 grid lg:grid-cols-12 gap-8 items-center relative overflow-hidden">
+      <div className="rounded-[32px] bg-[var(--am-black)] text-white p-6 md:p-10 grid lg:grid-cols-12 gap-8 items-center relative overflow-hidden">
         <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-[var(--am-orange)]/25 blur-3xl" aria-hidden="true" />
         <div className="lg:col-span-4 relative">
           <p className="inline-flex items-center gap-2 font-mono-am text-[12px] uppercase tracking-[0.2em] text-[var(--am-yellow)]"><Flame className="h-4 w-4" /> Ofertas del día</p>

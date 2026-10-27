@@ -30,7 +30,7 @@ export function WishButton({ product, className = "" }) {
 export function ShareButtons({ product }) {
   const url = typeof window !== "undefined" ? window.location.href : "";
   const text = encodeURIComponent(`${product.name} en Ahorramix`);
-  const btn = "h-10 w-10 rounded-full border border-[var(--am-line)] grid place-items-center hover:bg-[var(--am-ink)] hover:text-white transition-colors";
+  const btn = "h-10 w-10 rounded-full border border-[var(--am-line)] grid place-items-center hover:bg-[var(--am-black)] hover:text-white transition-colors";
   const copy = async () => { try { await navigator.clipboard.writeText(url); toast.success("Enlace copiado"); } catch { toast.error("No se pudo copiar"); } };
   return (
     <div className="flex items-center gap-2" data-testid="share-buttons">

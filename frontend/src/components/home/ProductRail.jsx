@@ -18,8 +18,8 @@ export function ProductScroller({ eyebrow, title, products, link, id, min = 3 })
         </div>
         <div className="flex items-center gap-2 shrink-0">
           {link && <Link to={link} className="text-sm font-semibold underline underline-offset-4 mr-2">Ver todo</Link>}
-          <button onClick={() => move(-1)} aria-label="Anterior" data-testid={`${id}-prev`} className="hidden md:grid h-10 w-10 rounded-full border border-[var(--am-line)] place-items-center hover:bg-[var(--am-ink)] hover:text-white transition-colors"><ArrowLeft className="h-4 w-4" /></button>
-          <button onClick={() => move(1)} aria-label="Siguiente" data-testid={`${id}-next`} className="hidden md:grid h-10 w-10 rounded-full border border-[var(--am-line)] place-items-center hover:bg-[var(--am-ink)] hover:text-white transition-colors"><ArrowRight className="h-4 w-4" /></button>
+          <button onClick={() => move(-1)} aria-label="Anterior" data-testid={`${id}-prev`} className="hidden md:grid h-10 w-10 rounded-full border border-[var(--am-line)] place-items-center hover:bg-[var(--am-black)] hover:text-white transition-colors"><ArrowLeft className="h-4 w-4" /></button>
+          <button onClick={() => move(1)} aria-label="Siguiente" data-testid={`${id}-next`} className="hidden md:grid h-10 w-10 rounded-full border border-[var(--am-line)] place-items-center hover:bg-[var(--am-black)] hover:text-white transition-colors"><ArrowRight className="h-4 w-4" /></button>
         </div>
       </Reveal>
       <div ref={track} className="-mx-5 px-5 scroll-px-5 md:mx-0 md:px-0 md:scroll-px-0 flex gap-4 md:gap-5 overflow-x-auto snap-x scroll-smooth pb-2 [scrollbar-width:none]" data-lenis-prevent>

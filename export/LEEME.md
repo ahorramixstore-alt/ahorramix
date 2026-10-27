@@ -34,6 +34,7 @@ Esta carpeta contiene lo que tienes que subir. **No necesitas instalar nada en t
 7. **Sitemap**: edita `public_html/robots.txt` y añade al final:
    `Sitemap: https://tienda.tudominio.es/?ahorramix_sitemap=1`
    Se actualiza solo con cada producto. Envíalo en Google Search Console.
+   **Vista previa al compartir (WhatsApp, Facebook, X)**: edita `public_html/index.html`, busca las dos veces que aparece `/images/brand/og-ahorramix.jpg` y pon delante tu dominio para que quede `https://tudominio.es/images/brand/og-ahorramix.jpg`. WhatsApp necesita la dirección completa para mostrar el logo. Compruébalo en https://developers.facebook.com/tools/debug/ (la vista previa de WhatsApp puede tardar en actualizarse).
 8. **Pagos, envíos y correos** en WooCommerce (ver `docs/06-INTEGRACIONES-PENDIENTES.md`).
 9. **Prueba una compra completa en modo test** (ver `docs/07-PRUEBAS.md`) antes de abrir al público.
 

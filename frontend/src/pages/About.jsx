@@ -28,7 +28,7 @@ export default function About() {
               <div><h2 className="font-display text-2xl font-bold">{t}</h2><p className="mt-2 text-[var(--am-ink-2)] leading-relaxed">{d}</p></div>
             </Reveal>
           ))}
-          <Link to="/tienda" className="inline-flex px-7 py-4 rounded-full bg-[var(--am-ink)] text-white font-semibold">Ver productos</Link>
+          <Link to="/tienda" className="inline-flex px-7 py-4 rounded-full bg-[var(--am-black)] text-white font-semibold">Ver productos</Link>
         </div>
       </div>
     </>

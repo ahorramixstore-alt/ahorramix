@@ -19,7 +19,7 @@ export default function Cart() {
           {items.length === 0 ? (
             <div className="py-16 text-center border-y border-[var(--am-line)]" data-testid="cart-page-empty">
               <p className="text-[var(--am-ink-2)]">Todavía no has añadido productos.</p>
-              <Link to="/tienda" className="mt-6 inline-flex px-7 py-3.5 rounded-full bg-[var(--am-ink)] text-white font-semibold">Ir a la tienda</Link>
+              <Link to="/tienda" className="mt-6 inline-flex px-7 py-3.5 rounded-full bg-[var(--am-black)] text-white font-semibold">Ir a la tienda</Link>
             </div>
           ) : (
             <>

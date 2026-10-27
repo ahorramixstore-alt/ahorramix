@@ -17,7 +17,7 @@ export default function Tracking() {
           {IS_DEMO && !TRACKING_URL ? (
             <p className="mt-4 text-[var(--am-ink-2)] leading-relaxed" data-testid="tracking-demo-notice">El seguimiento se activará al conectar WooCommerce: los clientes verán el estado de cada pedido en «Mi cuenta» o en la página de tu plugin de seguimiento.</p>
           ) : (
-            <a href={url} data-testid="tracking-link" className="mt-6 inline-flex px-8 py-4 rounded-full bg-[var(--am-ink)] text-white font-bold hover:bg-[var(--am-price)] transition-colors">Consultar mi pedido</a>
+            <a href={url} data-testid="tracking-link" className="mt-6 inline-flex px-8 py-4 rounded-full bg-[var(--am-black)] text-white font-bold hover:bg-[var(--am-price)] transition-colors">Consultar mi pedido</a>
           )}
           <p className="mt-6 text-sm text-[var(--am-ink-2)]">¿Algún problema con tu envío? <Link to="/contacto" className="underline">Escríbenos</Link>.</p>
         </div>

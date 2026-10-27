@@ -12,7 +12,7 @@ export function BackToTop() {
   }, []);
   return (
     <button onClick={scrollToTop} aria-label="Volver arriba" data-testid="back-to-top"
-      className={`fixed bottom-24 right-4 z-40 h-11 w-11 rounded-full bg-[var(--am-ink)] text-white grid place-items-center shadow-lg transition-[opacity,transform] duration-300 ${show ? "opacity-100" : "opacity-0 translate-y-3 pointer-events-none"}`}>
+      className={`fixed bottom-24 right-4 z-40 h-11 w-11 rounded-full bg-[var(--am-black)] text-white grid place-items-center shadow-lg transition-[opacity,transform] duration-300 ${show ? "opacity-100" : "opacity-0 translate-y-3 pointer-events-none"}`}>
       <ArrowUp className="h-4 w-4" />
     </button>
   );

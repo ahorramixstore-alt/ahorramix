@@ -36,7 +36,7 @@ export function Hero() {
       <div className="relative am-container h-full flex flex-col justify-end pb-14 md:pb-20 text-white">
         <motion.span initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
           className="self-start inline-flex items-center gap-2 rounded-full bg-[var(--am-orange)] text-[var(--am-ink)] px-4 py-1.5 text-[13px] font-bold">
-          <span className="h-2 w-2 rounded-full bg-[var(--am-ink)] animate-pulse" /> Ofertas en hogar, tecnología y moda
+          <span className="h-2 w-2 rounded-full bg-[var(--am-black)] animate-pulse" /> Ofertas en hogar, tecnología y moda
         </motion.span>
         <h1 className="mt-6 font-display font-extrabold tracking-[-0.045em] leading-[0.95] text-[3rem] sm:text-7xl lg:text-[6.4rem] max-w-4xl">
           {LINES.map((l, i) => (

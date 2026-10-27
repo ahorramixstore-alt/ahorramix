@@ -14,7 +14,7 @@ export function CookieNotice() {
         Usamos almacenamiento local técnico para el carrito. No hay cookies analíticas activas. Más información en la <Link to="/legal/cookies" className="underline">política de cookies</Link>.
       </p>
       <div className="mt-4 flex gap-2">
-        <button data-testid="cookie-accept" onClick={() => save("accepted")} className="flex-1 h-10 rounded-full bg-[var(--am-ink)] text-white text-sm font-medium">Aceptar</button>
+        <button data-testid="cookie-accept" onClick={() => save("accepted")} className="flex-1 h-10 rounded-full bg-[var(--am-black)] text-white text-sm font-medium">Aceptar</button>
         <button data-testid="cookie-reject" onClick={() => save("rejected")} className="flex-1 h-10 rounded-full border border-[var(--am-line)] text-sm font-medium">Rechazar</button>
       </div>
     </div>

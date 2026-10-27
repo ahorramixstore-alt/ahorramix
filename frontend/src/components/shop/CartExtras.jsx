@@ -34,7 +34,7 @@ export function CartUpsell() {
           <div key={p.id} className="flex items-center gap-3">
             <Link to={`/producto/${p.slug}`}><img src={p.images?.[0]?.src} alt="" className="h-14 w-14 rounded-xl object-cover bg-[var(--am-bg-2)]" /></Link>
             <div className="flex-1 min-w-0"><p className="text-sm truncate">{p.name}</p><p className="text-sm font-bold text-[var(--am-price)]">{eur(p.price)}</p></div>
-            <button onClick={() => add(p, {}, 1, null)} aria-label={`Añadir ${p.name}`} data-testid={`upsell-add-${p.slug}`} className="h-9 w-9 rounded-full bg-[var(--am-ink)] text-white grid place-items-center hover:bg-[var(--am-orange)] hover:text-[var(--am-ink)] transition-colors"><Plus className="h-4 w-4" /></button>
+            <button onClick={() => add(p, {}, 1, null)} aria-label={`Añadir ${p.name}`} data-testid={`upsell-add-${p.slug}`} className="h-9 w-9 rounded-full bg-[var(--am-black)] text-white grid place-items-center hover:bg-[var(--am-orange)] hover:text-[var(--am-ink)] transition-colors"><Plus className="h-4 w-4" /></button>
           </div>
         ))}
       </div>

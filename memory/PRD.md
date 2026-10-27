@@ -48,6 +48,8 @@ Respuestas del usuario: Arquitectura "Diseño React conectado a WooCommerce"; ti
 
 ## Iteración 6 · Logo real (2026-10-27)
 - Logo del usuario recoloreado (azul → naranja #ff5a1f, negro conservado, fondo transparente) en `public/images/brand/ahorramix-logo.png`; cabecera (logo completo) y pie (sobre tarjeta blanca). Favicon/apple-touch-icon con el carrito. ZIP regenerado.
+- Negro de marca del logo original (#001326, variable `--am-black`) aplicado al logo, botones, chips y paneles oscuros.
+- Vista previa al compartir: `images/brand/og-ahorramix.jpg` (1200×630) con etiquetas Open Graph/Twitter estáticas en index.html (usa REACT_APP_SITE_URL; si está vacío, el usuario añade su dominio, ver LEEME paso 7).
 
 
 ## Backlog

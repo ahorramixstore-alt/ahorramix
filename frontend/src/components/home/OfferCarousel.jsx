@@ -69,7 +69,7 @@ export function OfferCarousel() {
                 <p className="font-mono-am text-[11px] uppercase tracking-[0.2em] text-[var(--am-ink-2)]">{t.eyebrow}</p>
                 <h3 className="mt-1 font-display text-lg md:text-2xl font-extrabold tracking-tight leading-tight max-w-[75%] md:max-w-[60%]">{t.title}</h3>
               </div>
-              <span className="relative h-10 w-10 rounded-full bg-[var(--am-ink)] text-white grid place-items-center transition-transform group-hover:rotate-45"><ArrowUpRight className="h-4 w-4" /></span>
+              <span className="relative h-10 w-10 rounded-full bg-[var(--am-black)] text-white grid place-items-center transition-transform group-hover:rotate-45"><ArrowUpRight className="h-4 w-4" /></span>
             </Link>
           ))}
         </div>

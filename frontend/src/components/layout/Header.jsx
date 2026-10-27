@@ -42,7 +42,7 @@ export function Header() {
       <div className="md:hidden am-container pb-3"><SearchBox id="mobile-search" compact /></div>
       <nav className="hidden lg:block border-t border-[var(--am-line)]" aria-label="Principal">
         <div className="am-container flex items-center gap-6 h-12">
-          <DepartmentsMenu trigger={<button data-testid="all-categories-button" className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--am-ink)] text-white text-[13px] font-bold hover:bg-[var(--am-price)] transition-colors"><Menu className="h-4 w-4" /> Todas las categorías</button>} />
+          <DepartmentsMenu trigger={<button data-testid="all-categories-button" className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--am-black)] text-white text-[13px] font-bold hover:bg-[var(--am-price)] transition-colors"><Menu className="h-4 w-4" /> Todas las categorías</button>} />
           {tops.slice(0, HEADER_CATEGORIES).map((c) => (
             <div key={c.slug} className="relative group h-full flex items-center">
               <NavLink to={`/categoria/${c.slug}`} data-testid={`nav-${c.slug}`} className={link}>{c.name}</NavLink>

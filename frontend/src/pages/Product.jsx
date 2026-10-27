@@ -25,7 +25,7 @@ function Gallery({ images, name }) {
         <div className="flex md:flex-col gap-3">
           {images.map((img, n) => (
             <button key={img.src} onClick={() => setI(n)} data-testid={`gallery-thumb-${n}`} aria-label={`Imagen ${n + 1}`}
-              className={`w-16 h-20 md:w-20 md:h-24 rounded-xl overflow-hidden border-2 transition-colors ${n === i ? "border-[var(--am-ink)]" : "border-transparent opacity-70 hover:opacity-100"}`}>
+              className={`w-16 h-20 md:w-20 md:h-24 rounded-xl overflow-hidden border-2 transition-colors ${n === i ? "border-[var(--am-black)]" : "border-transparent opacity-70 hover:opacity-100"}`}>
               <img src={img.src} alt="" className="w-full h-full object-cover" />
             </button>
           ))}
@@ -98,7 +98,7 @@ export default function Product() {
               <WishButton product={product} className="shrink-0 h-12 w-12 border border-[var(--am-line)] bg-white" />
             </div>
             {product.rating > 0 && <div className="mt-3"><Stars value={product.rating} count={product.reviewCount} /></div>}
-            <div className="mt-5 flex items-center gap-3"><Price product={product} size="lg" />{discountPct(product) > 0 && <span className="px-2.5 py-1 rounded-full bg-[var(--am-ink)] text-white text-[12px] font-semibold">−{discountPct(product)}%</span>}</div>
+            <div className="mt-5 flex items-center gap-3"><Price product={product} size="lg" />{discountPct(product) > 0 && <span className="px-2.5 py-1 rounded-full bg-[var(--am-black)] text-white text-[12px] font-semibold">−{discountPct(product)}%</span>}</div>
             <p className="mt-1 text-[13px] text-[var(--am-ink-2)]">IVA incluido. Envío calculado en el checkout.</p>
             <p className="mt-6 text-[var(--am-ink-2)] leading-relaxed">{product.shortDescription}</p>
             <div ref={buyRef}><PurchaseControls product={product} /></div>
@@ -117,7 +117,7 @@ export default function Product() {
         <Tabs defaultValue="descripcion">
           <TabsList className="bg-transparent p-0 h-auto gap-6 border-b border-[var(--am-line)] w-full justify-start rounded-none">
             {[["descripcion", "Descripción"], ["caracteristicas", "Características"], ["envio", "Envío y devoluciones"], ["opiniones", `Opiniones${product.reviewCount ? ` (${product.reviewCount})` : ""}`]].map(([v, l]) => (
-              <TabsTrigger key={v} value={v} data-testid={`product-tab-${v}`} className="rounded-none px-0 pb-3 text-[15px] data-[state=active]:shadow-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-[var(--am-ink)]">{l}</TabsTrigger>
+              <TabsTrigger key={v} value={v} data-testid={`product-tab-${v}`} className="rounded-none px-0 pb-3 text-[15px] data-[state=active]:shadow-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-[var(--am-black)]">{l}</TabsTrigger>
             ))}
           </TabsList>
           <TabsContent value="descripcion" className="prose-am pt-6">

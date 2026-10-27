@@ -1,6 +1,6 @@
 import { STORE } from "@/config/store";
 
-export function Seo({ title, description, path = "", noindex = false, image, jsonLd }) {
+export function Seo({ title, description, path = "", noindex = false, image = "/images/brand/og-ahorramix.jpg", jsonLd }) {
   const full = title ? `${title} | ${STORE.name}` : `${STORE.name} — ${STORE.tagline}`;
   const base = STORE.siteUrl.replace(/\/$/, "");
   return (

@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <>
-      <Seo description="Ahorramix: ofertas en hogar, tecnología, moda, bienestar y mascotas con precio final claro y envío a España." path="/" image="/video/hero-poster.jpg" />
+      <Seo description="Ahorramix: ofertas en hogar, tecnología, moda, bienestar y mascotas con precio final claro y envío a España." path="/" />
       <Hero />
       <OfferCarousel />
       <TrustStrip />

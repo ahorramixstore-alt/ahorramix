@@ -32,7 +32,7 @@ export function Departments({ products, categories }) {
         ))}
       </div>
       <div className="mt-8 flex flex-wrap gap-2" data-testid="all-departments">
-        {tops.map((c) => <Link key={c.slug} to={`/categoria/${c.slug}`} className="px-4 py-2 rounded-full border border-[var(--am-line)] bg-white text-sm font-medium hover:bg-[var(--am-ink)] hover:text-white transition-colors">{c.name}</Link>)}
+        {tops.map((c) => <Link key={c.slug} to={`/categoria/${c.slug}`} className="px-4 py-2 rounded-full border border-[var(--am-line)] bg-white text-sm font-medium hover:bg-[var(--am-black)] hover:text-white transition-colors">{c.name}</Link>)}
       </div>
     </section>
   );

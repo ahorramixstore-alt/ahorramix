@@ -49,7 +49,7 @@ export function Filters({ categories, active, params, set, facets, hasRatings })
         <form className="mt-3 flex items-center gap-2" onSubmit={(e) => { e.preventDefault(); const f = new FormData(e.target); set({ min: f.get("min"), max: f.get("max") }); }}>
           <input name="min" defaultValue={min} key={`min${min}`} inputMode="decimal" placeholder="Mín" data-testid="price-min-input" className="flex-1 min-w-0 h-9 rounded-lg border border-[var(--am-line)] px-2 text-sm" />
           <input name="max" defaultValue={max} key={`max${max}`} inputMode="decimal" placeholder="Máx" data-testid="price-max-input" className="flex-1 min-w-0 h-9 rounded-lg border border-[var(--am-line)] px-2 text-sm" />
-          <button className="shrink-0 h-9 px-3 rounded-lg bg-[var(--am-ink)] text-white text-sm font-bold" data-testid="price-apply">Ir</button>
+          <button className="shrink-0 h-9 px-3 rounded-lg bg-[var(--am-black)] text-white text-sm font-bold" data-testid="price-apply">Ir</button>
         </form>
       </div>
       {hasRatings && (
@@ -78,7 +78,7 @@ export function Filters({ categories, active, params, set, facets, hasRatings })
               {Object.entries(opts).map(([o, n]) => {
                 const on = chosen.includes(o);
                 const next = on ? chosen.filter((x) => x !== o) : [...chosen, o];
-                return <button key={o} onClick={() => set({ [key]: next.join(",") })} data-testid={`facet-${name}-${o}`} className={`px-3 py-1.5 rounded-full border text-[13px] ${on ? "bg-[var(--am-ink)] text-white border-[var(--am-ink)]" : "border-[var(--am-line)] hover:border-[var(--am-ink)]"}`}>{o} <span className="opacity-60">{n}</span></button>;
+                return <button key={o} onClick={() => set({ [key]: next.join(",") })} data-testid={`facet-${name}-${o}`} className={`px-3 py-1.5 rounded-full border text-[13px] ${on ? "bg-[var(--am-black)] text-white border-[var(--am-black)]" : "border-[var(--am-line)] hover:border-[var(--am-ink)]"}`}>{o} <span className="opacity-60">{n}</span></button>;
               })}
             </div>
           </div>

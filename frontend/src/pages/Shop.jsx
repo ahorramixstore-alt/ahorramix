@@ -108,7 +108,7 @@ export default function Shop() {
           {list.length > limit && (
             <div className="mt-12 text-center">
               <p className="text-sm text-[var(--am-ink-2)] mb-3">Mostrando {limit} de {list.length}</p>
-              <button onClick={() => setLimit((l) => l + PAGE)} data-testid="load-more-button" className="px-8 py-3.5 rounded-full bg-[var(--am-ink)] text-white font-bold hover:bg-[var(--am-price)] transition-colors">Cargar más productos</button>
+              <button onClick={() => setLimit((l) => l + PAGE)} data-testid="load-more-button" className="px-8 py-3.5 rounded-full bg-[var(--am-black)] text-white font-bold hover:bg-[var(--am-price)] transition-colors">Cargar más productos</button>
             </div>
           )}
         </div>

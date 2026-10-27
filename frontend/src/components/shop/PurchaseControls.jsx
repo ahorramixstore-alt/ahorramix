@@ -11,7 +11,7 @@ function VariantPicker({ attributes, selected, onChange, prefix }) {
       <div className="flex flex-wrap gap-2">
         {a.options.map((o) => (
           <button key={o} onClick={() => onChange({ ...selected, [a.name]: o })} data-testid={`${prefix}variant-${slugify(a.name)}-${slugify(o)}`}
-            className={`min-w-[48px] px-4 h-11 rounded-full border text-sm transition-colors ${selected[a.name] === o ? "bg-[var(--am-ink)] text-white border-[var(--am-ink)]" : "border-[var(--am-line)] hover:border-[var(--am-ink)]"}`}>{o}</button>
+            className={`min-w-[48px] px-4 h-11 rounded-full border text-sm transition-colors ${selected[a.name] === o ? "bg-[var(--am-black)] text-white border-[var(--am-black)]" : "border-[var(--am-line)] hover:border-[var(--am-black)]"}`}>{o}</button>
         ))}
       </div>
     </div>
@@ -44,7 +44,7 @@ export function PurchaseControls({ product, prefix = "", onAdded }) {
           <button className="px-4" aria-label="Sumar" data-testid={`${prefix}product-qty-increase`} onClick={() => setQty((q) => Math.min(99, q + 1))}><Plus className="h-4 w-4" /></button>
         </div>
         <button disabled={blocked} onClick={buy} data-testid={`${prefix}add-to-cart-button`}
-          className="flex-1 h-14 rounded-full bg-[var(--am-ink)] hover:bg-[var(--am-emerald)] disabled:bg-[var(--am-bg-2)] disabled:text-[var(--am-ink-2)] text-white font-semibold transition-colors">
+          className="flex-1 h-14 rounded-full bg-[var(--am-black)] hover:bg-[var(--am-emerald)] disabled:bg-[var(--am-bg-2)] disabled:text-[var(--am-ink-2)] text-white font-semibold transition-colors">
           {outOfStock ? "Agotado" : blocked ? "Combinación no disponible" : "Añadir al carrito"}
         </button>
       </div>
@@ -52,7 +52,7 @@ export function PurchaseControls({ product, prefix = "", onAdded }) {
         <button disabled data-testid={`${prefix}buy-now-button`} className="mt-3 w-full h-12 rounded-full border border-[var(--am-line)] text-[var(--am-ink-2)] font-semibold cursor-not-allowed">Comprar ahora (no disponible en la demo)</button>
       ) : (
         <a href={blocked ? undefined : getBuyNowUrl(variationId || product.id, qty)} aria-disabled={blocked} data-testid={`${prefix}buy-now-button`}
-          className={`mt-3 w-full h-12 rounded-full font-bold inline-flex items-center justify-center transition-colors ${blocked ? "bg-[var(--am-bg-2)] text-[var(--am-ink-2)] pointer-events-none" : "bg-[var(--am-orange)] text-[var(--am-ink)] hover:bg-[var(--am-yellow)]"}`}>Comprar ahora</a>
+          className={`mt-3 w-full h-12 rounded-full font-bold inline-flex items-center justify-center transition-colors ${blocked ? "bg-[var(--am-bg-2)] text-[var(--am-ink-2)] pointer-events-none" : "bg-[var(--am-orange)] text-[var(--am-black)] hover:bg-[var(--am-yellow)]"}`}>Comprar ahora</a>
       )}
     </>
   );

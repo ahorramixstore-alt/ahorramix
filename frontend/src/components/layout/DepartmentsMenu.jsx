@@ -22,7 +22,7 @@ export function DepartmentsMenu({ trigger }) {
     <Sheet open={open} onOpenChange={(o) => { setOpen(o); if (!o) setDept(null); }}>
       <SheetTrigger asChild>{trigger}</SheetTrigger>
       <SheetContent side="left" className="w-[88vw] max-w-sm p-0 overflow-y-auto" data-lenis-prevent data-testid="departments-menu">
-        <div className="bg-[var(--am-ink)] text-white px-6 py-5">
+        <div className="bg-[var(--am-black)] text-white px-6 py-5">
           <SheetTitle className="font-display text-xl font-extrabold text-white">{current ? current.name : "Todas las categorías"}</SheetTitle>
         </div>
         {!current ? (

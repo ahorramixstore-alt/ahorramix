@@ -32,7 +32,7 @@ export function ProductCard({ product, index = 0 }) {
         </Link>
         <div className="absolute top-3 left-3 flex flex-col items-start gap-1.5 pointer-events-none">
           {pct > 0 && <span className="px-2.5 py-1 rounded-full bg-[var(--am-orange)] text-[var(--am-ink)] text-[12px] font-extrabold">−{pct}%</span>}
-          {product.tags?.includes("novedad") && <span className="px-2.5 py-1 rounded-full bg-[var(--am-ink)] text-white text-[12px] font-bold">Nuevo</span>}
+          {product.tags?.includes("novedad") && <span className="px-2.5 py-1 rounded-full bg-[var(--am-black)] text-white text-[12px] font-bold">Nuevo</span>}
           {product.tags?.includes("mas-vendido") && <span className="px-2.5 py-1 rounded-full bg-white text-[var(--am-ink)] text-[12px] font-bold">Top ventas</span>}
         </div>
         <QuickView product={product} />

@@ -31,7 +31,7 @@ export default function Contact() {
             <input required type="checkbox" checked={f.ok} onChange={set("ok")} className="mt-0.5 accent-[var(--am-emerald)]" data-testid="contact-privacy-checkbox" />
             <span>He leído la <Link to="/legal/privacidad" className="underline">política de privacidad</Link>.</span>
           </label>
-          <button type="submit" data-testid="contact-submit-button" className="px-8 py-4 rounded-full bg-[var(--am-ink)] text-white font-semibold hover:bg-[var(--am-emerald)] transition-colors">Abrir mi correo para enviar</button>
+          <button type="submit" data-testid="contact-submit-button" className="px-8 py-4 rounded-full bg-[var(--am-black)] text-white font-semibold hover:bg-[var(--am-emerald)] transition-colors">Abrir mi correo para enviar</button>
           <p className="text-[12px] text-[var(--am-ink-2)]">El mensaje se prepara en tu aplicación de correo; no se guarda en esta web.</p>
         </form>
         <aside className="lg:col-span-5 rounded-[24px] bg-[var(--am-bg-2)] p-8 space-y-4 self-start text-[15px]">

@@ -17,7 +17,7 @@ export default function Wishlist() {
         {items.length ? <ProductGrid products={items} wide /> : (
           <div className="py-16 text-center border-y border-[var(--am-line)]" data-testid="wishlist-empty">
             <p className="text-[var(--am-ink-2)]">Aún no has guardado productos.</p>
-            <Link to="/tienda" className="mt-6 inline-flex px-7 py-3.5 rounded-full bg-[var(--am-ink)] text-white font-semibold">Explorar la tienda</Link>
+            <Link to="/tienda" className="mt-6 inline-flex px-7 py-3.5 rounded-full bg-[var(--am-black)] text-white font-semibold">Explorar la tienda</Link>
           </div>
         )}
       </div>
