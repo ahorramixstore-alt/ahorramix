@@ -46,6 +46,10 @@ Respuestas del usuario: Arquitectura "Diseño React conectado a WooCommerce"; ti
 - Carrito: barra de envío gratis (si hay umbral) y venta cruzada. Páginas /lista-de-deseos y /seguimiento. Newsletter configurable (newsletterAction). Botón volver arriba. Tarjetas de departamento en inicio.
 - docs/10-FUNCIONES-TIENDA.md (equivalencias Shopify → WooCommerce). Paquete export regenerado y verificado con WooCommerce simulado (valoraciones, opiniones, comprar ahora, categorías no listadas).
 
+## Iteración 6 · Logo real (2026-10-27)
+- Logo del usuario recoloreado (azul → naranja #ff5a1f, negro conservado, fondo transparente) en `public/images/brand/ahorramix-logo.png`; cabecera (logo completo) y pie (sobre tarjeta blanca). Favicon/apple-touch-icon con el carrito. ZIP regenerado.
+
+
 ## Backlog
 - P0 (usuario, en Hostinger): instalar WP/WooCommerce, plugin puente, pasarela, envíos, datos vendedor, legales revisados.
 - P1: prerenderizado SEO; formulario contacto vía WordPress.

@@ -48,7 +48,7 @@ Nota: algunas fotos muestran marcas reconocibles (p. ej. zapatillas Nike, altavo
 
 ## Logotipo
 
-`frontend/public/favicon.svg` y `components/layout/Logo.jsx`: diseño original creado para este proyecto. Es tuyo; edítalo libremente. Comprueba en la OEPM que la marca «Ahorramix» está disponible antes de registrarla o usarla comercialmente.
+`frontend/public/images/brand/ahorramix-logo.png` y los favicons: logo aportado por el titular de la tienda (colores adaptados a la paleta naranja). Comprueba en la OEPM que la marca «Ahorramix» está disponible antes de registrarla o usarla comercialmente.
 
 ## Tipografías
 

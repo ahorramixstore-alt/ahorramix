@@ -63,4 +63,4 @@ Los ves en el producto › «Campos personalizados» (actívalo en Opciones de p
 
 ## 7. Dar el mismo aspecto al checkout
 
-En WordPress usa un tema ligero (p. ej. Storefront o el tema de bloques por defecto) y ajusta: logo (`frontend/public/favicon.svg`), colores `#0E1015`, `#0F5A47`, `#FBFBF9`, tipografías Cabinet Grotesk / Satoshi (Fontshare).
+En WordPress usa un tema ligero (p. ej. Storefront o el tema de bloques por defecto) y ajusta: logo (`frontend/public/images/brand/ahorramix-logo.png`), colores `#0E1015`, `#0F5A47`, `#FBFBF9`, tipografías Cabinet Grotesk / Satoshi (Fontshare).
