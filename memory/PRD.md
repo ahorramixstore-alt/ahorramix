@@ -58,6 +58,10 @@ Respuestas del usuario: Arquitectura "Diseño React conectado a WooCommerce"; ti
 - Plugin Bridge 1.1.0 `includes/accounts.php`: POST auth/google (verifica ID token con Google: aud, iss, exp, email_verified), GET me, POST auth/logout, POST auth/handoff (código 2 min → `?ahorramix_sso=` inicia sesión en el checkout). Tokens hash HMAC en user meta, 30 días, cabecera `X-Ahorramix-Token`. Bloquea cuentas con `edit_posts`. NO probado en WordPress real.
 - docs/11-LOGIN-GOOGLE.md (copiado a export/LOGIN-GOOGLE.md). Testing agent iteración 1: 14/14 frontend OK.
 
+## Iteración 8 · Lista de deseos en la cuenta (2026-10-27)
+- Puntos de fidelidad: descartados por el usuario (no construir).
+- Lista de deseos sincronizada con la cuenta: al iniciar sesión se une la del navegador con la de la cuenta; al restaurar sesión manda la de la cuenta; cambios se guardan (500 ms) vía POST /me/wishlist (user meta `_ahorramix_wishlist`, máx. 200); al cerrar sesión se vacía en el navegador. Demo: cuenta simulada en localStorage `am_demo_account_wishlist`. Avisos en /lista-de-deseos y tarjeta en /cuenta.
+
 
 ## Backlog
 - P0 (usuario, en Hostinger): instalar WP/WooCommerce, plugin puente, pasarela, envíos, datos vendedor, legales revisados.

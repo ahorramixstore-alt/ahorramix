@@ -2,7 +2,7 @@
 /**
  * Ahorramix Bridge · Cuentas de cliente con «Iniciar sesión con Google».
  * Requiere en wp-config.php:  define( 'AHORRAMIX_GOOGLE_CLIENT_ID', 'xxxx.apps.googleusercontent.com' );
- * Endpoints (/wp-json/ahorramix/v1): POST auth/google, GET me, POST auth/logout, POST auth/handoff.
+ * Endpoints (/wp-json/ahorramix/v1): POST auth/google, GET me, POST me/wishlist, POST auth/logout, POST auth/handoff.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -99,12 +99,14 @@ function ahorramix_profile( WP_User $user ) {
 		);
 	}
 	$first = $customer->get_first_name() ?: $user->first_name;
+	$wish  = get_user_meta( $user->ID, '_ahorramix_wishlist', true );
 	return array(
 		'name'      => trim( $first . ' ' . ( $customer->get_last_name() ?: $user->last_name ) ) ?: $user->display_name,
 		'firstName' => $first,
 		'email'     => $user->user_email,
 		'avatar'    => (string) get_user_meta( $user->ID, '_ahorramix_google_picture', true ),
 		'orders'    => array_values( $list ),
+		'wishlist'  => is_array( $wish ) ? array_values( $wish ) : array(),
 	);
 }
 
@@ -137,6 +139,17 @@ add_action( 'rest_api_init', function () {
 		'callback'            => function ( WP_REST_Request $r ) {
 			list( $id ) = ahorramix_token_user( $r );
 			return ahorramix_profile( get_user_by( 'id', $id ) );
+		},
+	) );
+
+	register_rest_route( $ns, '/me/wishlist', array(
+		'methods'             => 'POST',
+		'permission_callback' => $auth,
+		'callback'            => function ( WP_REST_Request $r ) {
+			list( $id ) = ahorramix_token_user( $r );
+			$slugs = array_slice( array_values( array_unique( array_filter( array_map( 'sanitize_title', (array) $r->get_param( 'slugs' ) ) ) ) ), 0, 200 );
+			update_user_meta( $id, '_ahorramix_wishlist', $slugs );
+			return array( 'wishlist' => $slugs );
 		},
 	) );
 

@@ -4,6 +4,7 @@ Al pulsar el icono de la personita (arriba a la derecha) se abre una ventana con
 
 - se crea (o se reutiliza) su **cuenta de cliente en WooCommerce** con su nombre y email de Google;
 - ve su **perfil** en `/cuenta`: foto, nombre, email y **sus pedidos** con el estado;
+- su **lista de deseos** se guarda en su cuenta y la ve en cualquier móvil u ordenador donde inicie sesión (lo que guardó antes de entrar se suma a la de la cuenta; al cerrar sesión desaparece de ese navegador);
 - al pulsar **Finalizar compra** o **Comprar ahora** entra en el checkout **ya identificado**, y el pedido queda guardado en su cuenta.
 
 En la vista previa (modo demo) el botón crea un **perfil de prueba** solo en ese navegador; no usa Google.

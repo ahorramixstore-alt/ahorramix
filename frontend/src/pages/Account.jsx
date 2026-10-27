@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { LogOut, Package } from "lucide-react";
+import { LogOut, Package, Heart } from "lucide-react";
 import { Seo } from "@/components/layout/Seo";
 import { PageHead } from "@/components/layout/Reveal";
 import { useAuth } from "@/context/AuthContext";
+import { useShopper } from "@/context/ShopperContext";
 import { getAccountUrl } from "@/lib/commerce";
 import { eur } from "@/lib/format";
 
@@ -51,6 +52,17 @@ function Orders({ orders }) {
   );
 }
 
+function WishCard() {
+  const { wishlist } = useShopper();
+  return (
+    <Link to="/lista-de-deseos" data-testid="account-wishlist-link" className="flex items-center gap-4 rounded-[24px] border border-[var(--am-line)] bg-white p-6 hover:border-[var(--am-orange)] transition-colors">
+      <Heart className="h-6 w-6 text-[var(--am-orange)]" />
+      <span className="flex-1"><strong className="block font-display text-lg">Mi lista de deseos</strong><span className="text-sm text-[var(--am-ink-2)]">Guardada en tu cuenta, en todos tus dispositivos</span></span>
+      <span className="font-bold" data-testid="account-wishlist-count">{wishlist.length}</span>
+    </Link>
+  );
+}
+
 export default function Account() {
   const { user, setLoginOpen, logout } = useAuth();
   const wcAccount = getAccountUrl();
@@ -64,6 +76,7 @@ export default function Account() {
         {user ? (
           <>
             <Profile user={user} logout={logout} />
+            <WishCard />
             <Orders orders={user.orders} />
             {wcAccount && !user.demo && <a href={wcAccount} data-testid="account-manage-link" className="inline-flex text-sm underline">Gestionar direcciones y datos de facturación</a>}
           </>

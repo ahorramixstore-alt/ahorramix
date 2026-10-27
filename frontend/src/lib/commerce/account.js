@@ -19,3 +19,4 @@ export const loginWithGoogle = (credential) => call("/auth/google", { body: { cr
 export const fetchMe = (token) => call("/me", { token });
 export const logout = (token) => call("/auth/logout", { token, method: "POST" });
 export const createHandoff = (token) => call("/auth/handoff", { token, method: "POST" });
+export const saveWishlist = (token, slugs) => call("/me/wishlist", { token, body: { slugs } });

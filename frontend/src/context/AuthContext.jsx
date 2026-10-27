@@ -6,7 +6,9 @@ import * as api from "@/lib/commerce/account";
 // "demo": inicio de sesión de prueba (solo en este navegador). "google": real vía WooCommerce. "off": sin configurar.
 export const AUTH_MODE = IS_DEMO ? "demo" : GOOGLE_CLIENT_ID ? "google" : "off";
 const KEY = "am_session";
+const DEMO_WISH = "am_demo_account_wishlist";
 const DEMO_USER = { name: "Cliente de prueba", firstName: "Cliente", email: "cliente.prueba@ejemplo.com", avatar: "", demo: true, orders: [] };
+const readDemoWish = () => { try { const v = JSON.parse(localStorage.getItem(DEMO_WISH)); return Array.isArray(v) ? v : []; } catch { return []; } };
 
 const AuthContext = createContext(null);
 const readSession = () => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch { return null; } };
@@ -14,6 +16,8 @@ const readSession = () => { try { return JSON.parse(localStorage.getItem(KEY)) |
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(readSession);
   const [loginOpen, setLoginOpen] = useState(false);
+  // Aviso para la lista de deseos: "login" = unir la del navegador con la de la cuenta; "refresh" = usar la de la cuenta.
+  const [wishSync, setWishSync] = useState(null);
 
   const save = useCallback((s) => { if (s) localStorage.setItem(KEY, JSON.stringify(s)); else localStorage.removeItem(KEY); setSession(s); }, []);
 
@@ -21,7 +25,7 @@ export function AuthProvider({ children }) {
     if (AUTH_MODE !== "google" || !session?.token) return undefined;
     let alive = true;
     api.fetchMe(session.token)
-      .then((user) => { if (alive) save({ token: session.token, user }); })
+      .then((user) => { if (alive) { save({ token: session.token, user }); setWishSync({ reason: "refresh", list: user?.wishlist || [], at: Date.now() }); } })
       .catch((e) => { if (alive && e.status === 401) save(null); });
     return () => { alive = false; };
   }, [session?.token, save]);
@@ -29,9 +33,19 @@ export function AuthProvider({ children }) {
   const loginGoogle = useCallback(async (credential) => {
     const { token, user } = await api.loginWithGoogle(credential);
     save({ token, user });
+    setWishSync({ reason: "login", list: user?.wishlist || [], at: Date.now() });
   }, [save]);
 
-  const loginDemo = useCallback(() => save({ token: "demo", user: DEMO_USER }), [save]);
+  const loginDemo = useCallback(() => {
+    save({ token: "demo", user: DEMO_USER });
+    setWishSync({ reason: "login", list: readDemoWish(), at: Date.now() });
+  }, [save]);
+
+  // Guarda la lista de deseos en la cuenta (en la demo, en una clave aparte que simula la cuenta).
+  const saveWishlist = useCallback((slugs) => {
+    if (session?.user?.demo) { localStorage.setItem(DEMO_WISH, JSON.stringify(slugs)); return; }
+    if (AUTH_MODE === "google" && session?.token) api.saveWishlist(session.token, slugs).catch(() => {});
+  }, [session?.token, session?.user?.demo]);
 
   const logout = useCallback(() => {
     if (AUTH_MODE === "google" && session?.token) api.logout(session.token).catch(() => {});
@@ -46,8 +60,8 @@ export function AuthProvider({ children }) {
     window.location.href = url;
   }, [session?.token]);
 
-  const value = useMemo(() => ({ user: session?.user || null, loginOpen, setLoginOpen, loginGoogle, loginDemo, logout, goCheckout }),
-    [session, loginOpen, loginGoogle, loginDemo, logout, goCheckout]);
+  const value = useMemo(() => ({ user: session?.user || null, loginOpen, setLoginOpen, loginGoogle, loginDemo, logout, goCheckout, wishSync, saveWishlist }),
+    [session, loginOpen, loginGoogle, loginDemo, logout, goCheckout, wishSync, saveWishlist]);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
