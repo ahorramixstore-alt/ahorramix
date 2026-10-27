@@ -21,7 +21,7 @@ Esta carpeta contiene lo que tienes que subir. **No necesitas instalar nada en t
    define( 'AHORRAMIX_SITE_URL', 'https://tudominio.es' );
    ```
 5. **Sube la tienda**: Administrador de archivos › `public_html` del dominio principal › sube `ahorramix-tienda-hostinger.zip` › clic derecho › **Extraer** (los archivos deben quedar directamente en `public_html`, no dentro de una subcarpeta). Borra el zip después.
-6. **Conecta la tienda con WooCommerce**: edita `public_html/ahorramix-config.js`:
+6. **Conecta la tienda con WooCommerce**: edita `public_html/ahorramix-config.js` (cambia solo estas líneas):
    ```js
    window.AHORRAMIX_CONFIG = {
      commerceMode: "woocommerce",
@@ -30,6 +30,7 @@ Esta carpeta contiene lo que tienes que subir. **No necesitas instalar nada en t
    };
    ```
    Guarda y recarga la web: los productos de ejemplo desaparecen y se muestran los de WooCommerce.
+   Opcional en el mismo archivo: `newsletterAction` (URL del formulario de tu herramienta de email) y `trackingUrl` (página de seguimiento de tu plugin).
 7. **Sitemap**: edita `public_html/robots.txt` y añade al final:
    `Sitemap: https://tienda.tudominio.es/?ahorramix_sitemap=1`
    Se actualiza solo con cada producto. Envíalo en Google Search Console.

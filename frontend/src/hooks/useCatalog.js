@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchCatalog } from "@/lib/commerce";
+import { NAV_CATEGORIES } from "@/config/store";
 
 let cache = null;
 
@@ -36,3 +37,9 @@ export const inCategory = (products, categories, slug) => {
 };
 
 export const parentOf = (categories, slug) => categories.find((c) => c.slug === slug)?.parent || null;
+
+// Departamentos en el orden de NAV_CATEGORIES y, detrás, el resto de categorías principales de WooCommerce.
+export const topCategories = (categories, order = NAV_CATEGORIES) => [
+  ...order.map((s) => categories.find((c) => c.slug === s)),
+  ...categories.filter((c) => !c.parent && !order.includes(c.slug)),
+].filter(Boolean);

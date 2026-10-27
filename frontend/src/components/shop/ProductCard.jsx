@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { eur, discountPct } from "@/lib/format";
 import { QuickView } from "./QuickView";
+import { Stars, WishButton } from "./ProductExtras";
 
 export function Price({ product, size = "md" }) {
   const big = size === "lg";
@@ -35,9 +36,11 @@ export function ProductCard({ product, index = 0 }) {
           {product.tags?.includes("mas-vendido") && <span className="px-2.5 py-1 rounded-full bg-white text-[var(--am-ink)] text-[12px] font-bold">Top ventas</span>}
         </div>
         <QuickView product={product} />
+        <WishButton product={product} className="absolute top-3 right-3 z-10 h-9 w-9 bg-white/90 backdrop-blur shadow-sm" />
       </div>
       <Link to={href} className="block mt-3.5 space-y-1">
         <h3 className="font-medium text-[15px] leading-snug group-hover:underline underline-offset-4 line-clamp-2">{product.name}</h3>
+        {product.rating > 0 && <Stars value={product.rating} count={product.reviewCount} size="h-3.5 w-3.5" />}
         <Price product={product} />
         {pct > 0 && <p className="text-[12px] font-semibold text-[var(--am-emerald)]">Ahorras {eur(product.regularPrice - product.price)}</p>}
         {!pct && product.attributes?.[0] && <p className="text-[12px] text-[var(--am-ink-2)]">{product.attributes[0].options.length} opciones de {product.attributes[0].name.toLowerCase()}</p>}

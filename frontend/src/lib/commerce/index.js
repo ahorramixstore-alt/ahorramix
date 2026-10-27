@@ -11,6 +11,8 @@ const provider = IS_DEMO ? demo : woo;
 export const fetchCatalog = () => provider.fetchCatalog();
 export const getCheckoutUrl = (items) => (IS_DEMO ? null : woo.checkoutUrl(items));
 export const getAccountUrl = () => (IS_DEMO ? null : woo.accountUrl());
+export const getBuyNowUrl = (id, qty) => (IS_DEMO ? null : woo.buyNowUrl(id, qty));
+export const fetchReviews = (productId) => (IS_DEMO ? Promise.resolve([]) : woo.fetchReviews(productId));
 
 // Devuelve el id de variación de WooCommerce que coincide con las opciones elegidas.
 export function findVariationId(product, selected) {

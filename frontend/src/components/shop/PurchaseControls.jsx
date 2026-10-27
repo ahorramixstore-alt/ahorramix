@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import { findVariationId, IS_DEMO } from "@/lib/commerce";
+import { findVariationId, getBuyNowUrl, IS_DEMO } from "@/lib/commerce";
 import { slugify } from "@/lib/format";
 
 function VariantPicker({ attributes, selected, onChange, prefix }) {
@@ -48,6 +48,12 @@ export function PurchaseControls({ product, prefix = "", onAdded }) {
           {outOfStock ? "Agotado" : blocked ? "Combinación no disponible" : "Añadir al carrito"}
         </button>
       </div>
+      {IS_DEMO ? (
+        <button disabled data-testid={`${prefix}buy-now-button`} className="mt-3 w-full h-12 rounded-full border border-[var(--am-line)] text-[var(--am-ink-2)] font-semibold cursor-not-allowed">Comprar ahora (no disponible en la demo)</button>
+      ) : (
+        <a href={blocked ? undefined : getBuyNowUrl(variationId || product.id, qty)} aria-disabled={blocked} data-testid={`${prefix}buy-now-button`}
+          className={`mt-3 w-full h-12 rounded-full font-bold inline-flex items-center justify-center transition-colors ${blocked ? "bg-[var(--am-bg-2)] text-[var(--am-ink-2)] pointer-events-none" : "bg-[var(--am-orange)] text-[var(--am-ink)] hover:bg-[var(--am-yellow)]"}`}>Comprar ahora</a>
+      )}
     </>
   );
 }

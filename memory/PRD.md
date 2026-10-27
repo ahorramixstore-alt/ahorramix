@@ -39,6 +39,13 @@ Respuestas del usuario: Arquitectura "Diseño React conectado a WooCommerce"; ti
 - Verificado: ZIP servido de forma independiente (rutas, vídeo, 0 referencias a Emergent, /evaluador → 404) y modo WooCommerce con Store API simulada (catálogo, variación → checkout `?ahorramix_cart=22:1`, cuenta).
 - Pendiente del usuario: dirección/email/teléfono, revisión legal, WordPress+WooCommerce, pasarela, envíos, proveedores, productos reales. Plugin PHP no ejecutado en WordPress real.
 
+## Iteración 5 · Estructura marketplace + funciones premium (2026-10-27)
+- 11 departamentos y 39 subcategorías (demo), menú «Todas las categorías» por niveles, `topCategories()` (orden NAV + resto de WooCommerce).
+- Buscador con selector de departamento y sugerencias; filtros (precio, stock, ofertas, atributos, valoración real), ordenaciones, «Cargar más», filtros en panel en móvil.
+- Lista de deseos, vistos recientemente (ShopperContext, localStorage), zoom de galería, «Comprar ahora», barra fija de compra, guía de tallas, compartir, opiniones reales de la Store API, estrellas.
+- Carrito: barra de envío gratis (si hay umbral) y venta cruzada. Páginas /lista-de-deseos y /seguimiento. Newsletter configurable (newsletterAction). Botón volver arriba. Tarjetas de departamento en inicio.
+- docs/10-FUNCIONES-TIENDA.md (equivalencias Shopify → WooCommerce). Paquete export regenerado y verificado con WooCommerce simulado (valoraciones, opiniones, comprar ahora, categorías no listadas).
+
 ## Backlog
 - P0 (usuario, en Hostinger): instalar WP/WooCommerce, plugin puente, pasarela, envíos, datos vendedor, legales revisados.
 - P1: prerenderizado SEO; formulario contacto vía WordPress.

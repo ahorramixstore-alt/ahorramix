@@ -3,5 +3,6 @@ Allow: /
 Disallow: /carrito
 Disallow: /cuenta
 Disallow: /evaluador
+Disallow: /lista-de-deseos
 
 # La línea Sitemap se añade automáticamente al compilar (yarn build) si REACT_APP_SITE_URL está definido.

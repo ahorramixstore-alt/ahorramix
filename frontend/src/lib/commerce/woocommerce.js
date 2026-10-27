@@ -31,6 +31,8 @@ const mapProduct = (p, catById) => {
     attributes: (p.attributes || []).filter((a) => a.has_variations).map((a) => ({ name: a.name, options: (a.terms || []).map((t) => t.name), slugs: (a.terms || []).map((t) => t.slug) })),
     variations: (p.variations || []).map((v) => ({ id: v.id, attributes: v.attributes || [] })),
     stockStatus: p.is_in_stock ? "instock" : "outofstock",
+    rating: Number(p.average_rating) || 0,
+    reviewCount: Number(p.review_count) || 0,
     deliveryTime: "",
     shippingNote: "Gastos de envío calculados en el checkout.",
     permalink: p.permalink,
@@ -65,3 +67,9 @@ export async function fetchCatalog() {
 // Traspaso del carrito al checkout de WooCommerce mediante el plugin "Ahorramix Bridge".
 export const checkoutUrl = (items) => `${WC}/?ahorramix_cart=${encodeURIComponent(items.map((i) => `${i.variationId || i.productId}:${i.qty}`).join(","))}`;
 export const accountUrl = () => `${WC}/?ahorramix_go=account`;
+export const buyNowUrl = (id, qty) => `${WC}/?ahorramix_cart=${encodeURIComponent(`${id}:${qty}`)}`;
+
+export async function fetchReviews(productId) {
+  const list = await getJson(`${API}/products/reviews?product_id=${productId}&per_page=20`);
+  return (Array.isArray(list) ? list : []).map((r) => ({ id: r.id, name: r.reviewer, text: stripHtml(decodeEntities(r.review || "")), rating: Number(r.rating) || 0, date: r.date_created, verified: Boolean(r.verified) }));
+}

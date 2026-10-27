@@ -5,7 +5,7 @@
 | Tarea | Dónde | ¿Requiere recompilar React? |
 |---|---|---|
 | Añadir/editar productos, precios, stock, ofertas | WooCommerce | No |
-| Crear categorías nuevas | WooCommerce | No (aparecen solas). Para el menú: editar `NAV_CATEGORIES` y recompilar |
+| Crear categorías nuevas | WooCommerce | No (aparecen solas en menú lateral, filtros y buscador). Orden de la cabecera: `NAV_CATEGORIES` y `HEADER_CATEGORIES` en `config/store.js` |
 | Marcar destacados / novedades | Etiquetas `destacado`, `novedad`, `mas-vendido` | No |
 | Cambiar logo, colores, textos de inicio | `components/layout/Logo.jsx`, `index.css`, `components/home/*` | Sí |
 | Textos legales y datos del vendedor | `data/legal.js`, `config/store.js` | Sí |

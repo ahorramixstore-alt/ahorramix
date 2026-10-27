@@ -2,6 +2,9 @@ import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
 import { CartProvider } from "@/context/CartContext";
+import { ShopperProvider } from "@/context/ShopperContext";
+import Wishlist from "@/pages/Wishlist";
+import Tracking from "@/pages/Tracking";
 import { Layout } from "@/components/layout/Layout";
 import { SHOW_EVALUATOR } from "@/config/store";
 import Home from "@/pages/Home";
@@ -19,6 +22,7 @@ import NotFound from "@/pages/NotFound";
 function App() {
   return (
     <CartProvider>
+      <ShopperProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
@@ -28,6 +32,8 @@ function App() {
             <Route path="/producto/:slug" element={<Product />} />
             <Route path="/carrito" element={<Cart />} />
             <Route path="/cuenta" element={<Account />} />
+            <Route path="/lista-de-deseos" element={<Wishlist />} />
+            <Route path="/seguimiento" element={<Tracking />} />
             <Route path="/preguntas-frecuentes" element={<Faq />} />
             <Route path="/contacto" element={<Contact />} />
             <Route path="/sobre-nosotros" element={<About />} />
@@ -38,6 +44,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Toaster position="bottom-left" />
+      </ShopperProvider>
     </CartProvider>
   );
 }

@@ -5,9 +5,9 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/layout/Reveal";
 import { ProductCard, ProductGrid } from "@/components/shop/ProductCard";
 
-export function ProductScroller({ eyebrow, title, products, link, id }) {
+export function ProductScroller({ eyebrow, title, products, link, id, min = 3 }) {
   const track = useRef(null);
-  if (products.length < 3) return null;
+  if (products.length < min) return null;
   const move = (dir) => track.current?.scrollBy({ left: dir * track.current.clientWidth * 0.8, behavior: "smooth" });
   return (
     <section className="am-container py-12 md:py-16" data-testid={id}>

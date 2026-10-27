@@ -25,3 +25,4 @@ Proyecto desarrollado en Emergent para **exportarlo y alojarlo en Hostinger**. N
 7. [Pruebas de carrito, checkout y pedidos](docs/07-PRUEBAS.md)
 8. [Mantenimiento](docs/08-MANTENIMIENTO.md)
 9. [Recursos gráficos y licencias](docs/09-LICENCIAS.md)
+10. [Funciones de tienda premium (Shopify → WooCommerce)](docs/10-FUNCIONES-TIENDA.md)

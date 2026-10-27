@@ -7,8 +7,11 @@ import { CartDrawer } from "./CartDrawer";
 import { CookieNotice } from "./CookieNotice";
 import { DemoBanner } from "./DemoBanner";
 import { AnnouncementBar } from "./AnnouncementBar";
+import { BackToTop } from "./Extras";
 
 let lenis = null;
+
+export const scrollToTop = () => (lenis ? lenis.scrollTo(0) : window.scrollTo({ top: 0, behavior: "smooth" }));
 
 export function Layout() {
   const { pathname, hash } = useLocation();
@@ -48,6 +51,7 @@ export function Layout() {
       <Footer />
       <CartDrawer />
       <CookieNotice />
+      <BackToTop />
     </div>
   );
 }

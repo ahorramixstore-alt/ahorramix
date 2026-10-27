@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { useCart } from "@/context/CartContext";
 import { eur } from "@/lib/format";
 import { CheckoutButton } from "@/components/shop/CheckoutButton";
+import { CartUpsell, FreeShippingBar } from "@/components/shop/CartExtras";
 
 export function CartLine({ item, compact = false }) {
   const { setQty, remove } = useCart();
@@ -45,9 +46,11 @@ export function CartDrawer() {
           {items.length === 0 ? (
             <p className="py-16 text-center text-[var(--am-ink-2)]" data-testid="cart-empty">Tu carrito está vacío.</p>
           ) : items.map((i) => <CartLine key={i.key} item={i} compact />)}
+          <CartUpsell />
         </div>
         {items.length > 0 && (
           <div className="px-6 py-6 border-t border-[var(--am-line)] space-y-4 bg-white">
+            <FreeShippingBar />
             <div className="flex justify-between text-[15px]"><span>Subtotal (IVA incl.)</span><strong data-testid="cart-drawer-subtotal">{eur(subtotal)}</strong></div>
             <p className="text-[13px] text-[var(--am-ink-2)]">Envío y cupones se calculan en el checkout.</p>
             <CheckoutButton />
