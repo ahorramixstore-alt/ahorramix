@@ -7,6 +7,24 @@ import { HEADER_CATEGORIES } from "@/config/store";
 import { Logo } from "./Logo";
 import { SearchBox } from "./SearchBox";
 import { DepartmentsMenu } from "./DepartmentsMenu";
+import { useAuth } from "@/context/AuthContext";
+
+function AccountButton() {
+  const { user, setLoginOpen } = useAuth();
+  const cls = "relative flex flex-col items-center p-2 rounded-xl hover:bg-[var(--am-bg-2)] transition-colors";
+  const label = <span className="hidden xl:block text-[11px] font-medium mt-0.5">{user ? user.firstName || "Mi cuenta" : "Cuenta"}</span>;
+  if (!user) {
+    return <button onClick={() => setLoginOpen(true)} data-testid="header-account-link" aria-label="Iniciar sesión" className={cls}><User className="h-5 w-5" />{label}</button>;
+  }
+  return (
+    <Link to="/cuenta" data-testid="header-account-link" aria-label="Mi cuenta" className={cls}>
+      {user.avatar
+        ? <img src={user.avatar} alt="" referrerPolicy="no-referrer" className="h-6 w-6 rounded-full object-cover" data-testid="header-account-avatar" />
+        : <span className="h-6 w-6 rounded-full bg-[var(--am-orange)] text-[var(--am-ink)] text-[12px] font-extrabold grid place-items-center" data-testid="header-account-avatar">{(user.name || "?").charAt(0)}</span>}
+      {label}
+    </Link>
+  );
+}
 
 const IconLink = ({ to, label, id, children, badge }) => (
   <Link to={to} data-testid={id} aria-label={label} className="relative flex flex-col items-center p-2 rounded-xl hover:bg-[var(--am-bg-2)] transition-colors">
@@ -32,7 +50,7 @@ export function Header() {
         <div className="hidden md:block flex-1"><SearchBox id="header-search" /></div>
         <div className="ml-auto md:ml-0 flex items-center">
           <IconLink to="/lista-de-deseos" label="Deseos" id="header-wishlist-link" badge={wishlist.length}><Heart className="h-5 w-5" /></IconLink>
-          <IconLink to="/cuenta" label="Cuenta" id="header-account-link"><User className="h-5 w-5" /></IconLink>
+          <AccountButton />
           <button data-testid="cart-drawer-toggle" onClick={() => setOpen(true)} aria-label="Abrir carrito" className="relative flex flex-col items-center p-2 rounded-xl hover:bg-[var(--am-bg-2)] transition-colors">
             <ShoppingBag className="h-5 w-5" /><span className="hidden xl:block text-[11px] font-medium mt-0.5">Carrito</span>
             {count > 0 && <span data-testid="cart-count-badge" className="absolute top-0.5 right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--am-orange)] text-[var(--am-ink)] text-[10px] font-extrabold grid place-items-center">{count}</span>}

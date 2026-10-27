@@ -6,6 +6,7 @@ import { CheckoutButton } from "@/components/shop/CheckoutButton";
 import { useCart } from "@/context/CartContext";
 import { STORE } from "@/config/store";
 import { eur } from "@/lib/format";
+import { WELCOME } from "@/config/runtime";
 
 export default function Cart() {
   const { items, subtotal, clear } = useCart();
@@ -34,7 +35,7 @@ export default function Cart() {
             <div className="flex justify-between"><span>Subtotal (IVA incl.)</span><strong data-testid="cart-page-subtotal">{eur(subtotal)}</strong></div>
             <div className="flex justify-between text-[var(--am-ink-2)] text-sm"><span>Envío</span><span>Se calcula en el checkout</span></div>
             {threshold && subtotal < threshold && <p className="text-sm text-[var(--am-emerald)]">Te faltan {eur(threshold - subtotal)} para el envío gratuito.</p>}
-            <div className="text-sm text-[var(--am-ink-2)] rounded-xl bg-[var(--am-bg-2)] p-4">¿Tienes un cupón? Podrás aplicarlo en el checkout antes de pagar.</div>
+            <div className="text-sm text-[var(--am-ink-2)] rounded-xl bg-[var(--am-bg-2)] p-4" data-testid="cart-coupon-note">¿Tienes un cupón? Podrás aplicarlo en el checkout antes de pagar.{WELCOME.code && <> ¿Es tu primera compra? Usa <strong className="font-mono text-[var(--am-ink)]">{WELCOME.code}</strong> y ahorra {WELCOME.discount}.</>}</div>
             {items.length > 0 && <CheckoutButton />}
           </div>
         </aside>

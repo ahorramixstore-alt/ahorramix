@@ -1,9 +1,11 @@
 import { Lock } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { getCheckoutUrl, IS_DEMO } from "@/lib/commerce";
+import { useCheckoutClick } from "./PurchaseControls";
 
 export function CheckoutButton() {
   const { items } = useCart();
+  const onCheckout = useCheckoutClick();
   if (IS_DEMO) {
     return (
       <div data-testid="checkout-disabled-notice">
@@ -14,8 +16,9 @@ export function CheckoutButton() {
       </div>
     );
   }
+  const url = getCheckoutUrl(items);
   return (
-    <a href={getCheckoutUrl(items)} data-testid="checkout-button" className="w-full h-12 rounded-full bg-[var(--am-emerald)] hover:bg-[var(--am-emerald-ink)] text-white font-semibold inline-flex items-center justify-center gap-2 transition-colors">
+    <a href={url} onClick={onCheckout(url)} data-testid="checkout-button" className="w-full h-12 rounded-full bg-[var(--am-emerald)] hover:bg-[var(--am-emerald-ink)] text-white font-semibold inline-flex items-center justify-center gap-2 transition-colors">
       <Lock className="h-4 w-4" /> Finalizar compra
     </a>
   );

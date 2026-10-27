@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
 import { CartProvider } from "@/context/CartContext";
 import { ShopperProvider } from "@/context/ShopperContext";
+import { AuthProvider } from "@/context/AuthContext";
 import Wishlist from "@/pages/Wishlist";
 import Tracking from "@/pages/Tracking";
 import { Layout } from "@/components/layout/Layout";
@@ -22,6 +23,7 @@ import NotFound from "@/pages/NotFound";
 function App() {
   return (
     <CartProvider>
+      <AuthProvider>
       <ShopperProvider>
       <BrowserRouter>
         <Routes>
@@ -45,6 +47,7 @@ function App() {
       </BrowserRouter>
       <Toaster position="bottom-left" />
       </ShopperProvider>
+      </AuthProvider>
     </CartProvider>
   );
 }

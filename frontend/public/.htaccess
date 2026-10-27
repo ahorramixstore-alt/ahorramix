@@ -4,6 +4,9 @@ RewriteEngine On
 RewriteBase /
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Vista previa de productos al compartir: solo los robots de WhatsApp, Facebook, X, etc. van a share.php.
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit|facebot|WhatsApp|Twitterbot|TelegramBot|LinkedInBot|Slackbot|Discordbot|Pinterest|SkypeUriPreview|redditbot) [NC]
+RewriteRule ^producto/([^/]+)/?$ share.php?slug=$1 [L,QSA]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]

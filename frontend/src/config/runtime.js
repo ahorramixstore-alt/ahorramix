@@ -8,3 +8,9 @@ export const SITE_URL = clean(cfg.siteUrl || process.env.REACT_APP_SITE_URL);
 export const NEWSLETTER_ACTION = String(cfg.newsletterAction || "").trim();
 export const NEWSLETTER_FIELD = cfg.newsletterEmailField || "EMAIL";
 export const TRACKING_URL = String(cfg.trackingUrl || "").trim();
+export const GOOGLE_CLIENT_ID = String(cfg.googleClientId || "").trim();
+export const WELCOME = {
+  code: String(cfg.welcomeCode ?? "").trim(),
+  discount: String(cfg.welcomeDiscount || "").trim(),
+  delay: Number(cfg.welcomeDelaySeconds ?? 8) * 1000,
+};

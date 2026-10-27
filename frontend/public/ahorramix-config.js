@@ -8,6 +8,10 @@
  * newsletterAction:     URL "action" del formulario de tu herramienta de email (Mailchimp, MailPoet, Brevo...). Vacío = formulario desactivado.
  * newsletterEmailField: nombre del campo de email que espera esa herramienta (Mailchimp: "EMAIL").
  * trackingUrl:          página de seguimiento de pedidos de tu plugin (p. ej. "https://tienda.tudominio.es/seguimiento"). Vacío = se usa "Mi cuenta".
+ * welcomeCode:          código de descuento de bienvenida. Créalo IGUAL en WooCommerce > Marketing > Cupones. Vacío = aviso desactivado.
+ * welcomeDiscount:      texto del descuento que se muestra (ej.: "10 %", "5 €").
+ * welcomeDelaySeconds:  segundos que tarda en aparecer el aviso en la primera visita.
+ * googleClientId:       ID de cliente OAuth de Google para «Iniciar sesión con Google» (ver docs/11-LOGIN-GOOGLE.md). Vacío = inicio de sesión desactivado.
  */
 window.AHORRAMIX_CONFIG = {
   commerceMode: "demo",
@@ -16,4 +20,8 @@ window.AHORRAMIX_CONFIG = {
   newsletterAction: "",
   newsletterEmailField: "EMAIL",
   trackingUrl: "",
+  welcomeCode: "BIENVENIDA10",
+  welcomeDiscount: "10 %",
+  welcomeDelaySeconds: 8,
+  googleClientId: "",
 };

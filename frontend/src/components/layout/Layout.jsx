@@ -8,6 +8,8 @@ import { CookieNotice } from "./CookieNotice";
 import { DemoBanner } from "./DemoBanner";
 import { AnnouncementBar } from "./AnnouncementBar";
 import { BackToTop } from "./Extras";
+import { WelcomeOffer } from "./WelcomeOffer";
+import { LoginDialog } from "./LoginDialog";
 
 let lenis = null;
 
@@ -52,6 +54,8 @@ export function Layout() {
       <CartDrawer />
       <CookieNotice />
       <BackToTop />
+      <WelcomeOffer />
+      <LoginDialog />
     </div>
   );
 }
