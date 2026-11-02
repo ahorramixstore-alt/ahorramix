@@ -1,0 +1,35 @@
+# BEGIN Ahorramix
+# Reglas de la tienda Ahorramix (React). Pegar AL PRINCIPIO de public_html/.htaccess,
+# ENCIMA de "# BEGIN LSCACHE" y de "# BEGIN WordPress". No sustituye ni modifica esos bloques.
+# Para deshacerlo: borra desde "# BEGIN Ahorramix" hasta "# END Ahorramix" y purga la caché de LiteSpeed.
+
+# A) El archivo de ajustes nunca se guarda en caché (así tus cambios se ven al momento).
+<Files "ahorramix-config.js">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </IfModule>
+</Files>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# B) WhatsApp, Facebook, X, Telegram... al leer un enlace de producto reciben share.php (foto, nombre y precio).
+#    Las personas no pasan por aquí.
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit|facebot|WhatsApp|Twitterbot|TelegramBot|LinkedInBot|Slackbot|Discordbot|Pinterest|SkypeUriPreview|redditbot) [NC]
+RewriteRule ^producto/([^/]+)/?$ share.php?slug=$1 [L,QSA]
+
+# C) Si la dirección lleva parámetros de WordPress o WooCommerce (paso del carrito al pago, búsquedas,
+#    vistas previas, AJAX de WooCommerce...), se salta las 2 reglas siguientes y responde WordPress.
+RewriteCond %{QUERY_STRING} (^|&)(ahorramix_[a-z_]+|wc-ajax|wc-api|add-to-cart|p|page_id|post_type|preview|s|rest_route|key|order)= [NC]
+RewriteRule ^ - [S=2]
+
+# D) La portada (https://ahorramix.com/) muestra la tienda React.
+RewriteRule ^$ index.html [L]
+
+# E) Páginas de la tienda React. Todo lo demás (/wp-admin/, /wp-json/, /wp-login.php, /finalizar-compra/,
+#    /mi-cuenta/, /wp-content/...) sigue yendo a WordPress sin cambios.
+RewriteRule ^(tienda|categoria|producto|carrito|cuenta|lista-de-deseos|seguimiento|preguntas-frecuentes|contacto|sobre-nosotros|legal)(/.*)?$ index.html [L]
+</IfModule>
+# END Ahorramix
+

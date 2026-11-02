@@ -24,7 +24,8 @@ const mapProduct = (p, catById) => {
     price: money(p, "price") ?? 0,
     regularPrice: money(p, "regular_price") ?? money(p, "price") ?? 0,
     salePrice: sale,
-    images: (p.images || []).map((i) => ({ src: i.src, alt: i.alt || decodeEntities(p.name || "") })),
+    // Productos sin foto en WooCommerce: imagen neutra con el logo para no romper tarjetas ni fichas.
+    images: (p.images?.length ? p.images : [{ src: `${process.env.PUBLIC_URL}/images/brand/sin-imagen.jpg`, alt: "" }]).map((i) => ({ src: i.src, alt: i.alt || decodeEntities(p.name || "") })),
     shortDescription: stripHtml(decodeEntities(p.short_description || "")),
     descriptionHtml: p.description || "",
     features: [],

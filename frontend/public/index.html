@@ -25,7 +25,8 @@
         <meta property="og:image:alt" content="Logo de Ahorramix" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="%REACT_APP_SITE_URL%/images/brand/og-ahorramix.jpg" />
-        <script src="%PUBLIC_URL%/ahorramix-config.js"></script>
+        <!-- Ajustes editables en Hostinger. Se cargan con una marca de tiempo para que el navegador y la CDN nunca usen una versión antigua. -->
+        <script>document.write('<script src="%PUBLIC_URL%/ahorramix-config.js?t=' + Date.now() + '"><\/script>');</script>
         <!-- EMERGENT-ONLY: las dos etiquetas <script> siguientes solo sirven para la vista previa en Emergent. Elimínalas antes de compilar para Hostinger (ver docs/05-EXPORTACION.md). -->
         <script>window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);</script>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>

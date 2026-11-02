@@ -15,6 +15,8 @@ import { discountPct } from "@/lib/format";
 export default function Home() {
   const { products, categories } = useCatalog();
   const tagged = (t) => products.filter((p) => p.tags?.includes(t));
+  // Sin etiquetas en WooCommerce, se muestran los últimos productos publicados para que la sección no quede vacía.
+  const taggedOrLatest = (t) => { const list = tagged(t); return list.length ? list : products.slice(0, 12); };
   const offers = products.filter((p) => discountPct(p) > 0).sort((a, b) => discountPct(b) - discountPct(a));
   const tops = topCategories(categories);
 
@@ -31,9 +33,9 @@ export default function Home() {
       <ProductTabs
         note={IS_DEMO ? "Clasificación de ejemplo: en producción se basará en las etiquetas y ventas reales de WooCommerce." : undefined}
         tabs={[
-          { key: "mas-vendidos", label: "Más vendidos", products: tagged("mas-vendido") },
+          { key: "mas-vendidos", label: "Más vendidos", products: taggedOrLatest("mas-vendido") },
           { key: "ofertas", label: "Ofertas", products: offers },
-          { key: "novedades", label: "Novedades", products: tagged("novedad") },
+          { key: "novedades", label: "Novedades", products: taggedOrLatest("novedad") },
         ]}
       />
       <Marquee />
