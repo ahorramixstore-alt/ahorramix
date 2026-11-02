@@ -62,6 +62,13 @@ Respuestas del usuario: Arquitectura "Diseño React conectado a WooCommerce"; ti
 - Puntos de fidelidad: descartados por el usuario (no construir).
 - Lista de deseos sincronizada con la cuenta: al iniciar sesión se une la del navegador con la de la cuenta; al restaurar sesión manda la de la cuenta; cambios se guardan (500 ms) vía POST /me/wishlist (user meta `_ahorramix_wishlist`, máx. 200); al cerrar sesión se vacía en el navegador. Demo: cuenta simulada en localStorage `am_demo_account_wishlist`. Avisos en /lista-de-deseos y tarjeta en /cuenta.
 
+## Iteración 9 · Conexión real con WooCommerce en ahorramix.com (2026-11-02)
+- Diagnóstico en vivo: React y WordPress comparten public_html de ahorramix.com (WP index.php servía la portada y /tienda, /producto); ahorramix-config.js cacheado 7 días (navegador recibía wcStoreUrl tienda.ahorramix.com, WP sin productos); copia Emergent en demo a propósito. Bridge plugin activo; ?ahorramix_cart → /finalizar-compra/ OK. Catálogo real: 1 producto de prueba (999 €, sin foto, Sin categorizar).
+- Cambios: index.html carga ahorramix-config.js con ?t=Date.now(); ruta /index.html → /; imagen de reserva `images/brand/sin-imagen.jpg` para productos sin foto; Más vendidos/Novedades muestran últimos productos sin etiquetas; ZIP sin .htaccess ni ahorramix-config.js.
+- `export/HTACCESS-AHORRAMIX.txt` (bloque reversible a pegar encima de LSCACHE/WordPress: no-cache config, robots→share.php, parámetros WP saltan reglas, portada y rutas React → index.html). Probado en Apache local con bloque WordPress estándar (17 URLs OK). `export/CONECTAR-WOOCOMMERCE.md` con pasos exactos, tabla de slugs de categorías y cómo deshacer.
+- Testing agent iteración 2: 9/9 (demo y real vía proxy local). Copia Emergent sigue en demo (decisión del usuario).
+- Logo «quitado»: no reproducido (visible en cabecera y pie en todas las páginas); pendiente captura del usuario si persiste.
+
 
 ## Backlog
 - P0 (usuario, en Hostinger): instalar WP/WooCommerce, plugin puente, pasarela, envíos, datos vendedor, legales revisados.

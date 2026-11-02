@@ -1,10 +1,13 @@
 # Ahorramix · Paquete para Hostinger
 
+> **Tu caso (WordPress y la tienda en el mismo dominio, ahorramix.com): sigue `CONECTAR-WOOCOMMERCE.md`.** El paso a paso de abajo es para la instalación con WordPress en un subdominio.
+
 Esta carpeta contiene lo que tienes que subir. **No necesitas instalar nada en tu ordenador.**
 
 | Archivo | Qué es | Dónde va |
 |---|---|---|
-| `ahorramix-tienda-hostinger.zip` | La tienda (diseño, páginas, carrito, vídeo, imágenes, `.htaccess`) | `public_html` de tu dominio principal |
+| `ahorramix-tienda-hostinger.zip` | La tienda (diseño, páginas, carrito, vídeo, imágenes). No incluye `.htaccess` ni `ahorramix-config.js` para no pisar los tuyos | `public_html` de tu dominio principal |
+| `HTACCESS-AHORRAMIX.txt` | Reglas para añadir al principio de tu `.htaccess` | ver `CONECTAR-WOOCOMMERCE.md` |
 | `ahorramix-bridge.zip` | Plugin que conecta la tienda con WooCommerce (catálogo, checkout, cuenta, sitemap) | WordPress › Plugins › Añadir nuevo › Subir plugin |
 
 ## Paso a paso
