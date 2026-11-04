@@ -69,6 +69,13 @@ Respuestas del usuario: Arquitectura "Diseño React conectado a WooCommerce"; ti
 - Testing agent iteración 2: 9/9 (demo y real vía proxy local). Copia Emergent sigue en demo (decisión del usuario).
 - Logo «quitado»: no reproducido (visible en cabecera y pie en todas las páginas); pendiente captura del usuario si persiste.
 
+## Iteración 10 · Migración a Shopify (2026-11-04)
+- Decisión usuario: solo colecciones (sin productos; los sincroniza su app de dropshipping), entrega ZIP, mantener vídeo.
+- Tema OS 2.0 en `/app/shopify/ahorramix-theme/` (layout, 26 sections incl. header/footer groups, 13 templates JSON, snippets product-card/price/icon/meta-tags, locales es, settings de colores/marca/vendedor). Todo editable en el personalizador; logo incluido como asset por defecto + image_picker. Carrito/checkout nativos. SEO: títulos, meta, OG/Twitter, JSON-LD producto, alt.
+- Colecciones referenciadas por handle (hogar-y-cocina, electronica…, ofertas, ofertas-del-dia, destacados, mas-vendidos, novedades) con selector de colección como alternativa.
+- `python3 /app/shopify/build.py` genera plantillas, assets, `/app/export/shopify/` (tema ZIP, colecciones CSV + formato Matrixify, plantilla CSV productos oficial vacía, páginas legales HTML, vídeo aparte, GUIA-SHOPIFY.md) y `/app/export/ahorramix-proyecto-completo.zip` (sin .env). `/app/export/ahorramix-shopify-entregables.zip` = todo lo de Shopify. .gitignore permite subir esos ZIP a GitHub.
+- Validación: Shopify Theme Check 0 errores (3 avisos de fuentes remotas Fontshare/Google). Vista previa local con liquidjs (`/root/tc/preview.js`) + testing agent iteración 3: 100 %. No probado en tienda Shopify real.
+
 
 ## Backlog
 - P0 (usuario, en Hostinger): instalar WP/WooCommerce, plugin puente, pasarela, envíos, datos vendedor, legales revisados.

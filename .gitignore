@@ -66,6 +66,11 @@ agenthub/agents/youtube/db
 
 # Archive files and large assets
 **/*.zip
+# Entregables de Ahorramix (para descargarlos desde GitHub)
+!export/ahorramix-shopify-entregables.zip
+!export/shopify/ahorramix-tema-shopify.zip
+!export/ahorramix-tienda-hostinger.zip
+!export/ahorramix-bridge.zip
 **/*.tar.gz
 **/*.tar
 **/*.tgz

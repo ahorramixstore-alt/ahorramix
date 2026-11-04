@@ -1,0 +1,31 @@
+{
+  "summary": "Frontend-only testing of the Ahorramix Shopify theme local preview (liquidjs rendered at http://127.0.0.1:8095). Executed critical visual + interactive checks on index.html (1440px and 390px), product.html and collection.html (390px). All required interactions (announcement rotation, dept panel desktop, mobile drawer, offer carousel next/prev/dots, tabs, gallery, qty +/-, add to cart presence, discount badges, 2-col collection grid) work correctly. No JS console errors. Logo renders (naturalWidth=640). Cart counter shows 2. Hero title 'Ahorra más en todo lo que te gusta.' present (broken across lines, by design). [data-hero-toggle] correctly absent (no video). Vendor info 'Ahorramix · Y0447650S' present in footer. No visible horizontal overflow (body uses overflow-x:clip; a 15px/5px theoretical excess from off-screen carousel slides is clipped and not scrollable).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "index.html desktop @1440 + mobile @390", "issues": ["document.scrollWidth exceeds clientWidth by 15px (desktop) / 5px (mobile) because off-screen .offer slides are positioned outside .offers__main — currently hidden only by body { overflow-x: clip }. Not a visible scroll, but a stricter fix would be to ensure .offers__track also has overflow:hidden. Low priority."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "theme.js initProduct uses .gallery__slide + is-active toggling (correct approach, works).",
+    "Carousel autoplay set via data-autoplay (times:1000). Works. Dots/next/prev all functional.",
+    "Announcement bar rotates .announce__msg.is-active ~every 4s — verified visually (msg0 -> msg1 after 4.5s).",
+    "Mobile drawer has both an overlay AND a close button sharing [data-drawer-close]. In Playwright the overlay element appears first and is intercepted by the panel subtree — Escape and the X button work fine; just a note that automated tests should target button[data-drawer-close] specifically.",
+    "Dept panel uses position:absolute inside header; closes on Escape and outside-click correctly.",
+    "collection.html uses .rail.rail--grid with grid-template-columns: 1fr 1fr → 2-col grid at 390px as required.",
+    "Hero height var --hero-h:82svh; may cause excess scroll on some mobile browsers but acceptable.",
+    "All required Spanish copy present: 'Explora por categoría', 'Ofertas del día', 'Compra por departamento', 'Productos destacados', 'Ahorra más en todo lo que te gusta.', 'Ahorramix · Y0447650S'."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "100%"},
+  "test_credentials": "none required",
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Preview server at http://127.0.0.1:8095 (python http.server over /root/tc/out). Theme sources at /app/shopify/ahorramix-theme. Validated: desktop dept panel, mobile drawer (X button has button[data-drawer-close], overlay also has data-drawer-close), carousel next/prev/dots change slides, tabs toggle aria-selected, product gallery uses .gallery__slide.is-active, qty uses [data-qty='1'|'-1'] with min=1, hero-toggle correctly absent when no video. No JS console errors.",
+  "rca of the issue": "N/A — no issues to RCA"
+}
