@@ -1,0 +1,39 @@
+{%- comment -%} Tarjeta de producto. Uso: {% render 'product-card', product: product %} {%- endcomment -%}
+{%- liquid
+  assign v = product.selected_or_first_available_variant
+  assign pct = 0
+  if product.compare_at_price_min > product.price_min
+    assign pct = product.compare_at_price_min | minus: product.price_min | times: 100.0 | divided_by: product.compare_at_price_min | round
+  endif
+-%}
+<article class="card{% if class %} {{ class }}{% endif %}">
+  <a href="{{ product.url }}" class="card__media" aria-label="{{ product.title | escape }}">
+    {%- if product.featured_media -%}
+      {{ product.featured_media | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300, 450, 700', sizes: '(min-width: 1024px) 25vw, 50vw', alt: product.featured_media.alt | default: product.title, class: 'card__img' }}
+      {%- if product.media[1] -%}
+        {{ product.media[1] | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300, 450, 700', sizes: '(min-width: 1024px) 25vw, 50vw', alt: '', class: 'card__img card__img--alt' }}
+      {%- endif -%}
+    {%- else -%}
+      <img src="{{ 'sin-imagen.jpg' | asset_url }}" alt="{{ product.title | escape }}" class="card__img" loading="lazy" width="800" height="1000">
+    {%- endif -%}
+    <span class="card__badges">
+      {%- if pct > 0 -%}<span class="badge badge--sale">−{{ pct }}%</span>{%- endif -%}
+      {%- unless product.available -%}<span class="badge badge--out">{{ 'products.sold_out' | t }}</span>{%- endunless -%}
+      {%- if product.tags contains 'novedad' -%}<span class="badge badge--new">{{ 'products.new' | t }}</span>{%- endif -%}
+    </span>
+  </a>
+  <div class="card__body">
+    {%- if settings.card_show_vendor and product.vendor != blank -%}<p class="card__vendor">{{ product.vendor }}</p>{%- endif -%}
+    <h3 class="card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    {% render 'price', product: product %}
+    {%- if product.available and product.has_only_default_variant -%}
+      <form method="post" action="{{ routes.cart_add_url }}" class="card__form" data-add-to-cart>
+        <input type="hidden" name="id" value="{{ v.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit" class="btn btn--dark btn--sm card__add">{% render 'icon', name: 'cart', size: 16 %} {{ 'products.add' | t }}</button>
+      </form>
+    {%- else -%}
+      <a href="{{ product.url }}" class="btn btn--line btn--sm card__add">{{ 'products.view' | t }}</a>
+    {%- endif -%}
+  </div>
+</article>

@@ -1,0 +1,110 @@
+{%- liquid
+  assign menu = linklists[section.settings.menu]
+  assign dept_menu = linklists[section.settings.departments_menu] | default: menu
+  assign visible = section.settings.visible_links
+  assign logo_style = 'height: ' | append: section.settings.logo_height | append: 'px'
+-%}
+<header class="header" data-header {{ section.shopify_attributes }}>
+  <div class="container header__top">
+    <button class="header__icon header__burger" type="button" aria-label="{{ 'general.menu' | t }}" aria-controls="MobileMenu" aria-expanded="false" data-drawer-open="MobileMenu">{% render 'icon', name: 'menu', size: 22 %}</button>
+
+    <a href="{{ routes.root_url }}" class="header__logo" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 400 | image_tag: alt: shop.name, widths: '160, 240, 400', style: logo_style, class: 'header__logo-img', loading: 'eager' }}
+      {%- else -%}
+        <img src="{{ 'ahorramix-logo.png' | asset_url }}" alt="{{ shop.name }}" width="640" height="374" class="header__logo-img" style="height: {{ section.settings.logo_height }}px">
+      {%- endif -%}
+    </a>
+
+    {%- if dept_menu.links.size > 0 -%}
+      <div class="dept" data-dept>
+        <button type="button" class="dept__btn" aria-expanded="false" aria-controls="DeptPanel" data-dept-toggle>{% render 'icon', name: 'grid', size: 18 %}<span>{{ section.settings.departments_label }}</span>{% render 'icon', name: 'chevron-down', size: 16 %}</button>
+        <div class="dept__panel" id="DeptPanel" hidden>
+          <ul class="dept__list">
+            {%- for link in dept_menu.links -%}
+              <li class="dept__item">
+                <a href="{{ link.url }}" class="dept__link">{{ link.title }}</a>
+                {%- if link.links.size > 0 -%}
+                  <ul class="dept__sub">
+                    {%- for child in link.links -%}<li><a href="{{ child.url }}">{{ child.title }}</a></li>{%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+      <input type="hidden" name="type" value="product">
+      <label class="visually-hidden" for="HeaderSearch">{{ 'general.search' | t }}</label>
+      <input id="HeaderSearch" class="search__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search_placeholder' | t }}">
+      <button class="search__btn" type="submit" aria-label="{{ 'general.search' | t }}">{% render 'icon', name: 'search', size: 18 %}</button>
+    </form>
+
+    <nav class="header__actions" aria-label="{{ 'general.account' | t }}">
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{{ routes.account_url }}" class="header__icon" aria-label="{{ 'general.account' | t }}">{% render 'icon', name: 'user', size: 21 %}<span class="header__icon-label">{{ 'general.account' | t }}</span></a>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" class="header__icon" aria-label="{{ 'general.cart' | t }}">
+        {% render 'icon', name: 'cart', size: 21 %}<span class="header__icon-label">{{ 'general.cart' | t }}</span>
+        <span class="cart-count" data-cart-count{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span>
+      </a>
+    </nav>
+  </div>
+
+  {%- if menu.links.size > 0 -%}
+    <nav class="header__nav" aria-label="{{ 'general.menu' | t }}">
+      <ul class="container header__nav-list">
+        {%- for link in menu.links limit: visible -%}
+          <li><a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
+        {%- endfor -%}
+        {%- if section.settings.offers_link != blank -%}
+          <li><a href="{{ section.settings.offers_link }}" class="header__nav-hot">{% render 'icon', name: 'flame', size: 15 %} {{ section.settings.offers_label }}</a></li>
+        {%- endif -%}
+      </ul>
+    </nav>
+  {%- endif -%}
+
+  <div class="drawer" id="MobileMenu" hidden data-drawer>
+    <div class="drawer__overlay" data-drawer-close></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="{{ 'general.menu' | t }}">
+      <div class="drawer__head">
+        {%- if section.settings.logo != blank -%}{{ section.settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'drawer__logo' }}{%- else -%}<img src="{{ 'ahorramix-logo.png' | asset_url }}" alt="{{ shop.name }}" width="640" height="374" class="drawer__logo">{%- endif -%}
+        <button type="button" class="header__icon" aria-label="{{ 'general.close' | t }}" data-drawer-close>{% render 'icon', name: 'close', size: 22 %}</button>
+      </div>
+      <ul class="drawer__list">
+        {%- for link in dept_menu.links -%}
+          <li>
+            {%- if link.links.size > 0 -%}
+              <details><summary>{{ link.title }} {% render 'icon', name: 'chevron-down', size: 16 %}</summary>
+                <ul><li><a href="{{ link.url }}">{{ 'general.see_all' | t }}</a></li>{%- for child in link.links -%}<li><a href="{{ child.url }}">{{ child.title }}</a></li>{%- endfor -%}</ul>
+              </details>
+            {%- else -%}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+        {%- if section.settings.offers_link != blank -%}<li><a href="{{ section.settings.offers_link }}" class="header__nav-hot">{{ section.settings.offers_label }}</a></li>{%- endif -%}
+      </ul>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Cabecera",
+  "class": "section-header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Vacío = se usa el logo de Ahorramix incluido en el tema. Recomendado PNG transparente." },
+    { "type": "range", "id": "logo_height", "label": "Altura del logo", "min": 32, "max": 90, "step": 2, "unit": "px", "default": 52 },
+    { "type": "link_list", "id": "menu", "label": "Menú principal (barra bajo la cabecera)", "default": "main-menu" },
+    { "type": "range", "id": "visible_links", "label": "Enlaces visibles en la barra", "min": 3, "max": 12, "step": 1, "default": 7 },
+    { "type": "link_list", "id": "departments_menu", "label": "Menú de «Todas las categorías»", "info": "Con submenús para las subcategorías. Vacío = se usa el menú principal." },
+    { "type": "text", "id": "departments_label", "label": "Texto del botón de categorías", "default": "Todas las categorías" },
+    { "type": "url", "id": "offers_link", "label": "Enlace de «Ofertas»", "info": "Por ejemplo, la colección Ofertas." },
+    { "type": "text", "id": "offers_label", "label": "Texto de «Ofertas»", "default": "Ofertas" }
+  ]
+}
+{% endschema %}

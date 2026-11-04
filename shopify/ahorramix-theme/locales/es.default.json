@@ -1,0 +1,93 @@
+{
+  "general": {
+    "skip": "Saltar al contenido",
+    "page": "Página {{ page }}",
+    "search": "Buscar",
+    "search_placeholder": "Busca productos, marcas y categorías",
+    "menu": "Menú",
+    "close": "Cerrar",
+    "account": "Cuenta",
+    "cart": "Carrito",
+    "all_categories": "Todas las categorías",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "see_all": "Ver todo",
+    "pause_video": "Pausar vídeo",
+    "play_video": "Reproducir vídeo",
+    "home": "Inicio"
+  },
+  "products": {
+    "add": "Añadir",
+    "add_to_cart": "Añadir al carrito",
+    "view": "Ver producto",
+    "sold_out": "Agotado",
+    "unavailable": "No disponible",
+    "new": "Nuevo",
+    "from": "Desde",
+    "save": "Ahorras {{ amount }}",
+    "quantity": "Cantidad",
+    "tax_included": "IVA incluido. Gastos de envío calculados antes de pagar.",
+    "in_stock": "En stock",
+    "description": "Descripción",
+    "related": "También te puede gustar",
+    "empty": "No hay productos que coincidan."
+  },
+  "collections": {
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "clear": "Quitar filtros",
+    "apply": "Aplicar",
+    "count": {
+      "one": "{{ count }} producto",
+      "other": "{{ count }} productos"
+    },
+    "price_from": "Desde",
+    "price_to": "Hasta",
+    "empty": "Esta categoría aún no tiene productos.",
+    "all": "Todas las categorías"
+  },
+  "cart": {
+    "title": "Tu carrito",
+    "empty": "Tu carrito está vacío.",
+    "continue": "Seguir comprando",
+    "subtotal": "Subtotal",
+    "checkout": "Finalizar compra",
+    "remove": "Eliminar",
+    "update": "Actualizar",
+    "note": "Nota para el pedido",
+    "taxes": "IVA incluido. Envío y descuentos se calculan en el pago.",
+    "added": "Añadido al carrito",
+    "error": "No se ha podido añadir. Inténtalo de nuevo.",
+    "discount": "¿Tienes un código de descuento? Podrás aplicarlo en el pago."
+  },
+  "search": {
+    "title": "Buscar",
+    "results": {
+      "one": "{{ count }} resultado para «{{ terms }}»",
+      "other": "{{ count }} resultados para «{{ terms }}»"
+    },
+    "none": "No hemos encontrado resultados para «{{ terms }}»."
+  },
+  "contact": {
+    "name": "Nombre",
+    "email": "Email",
+    "phone": "Teléfono",
+    "message": "Mensaje",
+    "send": "Enviar mensaje",
+    "success": "¡Gracias! Te responderemos lo antes posible."
+  },
+  "newsletter": {
+    "placeholder": "Tu email",
+    "submit": "Suscribirme",
+    "success": "¡Gracias por suscribirte!"
+  },
+  "blogs": {
+    "read_more": "Leer más",
+    "back": "Volver al blog"
+  },
+  "404": {
+    "title": "Página no encontrada",
+    "text": "La página que buscas no existe o se ha movido.",
+    "cta": "Volver a la tienda"
+  }
+}

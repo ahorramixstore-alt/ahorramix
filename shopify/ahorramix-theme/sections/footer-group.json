@@ -1,0 +1,25 @@
+{
+  "type": "footer",
+  "name": "Grupo de pie de página",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "tienda": { "type": "menu", "settings": { "title": "Tienda", "menu": "footer-tienda" } },
+        "ayuda": { "type": "menu", "settings": { "title": "Ayuda", "menu": "footer-ayuda" } },
+        "legal": { "type": "menu", "settings": { "title": "Legal", "menu": "footer-legal" } }
+      },
+      "block_order": ["tienda", "ayuda", "legal"],
+      "settings": {
+        "tagline": "Lo esencial, bien elegido, a buen precio.",
+        "show_newsletter": true,
+        "newsletter_eyebrow": "Newsletter",
+        "newsletter_title": "Ofertas y novedades, sin spam",
+        "newsletter_text": "Te avisamos de las rebajas y los productos nuevos. Puedes darte de baja cuando quieras.",
+        "big_word": "ahorramix",
+        "copyright": "Precios con IVA incluido salvo indicación."
+      }
+    }
+  },
+  "order": ["footer"]
+}

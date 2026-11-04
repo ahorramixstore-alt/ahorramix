@@ -1,0 +1,59 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Ahorramix",
+    "theme_version": "1.0.0",
+    "theme_author": "Ahorramix",
+    "theme_documentation_url": "https://help.shopify.com/es/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com/es"
+  },
+  {
+    "name": "Colores",
+    "settings": [
+      { "type": "color", "id": "color_orange", "label": "Naranja de marca (botones, ofertas)", "default": "#FF5A1F" },
+      { "type": "color", "id": "color_black", "label": "Negro de marca (botones oscuros)", "default": "#001326" },
+      { "type": "color", "id": "color_yellow", "label": "Amarillo de acento", "default": "#FFD84D" },
+      { "type": "color", "id": "color_ink", "label": "Texto principal", "default": "#0E1015" },
+      { "type": "color", "id": "color_ink_2", "label": "Texto secundario", "default": "#4A505C" },
+      { "type": "color", "id": "color_bg", "label": "Fondo", "default": "#FBFBF9" },
+      { "type": "color", "id": "color_bg_2", "label": "Fondo secundario", "default": "#F3F3EF" },
+      { "type": "color", "id": "color_price", "label": "Precio en oferta", "default": "#C2410C" },
+      { "type": "color", "id": "color_emerald", "label": "Mensajes de ahorro", "default": "#0F5A47" },
+      { "type": "color", "id": "color_footer", "label": "Fondo del pie de página", "default": "#111317" }
+    ]
+  },
+  {
+    "name": "Tipografía",
+    "settings": [
+      { "type": "checkbox", "id": "use_brand_fonts", "label": "Usar las fuentes de Ahorramix (Cabinet Grotesk y Satoshi)", "default": true, "info": "Se cargan desde Fontshare (gratuitas). Si lo desactivas se usa la fuente del sistema." }
+    ]
+  },
+  {
+    "name": "Marca y redes",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "Icono de la pestaña (favicon)", "info": "Cuadrado, 64 × 64 px o más." },
+      { "type": "image_picker", "id": "share_image", "label": "Imagen al compartir la tienda", "info": "1200 × 630 px. Se usa en la portada y páginas sin imagen propia." },
+      { "type": "text", "id": "social_instagram", "label": "Instagram (URL)" },
+      { "type": "text", "id": "social_tiktok", "label": "TikTok (URL)" },
+      { "type": "text", "id": "social_facebook", "label": "Facebook (URL)" }
+    ]
+  },
+  {
+    "name": "Datos del vendedor",
+    "settings": [
+      { "type": "paragraph", "content": "Se muestran en el pie de página. Obligatorios por la LSSI." },
+      { "type": "text", "id": "legal_name", "label": "Nombre o razón social", "default": "Ahorramix" },
+      { "type": "text", "id": "tax_id", "label": "NIF / CIF", "default": "Y0447650S" },
+      { "type": "text", "id": "legal_address", "label": "Dirección", "default": "[Dirección completa, código postal, ciudad]" },
+      { "type": "text", "id": "legal_email", "label": "Email de contacto", "default": "[email@tudominio.es]" },
+      { "type": "text", "id": "legal_phone", "label": "Teléfono" }
+    ]
+  },
+  {
+    "name": "Productos",
+    "settings": [
+      { "type": "checkbox", "id": "card_show_vendor", "label": "Mostrar proveedor en las tarjetas", "default": false },
+      { "type": "text", "id": "delivery_text", "label": "Texto de plazo de entrega en la ficha", "info": "Ej.: Entrega estimada: 5–10 días laborables. Vacío = oculto. Puedes sobrescribirlo por producto con el metacampo custom.delivery_time." }
+    ]
+  }
+]

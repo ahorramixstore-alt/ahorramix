@@ -1,0 +1,22 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "color_orange": "#FF5A1F",
+      "color_black": "#001326",
+      "color_yellow": "#FFD84D",
+      "color_ink": "#0E1015",
+      "color_ink_2": "#4A505C",
+      "color_bg": "#FBFBF9",
+      "color_bg_2": "#F3F3EF",
+      "color_price": "#C2410C",
+      "color_emerald": "#0F5A47",
+      "color_footer": "#111317",
+      "use_brand_fonts": true,
+      "legal_name": "Ahorramix",
+      "tax_id": "Y0447650S",
+      "legal_address": "[Dirección completa, código postal, ciudad]",
+      "legal_email": "[email@tudominio.es]"
+    }
+  }
+}

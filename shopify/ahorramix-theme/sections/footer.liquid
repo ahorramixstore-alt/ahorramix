@@ -1,0 +1,94 @@
+<footer class="footer" {{ section.shopify_attributes }}>
+  <div class="container">
+    {%- if section.settings.show_newsletter -%}
+      <div class="newsletter">
+        <div>
+          <p class="eyebrow eyebrow--light">{{ section.settings.newsletter_eyebrow }}</p>
+          <h2 class="newsletter__title">{{ section.settings.newsletter_title }}</h2>
+          {%- if section.settings.newsletter_text != blank -%}<p class="newsletter__text">{{ section.settings.newsletter_text }}</p>{%- endif -%}
+        </div>
+        {%- form 'customer', class: 'newsletter__form', id: 'FooterNewsletter' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          {%- if form.posted_successfully? -%}
+            <p class="newsletter__ok" role="status">{{ 'newsletter.success' | t }}</p>
+          {%- else -%}
+            <label class="visually-hidden" for="NewsletterEmail">{{ 'newsletter.placeholder' | t }}</label>
+            <input id="NewsletterEmail" type="email" name="contact[email]" required autocomplete="email" placeholder="{{ 'newsletter.placeholder' | t }}">
+            <button type="submit" class="btn btn--orange">{{ 'newsletter.submit' | t }}</button>
+            {%- if form.errors -%}<p class="newsletter__err">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>{%- endif -%}
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="footer__logo-card">
+          {%- if section.settings.logo != blank -%}
+            {{ section.settings.logo | image_url: width: 400 | image_tag: alt: shop.name, class: 'footer__logo' }}
+          {%- else -%}
+            <img src="{{ 'ahorramix-logo.png' | asset_url }}" alt="{{ shop.name }}" width="640" height="374" class="footer__logo" loading="lazy">
+          {%- endif -%}
+        </span>
+        {%- if section.settings.tagline != blank -%}<p class="footer__tagline">{{ section.settings.tagline }}</p>{%- endif -%}
+        <div class="footer__legal">
+          <p>{{ settings.legal_name }}{% if settings.tax_id != blank %} · {{ settings.tax_id }}{% endif %}</p>
+          {%- if settings.legal_address != blank -%}<p>{{ settings.legal_address }}</p>{%- endif -%}
+          {%- if settings.legal_email != blank -%}<p>{{ settings.legal_email }}</p>{%- endif -%}
+          {%- if settings.legal_phone != blank -%}<p>{{ settings.legal_phone }}</p>{%- endif -%}
+        </div>
+        <div class="footer__social">
+          {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" rel="noopener" target="_blank">Instagram</a>{%- endif -%}
+          {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" rel="noopener" target="_blank">TikTok</a>{%- endif -%}
+          {%- if settings.social_facebook != blank -%}<a href="{{ settings.social_facebook }}" rel="noopener" target="_blank">Facebook</a>{%- endif -%}
+        </div>
+      </div>
+      <div class="footer__cols">
+        {%- for block in section.blocks -%}
+          {%- assign m = linklists[block.settings.menu] -%}
+          <div class="footer__col" {{ block.shopify_attributes }}>
+            <h3 class="footer__col-title">{{ block.settings.title | default: m.title }}</h3>
+            <ul>
+              {%- for link in m.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
+            </ul>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- if section.settings.big_word != blank -%}<div class="footer__word" aria-hidden="true">{{ section.settings.big_word }}</div>{%- endif -%}
+    <div class="footer__bottom">
+      <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.copyright }}</p>
+      <p>{{ section.settings.credits }}</p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pie de página",
+  "class": "section-footer",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Vacío = logo de Ahorramix incluido en el tema." },
+    { "type": "text", "id": "tagline", "label": "Lema", "default": "Lo esencial, bien elegido, a buen precio." },
+    { "type": "checkbox", "id": "show_newsletter", "label": "Mostrar suscripción por email", "default": true },
+    { "type": "text", "id": "newsletter_eyebrow", "label": "Newsletter · antetítulo", "default": "Newsletter" },
+    { "type": "text", "id": "newsletter_title", "label": "Newsletter · título", "default": "Ofertas y novedades, sin spam" },
+    { "type": "text", "id": "newsletter_text", "label": "Newsletter · texto", "default": "Te avisamos de las rebajas y los productos nuevos. Puedes darte de baja cuando quieras." },
+    { "type": "text", "id": "big_word", "label": "Palabra grande decorativa", "default": "ahorramix" },
+    { "type": "text", "id": "copyright", "label": "Texto legal inferior", "default": "Precios con IVA incluido salvo indicación." },
+    { "type": "text", "id": "credits", "label": "Créditos" }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Columna de enlaces",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título (vacío = nombre del menú)" },
+        { "type": "link_list", "id": "menu", "label": "Menú", "default": "footer" }
+      ]
+    }
+  ]
+}
+{% endschema %}

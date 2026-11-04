@@ -1,0 +1,35 @@
+{%- if section.blocks.size > 0 -%}
+<div class="announce" style="--bg: {{ section.settings.bg }}; --fg: {{ section.settings.fg }};" data-announce data-interval="{{ section.settings.interval | times: 1000 }}" {{ section.shopify_attributes }}>
+  <div class="container announce__inner">
+    {%- for block in section.blocks -%}
+      <p class="announce__msg{% if forloop.first %} is-active{% endif %}" {{ block.shopify_attributes }}>
+        {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{{ block.settings.text }}</a>{%- else -%}{{ block.settings.text }}{%- endif -%}
+      </p>
+    {%- endfor -%}
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Barra de avisos",
+  "class": "section-announce",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "range", "id": "interval", "label": "Segundos entre mensajes", "min": 2, "max": 10, "step": 1, "default": 4 },
+    { "type": "color", "id": "bg", "label": "Fondo", "default": "#000000" },
+    { "type": "color", "id": "fg", "label": "Texto", "default": "#FFFFFF" }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Mensaje",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texto", "default": "Precios finales con IVA incluido" },
+        { "type": "url", "id": "link", "label": "Enlace (opcional)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Barra de avisos", "blocks": [{ "type": "message" }] }]
+}
+{% endschema %}
