@@ -1,0 +1,30 @@
+<section class="container narrow block-space" {{ section.shopify_attributes }}>
+  {%- if section.settings.title != blank -%}<h2 class="sec-title">{{ section.settings.title }}</h2>{%- endif -%}
+  <div class="faq">
+    {%- for block in section.blocks -%}
+      <details class="faq__item" {{ block.shopify_attributes }}>
+        <summary>{{ block.settings.question }} {% render 'icon', name: 'chevron-down', size: 18 %}</summary>
+        <div class="rte">{{ block.settings.answer }}</div>
+      </details>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Preguntas frecuentes",
+  "max_blocks": 30,
+  "settings": [{ "type": "text", "id": "title", "label": "Título" }],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Pregunta",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Pregunta", "default": "¿Cuánto tarda en llegar mi pedido?" },
+        { "type": "richtext", "id": "answer", "label": "Respuesta", "default": "<p>El plazo estimado aparece en la ficha de cada producto y en la confirmación del pedido.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Preguntas frecuentes", "blocks": [{ "type": "question" }] }]
+}
+{% endschema %}

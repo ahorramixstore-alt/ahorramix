@@ -57,6 +57,7 @@
     "note": "Nota para el pedido",
     "taxes": "IVA incluido. Envío y descuentos se calculan en el pago.",
     "added": "Añadido al carrito",
+    "view": "Ver carrito",
     "error": "No se ha podido añadir. Inténtalo de nuevo.",
     "discount": "¿Tienes un código de descuento? Podrás aplicarlo en el pago."
   },

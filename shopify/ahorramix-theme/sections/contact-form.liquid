@@ -1,0 +1,26 @@
+<section class="container narrow listing" {{ section.shopify_attributes }}>
+  <div class="contact">
+    {%- form 'contact', class: 'contact__form' -%}
+      {%- if form.posted_successfully? -%}
+        <p class="notice notice--ok" role="status">{{ 'contact.success' | t }}</p>
+      {%- endif -%}
+      {%- if form.errors -%}<div class="notice notice--err">{{ form.errors | default_errors }}</div>{%- endif -%}
+      <label>{{ 'contact.name' | t }}<input type="text" name="contact[name]" autocomplete="name" value="{{ form.name }}"></label>
+      <label>{{ 'contact.email' | t }} *<input type="email" name="contact[email]" autocomplete="email" required value="{{ form.email }}"></label>
+      <label>{{ 'contact.phone' | t }}<input type="tel" name="contact[phone]" autocomplete="tel" value="{{ form.phone }}"></label>
+      <label>{{ 'contact.message' | t }}<textarea name="contact[body]" rows="6">{{ form.body }}</textarea></label>
+      <button type="submit" class="btn btn--dark btn--lg">{{ 'contact.send' | t }}</button>
+    {%- endform -%}
+    {%- if section.settings.info != blank -%}<div class="contact__info rte">{{ section.settings.info }}</div>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Formulario de contacto",
+  "settings": [
+    { "type": "richtext", "id": "info", "label": "Información al lado del formulario", "default": "<p>Respondemos en horario laborable. Para consultas sobre un pedido, indica su número.</p>" }
+  ],
+  "presets": [{ "name": "Formulario de contacto" }]
+}
+{% endschema %}

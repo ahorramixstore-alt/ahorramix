@@ -1,0 +1,54 @@
+{%- liquid
+  assign s = section.settings
+-%}
+<section class="hero" style="--hero-h: {{ s.height }}svh;" data-hero {{ section.shopify_attributes }}>
+  <div class="hero__media">
+    {%- if s.video != blank -%}
+      {{ s.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'hero__video', image_size: '1600x' }}
+    {%- elsif s.image != blank -%}
+      {{ s.image | image_url: width: 2000 | image_tag: class: 'hero__video', widths: '800, 1200, 1600, 2000', sizes: '100vw', loading: 'eager', alt: s.image.alt }}
+    {%- else -%}
+      <img class="hero__video" src="{{ 'hero-poster.jpg' | asset_url }}" alt="" width="1600" height="900">
+    {%- endif -%}
+  </div>
+  <div class="hero__shade" style="--shade: {{ s.overlay | divided_by: 100.0 }};"></div>
+  <div class="container hero__content">
+    {%- if s.badge != blank -%}<span class="hero__badge"><span class="hero__dot"></span>{{ s.badge }}</span>{%- endif -%}
+    <h1 class="hero__title">
+      {%- if s.title_highlight != blank -%}<span class="hero__hl">{{ s.title_highlight }}</span>{%- endif -%}
+      {%- if s.title != blank -%}<span>{{ s.title | newline_to_br }}</span>{%- endif -%}
+    </h1>
+    {%- if s.text != blank -%}<p class="hero__text">{{ s.text }}</p>{%- endif -%}
+    <div class="hero__ctas">
+      {%- if s.button_1_label != blank -%}<a href="{{ s.button_1_link | default: routes.all_products_collection_url }}" class="btn btn--orange btn--lg">{{ s.button_1_label }} {% render 'icon', name: 'arrow-right', size: 16 %}</a>{%- endif -%}
+      {%- if s.button_2_label != blank -%}<a href="{{ s.button_2_link | default: routes.collections_url }}" class="btn btn--ghost btn--lg">{{ s.button_2_label }}</a>{%- endif -%}
+    </div>
+  </div>
+  {%- if s.video != blank -%}
+    <button type="button" class="hero__toggle" data-hero-toggle aria-label="{{ 'general.pause_video' | t }}" data-label-play="{{ 'general.play_video' | t }}" data-label-pause="{{ 'general.pause_video' | t }}">
+      <span class="hero__ic-pause">{% render 'icon', name: 'pause', size: 16 %}</span><span class="hero__ic-play">{% render 'icon', name: 'play', size: 16 %}</span>
+    </button>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Portada con vídeo",
+  "class": "section-hero",
+  "settings": [
+    { "type": "video", "id": "video", "label": "Vídeo de fondo", "info": "Sube el vídeo de Ahorramix (carpeta video-portada) en Contenido > Archivos y selecciónalo aquí. Vacío = se muestra la imagen." },
+    { "type": "image_picker", "id": "image", "label": "Imagen (portada del vídeo o fondo si no hay vídeo)" },
+    { "type": "range", "id": "height", "label": "Altura", "min": 50, "max": 100, "step": 2, "unit": "%", "default": 82 },
+    { "type": "range", "id": "overlay", "label": "Oscurecer fondo", "min": 0, "max": 95, "step": 5, "unit": "%", "default": 85 },
+    { "type": "text", "id": "badge", "label": "Etiqueta superior", "default": "Ofertas en hogar, tecnología y moda" },
+    { "type": "text", "id": "title_highlight", "label": "Título · parte destacada (amarilla)", "default": "Ahorra más" },
+    { "type": "textarea", "id": "title", "label": "Título · resto", "default": "en todo lo que\nte gusta." },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Productos útiles a precios claros: IVA incluido, plazo de entrega en cada ficha y devoluciones explicadas." },
+    { "type": "text", "id": "button_1_label", "label": "Botón 1 · texto", "default": "Ver ofertas" },
+    { "type": "url", "id": "button_1_link", "label": "Botón 1 · enlace" },
+    { "type": "text", "id": "button_2_label", "label": "Botón 2 · texto", "default": "Explorar la tienda" },
+    { "type": "url", "id": "button_2_link", "label": "Botón 2 · enlace" }
+  ],
+  "presets": [{ "name": "Portada con vídeo" }]
+}
+{% endschema %}

@@ -1,0 +1,45 @@
+{%- liquid
+  assign c = section.settings.collection
+  if c == blank and section.settings.handle != blank
+    assign c = collections[section.settings.handle]
+  endif
+  if c == blank or c.id == blank
+    assign c = collections['all']
+  endif
+-%}
+{%- if c.products.size > 0 -%}
+<section class="container block-space" {{ section.shopify_attributes }}>
+  <div class="sec-head">
+    <div>
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="sec-title">{{ section.settings.title | default: c.title }}</h2>
+    </div>
+    <a href="{{ c.url | default: routes.all_products_collection_url }}" class="sec-link">{{ 'general.see_all' | t }}</a>
+  </div>
+  <div class="rail{% if section.settings.layout == 'grid' %} rail--grid{% endif %}">
+    {%- for product in c.products limit: section.settings.limit -%}
+      {% render 'product-card', product: product, class: 'rail__item' %}
+    {%- endfor -%}
+  </div>
+</section>
+{%- elsif request.design_mode -%}
+<section class="container block-space"><p class="muted">«{{ section.settings.title | default: section.settings.handle }}»: {{ 'collections.empty' | t }} (solo visible en el editor)</p></section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Fila de productos",
+  "class": "section-featured",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Colección" },
+    { "type": "text", "id": "handle", "label": "O identificador (handle) de la colección", "info": "Se usa si no eliges colección arriba. Vacío = todos los productos. La sección se oculta si la colección no tiene productos." },
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Selección" },
+    { "type": "text", "id": "title", "label": "Título (vacío = nombre de la colección)", "default": "Productos destacados" },
+    { "type": "range", "id": "limit", "label": "Número de productos", "min": 2, "max": 24, "step": 1, "default": 8 },
+    { "type": "select", "id": "layout", "label": "Diseño", "default": "rail", "options": [
+      { "value": "rail", "label": "Fila deslizable" }, { "value": "grid", "label": "Cuadrícula" }
+    ] }
+  ],
+  "presets": [{ "name": "Fila de productos" }]
+}
+{% endschema %}

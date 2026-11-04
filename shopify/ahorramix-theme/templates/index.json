@@ -1,0 +1,567 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-video",
+      "settings": {
+        "height": 82,
+        "overlay": 85,
+        "badge": "Ofertas en hogar, tecnología y moda",
+        "title_highlight": "Ahorra más",
+        "title": "en todo lo que\nte gusta.",
+        "text": "Productos útiles a precios claros: IVA incluido, plazo de entrega en cada ficha y devoluciones explicadas.",
+        "button_1_label": "Ver ofertas",
+        "button_1_link": "shopify://collections/ofertas",
+        "button_2_label": "Explorar la tienda",
+        "button_2_link": "shopify://collections/all"
+      }
+    },
+    "offers": {
+      "type": "offer-carousel",
+      "settings": {
+        "autoplay": 6
+      },
+      "blocks": {
+        "b1": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Decoración",
+            "title": "Hasta −24 % en jarrones y cerámica",
+            "text": "Piezas para dar carácter a tu salón.",
+            "cta": "Ver decoración",
+            "link": "shopify://collections/decoracion",
+            "default_image": "vase-aro.jpg",
+            "bg": "#FF5A1F",
+            "ink": "#0E1015"
+          }
+        },
+        "b2": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Tecnología",
+            "title": "Sonido inalámbrico desde 29,90 €",
+            "text": "Auriculares y altavoces para cada día.",
+            "cta": "Ver audio",
+            "link": "shopify://collections/audio",
+            "default_image": "speaker-onda.jpg",
+            "bg": "#FFD84D",
+            "ink": "#0E1015"
+          }
+        },
+        "b3": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Novedades",
+            "title": "Mochilas, gafas y zapatillas",
+            "text": "Lo nuevo de la temporada en moda.",
+            "cta": "Ver moda",
+            "link": "shopify://collections/moda",
+            "default_image": "backpack-ruta.jpg",
+            "bg": "#0E1015",
+            "ink": "#FFFFFF"
+          }
+        },
+        "b4": {
+          "type": "tile",
+          "settings": {
+            "eyebrow": "Hoy",
+            "title": "Ofertas del día",
+            "link": "shopify://collections/ofertas-del-dia",
+            "default_image": "headphones-eco.jpg",
+            "bg": "#FFE3EC"
+          }
+        },
+        "b5": {
+          "type": "tile",
+          "settings": {
+            "eyebrow": "Mascotas",
+            "title": "Camas y juguetes",
+            "link": "shopify://collections/mascotas",
+            "default_image": "cama-perro.jpg",
+            "bg": "#E3F4EC"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ]
+    },
+    "trust": {
+      "type": "trust-strip",
+      "settings": {},
+      "blocks": {
+        "b1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Plazo visible",
+            "text": "Entrega estimada en cada ficha",
+            "link": "shopify://policies/shipping-policy"
+          }
+        },
+        "b2": {
+          "type": "item",
+          "settings": {
+            "icon": "card",
+            "title": "Precio final",
+            "text": "IVA incluido, envío antes de pagar",
+            "link": "shopify://policies/terms-of-service"
+          }
+        },
+        "b3": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "Devoluciones claras",
+            "text": "Condiciones en una sola página",
+            "link": "shopify://policies/refund-policy"
+          }
+        },
+        "b4": {
+          "type": "item",
+          "settings": {
+            "icon": "package",
+            "title": "Seguimiento",
+            "text": "Te avisamos cuando salga tu pedido",
+            "link": "shopify://pages/preguntas-frecuentes"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "categories": {
+      "type": "collection-list",
+      "settings": {
+        "title": "Explora por categoría",
+        "style": "tiles",
+        "show_count": true,
+        "show_all": true
+      },
+      "blocks": {
+        "b1": {
+          "type": "collection",
+          "settings": {
+            "handle": "hogar-y-cocina",
+            "default_image": "vase-aro.jpg"
+          }
+        },
+        "b2": {
+          "type": "collection",
+          "settings": {
+            "handle": "electronica",
+            "default_image": "headphones-eco.jpg"
+          }
+        },
+        "b3": {
+          "type": "collection",
+          "settings": {
+            "handle": "informatica-y-oficina",
+            "default_image": ""
+          }
+        },
+        "b4": {
+          "type": "collection",
+          "settings": {
+            "handle": "moda",
+            "default_image": "sneaker-brisa.jpg"
+          }
+        },
+        "b5": {
+          "type": "collection",
+          "settings": {
+            "handle": "belleza-y-bienestar",
+            "default_image": "serum-ambar.jpg"
+          }
+        },
+        "b6": {
+          "type": "collection",
+          "settings": {
+            "handle": "deportes-y-aire-libre",
+            "default_image": ""
+          }
+        },
+        "b7": {
+          "type": "collection",
+          "settings": {
+            "handle": "mascotas",
+            "default_image": "dog-hueso.jpg"
+          }
+        },
+        "b8": {
+          "type": "collection",
+          "settings": {
+            "handle": "bebe-e-infantil",
+            "default_image": ""
+          }
+        },
+        "b9": {
+          "type": "collection",
+          "settings": {
+            "handle": "jardin-y-bricolaje",
+            "default_image": ""
+          }
+        },
+        "b10": {
+          "type": "collection",
+          "settings": {
+            "handle": "coche-y-moto",
+            "default_image": ""
+          }
+        },
+        "b11": {
+          "type": "collection",
+          "settings": {
+            "handle": "viaje-y-equipaje",
+            "default_image": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8",
+        "b9",
+        "b10",
+        "b11"
+      ]
+    },
+    "deals": {
+      "type": "daily-deals",
+      "settings": {
+        "handle": "ofertas-del-dia",
+        "eyebrow": "Ofertas del día",
+        "title": "Precios rebajados por tiempo limitado",
+        "hide_when_over": true,
+        "cta": "Ver todas las ofertas"
+      }
+    },
+    "departments": {
+      "type": "collection-list",
+      "settings": {
+        "title": "Compra por departamento",
+        "style": "cards",
+        "show_count": true,
+        "show_all": true
+      },
+      "blocks": {
+        "b1": {
+          "type": "collection",
+          "settings": {
+            "handle": "hogar-y-cocina",
+            "text": "Decoración, iluminación, textil y cocina.",
+            "default_image": "vase-aro.jpg"
+          }
+        },
+        "b2": {
+          "type": "collection",
+          "settings": {
+            "handle": "electronica",
+            "text": "Audio, relojes inteligentes y accesorios.",
+            "default_image": "headphones-eco.jpg"
+          }
+        },
+        "b3": {
+          "type": "collection",
+          "settings": {
+            "handle": "informatica-y-oficina",
+            "text": "Accesorios de ordenador y escritorio.",
+            "default_image": ""
+          }
+        },
+        "b4": {
+          "type": "collection",
+          "settings": {
+            "handle": "moda",
+            "text": "Calzado, bolsos, gafas y accesorios.",
+            "default_image": "sneaker-brisa.jpg"
+          }
+        },
+        "b5": {
+          "type": "collection",
+          "settings": {
+            "handle": "belleza-y-bienestar",
+            "text": "Cuidado personal y bienestar.",
+            "default_image": "serum-ambar.jpg"
+          }
+        },
+        "b6": {
+          "type": "collection",
+          "settings": {
+            "handle": "deportes-y-aire-libre",
+            "text": "Fitness, camping y ciclismo.",
+            "default_image": ""
+          }
+        },
+        "b7": {
+          "type": "collection",
+          "settings": {
+            "handle": "mascotas",
+            "text": "Juguetes, camas y accesorios.",
+            "default_image": "dog-hueso.jpg"
+          }
+        },
+        "b8": {
+          "type": "collection",
+          "settings": {
+            "handle": "bebe-e-infantil",
+            "text": "Juguetes y puericultura.",
+            "default_image": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8"
+      ]
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "destacados",
+        "eyebrow": "Selección",
+        "title": "Productos destacados",
+        "limit": 8,
+        "layout": "rail"
+      }
+    },
+    "tabs": {
+      "type": "product-tabs",
+      "settings": {
+        "limit": 8
+      },
+      "blocks": {
+        "b1": {
+          "type": "tab",
+          "settings": {
+            "label": "Más vendidos",
+            "handle": "mas-vendidos"
+          }
+        },
+        "b2": {
+          "type": "tab",
+          "settings": {
+            "label": "Ofertas",
+            "handle": "ofertas"
+          }
+        },
+        "b3": {
+          "type": "tab",
+          "settings": {
+            "label": "Novedades",
+            "handle": "novedades"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "marquee": {
+      "type": "marquee",
+      "settings": {
+        "label": "Lema",
+        "bg": "#FF5A1F",
+        "fg": "#0E1015"
+      },
+      "blocks": {
+        "b1": {
+          "type": "word",
+          "settings": {
+            "text": "Ahorra en hogar"
+          }
+        },
+        "b2": {
+          "type": "word",
+          "settings": {
+            "text": "Tecnología"
+          }
+        },
+        "b3": {
+          "type": "word",
+          "settings": {
+            "text": "Moda"
+          }
+        },
+        "b4": {
+          "type": "word",
+          "settings": {
+            "text": "Bienestar"
+          }
+        },
+        "b5": {
+          "type": "word",
+          "settings": {
+            "text": "Mascotas"
+          }
+        },
+        "b6": {
+          "type": "word",
+          "settings": {
+            "text": "Precio final con IVA"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+      ]
+    },
+    "rail-hogar-y-cocina": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "hogar-y-cocina",
+        "eyebrow": "Categoría",
+        "title": "",
+        "limit": 8,
+        "layout": "rail"
+      }
+    },
+    "rail-electronica": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "electronica",
+        "eyebrow": "Categoría",
+        "title": "",
+        "limit": 8,
+        "layout": "rail"
+      }
+    },
+    "rail-informatica-y-oficina": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "informatica-y-oficina",
+        "eyebrow": "Categoría",
+        "title": "",
+        "limit": 8,
+        "layout": "rail"
+      }
+    },
+    "rail-moda": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "moda",
+        "eyebrow": "Categoría",
+        "title": "",
+        "limit": 8,
+        "layout": "rail"
+      }
+    },
+    "rail-belleza-y-bienestar": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "belleza-y-bienestar",
+        "eyebrow": "Categoría",
+        "title": "",
+        "limit": 8,
+        "layout": "rail"
+      }
+    },
+    "rail-deportes-y-aire-libre": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "deportes-y-aire-libre",
+        "eyebrow": "Categoría",
+        "title": "",
+        "limit": 8,
+        "layout": "rail"
+      }
+    },
+    "rail-mascotas": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "mascotas",
+        "eyebrow": "Categoría",
+        "title": "",
+        "limit": 8,
+        "layout": "rail"
+      }
+    },
+    "rail-bebe-e-infantil": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "bebe-e-infantil",
+        "eyebrow": "Categoría",
+        "title": "",
+        "limit": 8,
+        "layout": "rail"
+      }
+    },
+    "rail-jardin-y-bricolaje": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "jardin-y-bricolaje",
+        "eyebrow": "Categoría",
+        "title": "",
+        "limit": 8,
+        "layout": "rail"
+      }
+    },
+    "rail-coche-y-moto": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "coche-y-moto",
+        "eyebrow": "Categoría",
+        "title": "",
+        "limit": 8,
+        "layout": "rail"
+      }
+    },
+    "rail-viaje-y-equipaje": {
+      "type": "featured-collection",
+      "settings": {
+        "handle": "viaje-y-equipaje",
+        "eyebrow": "Categoría",
+        "title": "",
+        "limit": 8,
+        "layout": "rail"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "offers",
+    "trust",
+    "categories",
+    "deals",
+    "departments",
+    "featured",
+    "tabs",
+    "marquee",
+    "rail-hogar-y-cocina",
+    "rail-electronica",
+    "rail-informatica-y-oficina",
+    "rail-moda",
+    "rail-belleza-y-bienestar",
+    "rail-deportes-y-aire-libre",
+    "rail-mascotas",
+    "rail-bebe-e-infantil",
+    "rail-jardin-y-bricolaje",
+    "rail-coche-y-moto",
+    "rail-viaje-y-equipaje"
+  ]
+}

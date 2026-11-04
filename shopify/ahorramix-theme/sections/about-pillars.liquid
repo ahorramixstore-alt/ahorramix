@@ -1,0 +1,38 @@
+<section class="container block-space about" {{ section.shopify_attributes }}>
+  <div class="about__media">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image.alt | default: section.settings.title }}
+    {%- else -%}
+      <img src="{{ 'vase-duo.jpg' | asset_url }}" alt="{{ section.settings.title | escape }}" loading="lazy" width="900" height="1125">
+    {%- endif -%}
+  </div>
+  <div class="about__list">
+    {%- for block in section.blocks -%}
+      <div class="about__item" {{ block.shopify_attributes }}>
+        <span class="about__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+        <div><h2>{{ block.settings.title }}</h2><p>{{ block.settings.text }}</p></div>
+      </div>
+    {%- endfor -%}
+    {%- if section.settings.button_label != blank -%}<a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="btn btn--dark btn--lg">{{ section.settings.button_label }}</a>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Imagen con pilares",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen" },
+    { "type": "text", "id": "title", "label": "Texto alternativo por defecto", "default": "Sobre Ahorramix" },
+    { "type": "text", "id": "button_label", "label": "Botón · texto", "default": "Ver productos" },
+    { "type": "url", "id": "button_link", "label": "Botón · enlace" }
+  ],
+  "blocks": [
+    { "type": "pillar", "name": "Pilar", "settings": [
+      { "type": "text", "id": "title", "label": "Título", "default": "Selección" },
+      { "type": "textarea", "id": "text", "label": "Texto", "default": "Revisamos coste, envío, plazos y fiabilidad del proveedor antes de añadir un producto." }
+    ] }
+  ],
+  "presets": [{ "name": "Imagen con pilares", "blocks": [{ "type": "pillar" }] }]
+}
+{% endschema %}

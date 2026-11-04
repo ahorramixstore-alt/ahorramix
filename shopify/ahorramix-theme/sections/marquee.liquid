@@ -1,0 +1,24 @@
+<section class="marquee" style="--bg: {{ section.settings.bg }}; --fg: {{ section.settings.fg }};" aria-label="{{ section.settings.label | escape }}" {{ section.shopify_attributes }}>
+  <div class="marquee__track">
+    {%- for i in (1..2) -%}
+      <div class="marquee__row"{% if i == 2 %} aria-hidden="true"{% endif %}>
+        {%- for block in section.blocks -%}<span class="marquee__word" {{ block.shopify_attributes }}>{{ block.settings.text }}<i aria-hidden="true">✦</i></span>{%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Franja de lemas",
+  "class": "section-marquee",
+  "max_blocks": 10,
+  "settings": [
+    { "type": "text", "id": "label", "label": "Descripción accesible", "default": "Lema" },
+    { "type": "color", "id": "bg", "label": "Fondo", "default": "#FF5A1F" },
+    { "type": "color", "id": "fg", "label": "Texto", "default": "#0E1015" }
+  ],
+  "blocks": [{ "type": "word", "name": "Lema", "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "Ahorra en hogar" }] }],
+  "presets": [{ "name": "Franja de lemas", "blocks": [{ "type": "word" }] }]
+}
+{% endschema %}

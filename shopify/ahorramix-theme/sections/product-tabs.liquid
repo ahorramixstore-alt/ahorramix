@@ -1,0 +1,54 @@
+<section class="container block-space" data-tabs {{ section.shopify_attributes }}>
+  {%- if section.settings.title != blank or section.settings.eyebrow != blank -%}
+  <div class="sec-head">
+    <div>
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="sec-title">{{ section.settings.title }}</h2>
+    </div>
+  </div>
+  {%- endif -%}
+  <div class="tabs" role="tablist">
+    {%- for block in section.blocks -%}
+      <button type="button" role="tab" class="tabs__btn" id="Tab-{{ block.id }}" aria-controls="Panel-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" data-tab {{ block.shopify_attributes }}>{{ block.settings.label | default: block.settings.collection.title }}</button>
+    {%- endfor -%}
+  </div>
+  {%- for block in section.blocks -%}
+    {%- assign c = block.settings.collection -%}
+    {%- if c == blank and block.settings.handle != blank -%}{%- assign c = collections[block.settings.handle] -%}{%- endif -%}
+    {%- if c == blank or c.id == blank -%}{%- assign c = collections['all'] -%}{%- endif -%}
+    <div class="tabs__panel" role="tabpanel" id="Panel-{{ block.id }}" aria-labelledby="Tab-{{ block.id }}"{% unless forloop.first %} hidden{% endunless %}>
+      {%- if c.products.size > 0 -%}
+        <div class="rail rail--grid">
+          {%- for product in c.products limit: section.settings.limit -%}{% render 'product-card', product: product %}{%- endfor -%}
+        </div>
+      {%- else -%}
+        <p class="muted">{{ 'products.empty' | t }}</p>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+</section>
+
+{% schema %}
+{
+  "name": "Pestañas de productos",
+  "class": "section-tabs",
+  "max_blocks": 5,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo (opcional)" },
+    { "type": "text", "id": "title", "label": "Título (opcional)" },
+    { "type": "range", "id": "limit", "label": "Productos por pestaña", "min": 4, "max": 16, "step": 4, "default": 8 }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Pestaña",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Nombre de la pestaña", "default": "Más vendidos" },
+        { "type": "collection", "id": "collection", "label": "Colección", "info": "Consejo: crea colecciones automáticas por etiqueta (mas-vendido, novedad) o por precio rebajado." },
+        { "type": "text", "id": "handle", "label": "O identificador (handle) de la colección" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Pestañas de productos", "blocks": [{ "type": "tab" }, { "type": "tab", "settings": { "label": "Ofertas" } }, { "type": "tab", "settings": { "label": "Novedades" } }] }]
+}
+{% endschema %}

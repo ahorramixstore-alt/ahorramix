@@ -1,0 +1,127 @@
+{%- liquid
+  assign current = product.selected_or_first_available_variant
+  assign delivery = product.metafields.custom.delivery_time.value | default: settings.delivery_text
+-%}
+<section class="container product" data-product data-unavailable="{{ 'products.unavailable' | t | escape }}" {{ section.shopify_attributes }}>
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a> /
+    {%- if collection -%}<a href="{{ collection.url }}">{{ collection.title }}</a> /{%- endif -%}
+    <span>{{ product.title }}</span>
+  </nav>
+
+  <div class="product__grid">
+    <div class="gallery" data-gallery>
+      <div class="gallery__main">
+        {%- if product.media.size > 0 -%}
+          {%- for media in product.media -%}
+{%- liquid
+                assign active = false
+                if current.featured_media and media.id == current.featured_media.id
+                  assign active = true
+                elsif current.featured_media == blank and forloop.first
+                  assign active = true
+                endif
+              -%}
+            <div class="gallery__slide{% if active %} is-active{% endif %}" data-media-id="{{ media.id }}">
+              {%- case media.media_type -%}
+                {%- when 'image' -%}
+                  {%- if forloop.first -%}{%- assign load = 'eager' -%}{%- else -%}{%- assign load = 'lazy' -%}{%- endif -%}
+                  {{ media | image_url: width: 1200 | image_tag: widths: '500, 800, 1200', sizes: '(min-width: 1024px) 50vw, 100vw', loading: load, alt: media.alt | default: product.title }}
+                {%- when 'video' -%}{{ media | video_tag: controls: true, image_size: '1200x' }}
+                {%- when 'external_video' -%}{{ media | external_video_tag }}
+                {%- else -%}{{ media | media_tag }}
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="gallery__slide is-active"><img src="{{ 'sin-imagen.jpg' | asset_url }}" alt="{{ product.title | escape }}" width="800" height="1000"></div>
+        {%- endif -%}
+      </div>
+      {%- if product.media.size > 1 -%}
+        <div class="gallery__thumbs">
+          {%- for media in product.media -%}
+            <button type="button" class="gallery__thumb" data-thumb="{{ media.id }}" aria-label="{{ media.alt | default: product.title | escape }} {{ forloop.index }}">
+              {{ media.preview_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="product__info">
+      {%- if product.vendor != blank and section.settings.show_vendor -%}<p class="eyebrow">{{ product.vendor }}</p>{%- endif -%}
+      <h1 class="product__title">{{ product.title }}</h1>
+      <div data-price>{% render 'price', product: product, variant: current, size: 'lg', show_save: true %}</div>
+      <p class="product__tax">{{ 'products.tax_included' | t }}</p>
+
+      {%- form 'product', product, class: 'product__form', data-product-form: '' -%}
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <fieldset class="opt">
+              <legend class="opt__label">{{ option.name }}</legend>
+              <div class="opt__values">
+                {%- for value in option.values -%}
+                  <label class="opt__pill">
+                    <input type="radio" name="option-{{ forloop.parentloop.index0 }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %} data-option="{{ forloop.parentloop.index0 }}">
+                    <span>{{ value }}</span>
+                  </label>
+                {%- endfor -%}
+              </div>
+            </fieldset>
+          {%- endfor -%}
+        {%- endunless -%}
+        <select name="id" class="visually-hidden" data-variant-select aria-label="Variante">
+          {%- for v in product.variants -%}
+            <option value="{{ v.id }}" data-options="{{ v.options | join: '|' | escape }}" data-price="{{ v.price | money | escape }}" data-compare="{% if v.compare_at_price > v.price %}{{ v.compare_at_price | money | escape }}{% endif %}" data-available="{{ v.available }}" data-media="{{ v.featured_media.id }}"{% if v.id == current.id %} selected{% endif %}>{{ v.title }}</option>
+          {%- endfor -%}
+        </select>
+
+        <div class="buy">
+          <label class="visually-hidden" for="Qty">{{ 'products.quantity' | t }}</label>
+          <div class="qty"><button type="button" data-qty="-1" aria-label="-">{% render 'icon', name: 'minus', size: 16 %}</button><input id="Qty" type="number" name="quantity" value="1" min="1"><button type="button" data-qty="1" aria-label="+">{% render 'icon', name: 'plus', size: 16 %}</button></div>
+          <button type="submit" name="add" class="btn btn--dark btn--lg buy__add" data-add-button data-label-add="{{ 'products.add_to_cart' | t | escape }}" data-label-sold="{{ 'products.sold_out' | t | escape }}"{% unless current.available %} disabled{% endunless %}>
+            <span data-add-label>{% if current.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}</span>
+          </button>
+        </div>
+        {%- if section.settings.show_dynamic_checkout -%}<div class="buy__dynamic">{{ form | payment_button }}</div>{%- endif -%}
+      {%- endform -%}
+
+      <ul class="product__facts">
+        {%- if delivery != blank -%}<li>{% render 'icon', name: 'truck', size: 18 %} {{ delivery }}</li>{%- endif -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'fact' -%}<li {{ block.shopify_attributes }}>{% render 'icon', name: block.settings.icon, size: 18 %} {{ block.settings.text }}</li>{%- endif -%}
+        {%- endfor -%}
+      </ul>
+
+      {%- if product.description != blank -%}
+        <div class="product__desc rte">
+          <h2>{{ 'products.description' | t }}</h2>
+          {{ product.description }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ficha de producto",
+  "class": "section-main-product",
+  "settings": [
+    { "type": "checkbox", "id": "show_vendor", "label": "Mostrar proveedor", "default": false },
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Mostrar botón de compra rápida (Shop Pay, PayPal…)", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Dato de confianza",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icono", "default": "card", "options": [
+          { "value": "card", "label": "Tarjeta" }, { "value": "return", "label": "Devolución" }, { "value": "shield", "label": "Escudo" }, { "value": "package", "label": "Paquete" }, { "value": "truck", "label": "Camión" }
+        ] },
+        { "type": "text", "id": "text", "label": "Texto", "default": "Pago seguro" }
+      ]
+    }
+  ]
+}
+{% endschema %}

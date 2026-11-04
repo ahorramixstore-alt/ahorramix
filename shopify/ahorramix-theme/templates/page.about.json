@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "eyebrow": "Sobre la tienda"
+      }
+    },
+    "pillars": {
+      "type": "about-pillars",
+      "settings": {
+        "title": "Sobre Ahorramix",
+        "button_label": "Ver productos",
+        "button_link": "shopify://collections/all"
+      },
+      "blocks": {
+        "b1": {
+          "type": "pillar",
+          "settings": {
+            "title": "Selección",
+            "text": "Revisamos coste, envío, plazos y fiabilidad del proveedor antes de añadir un producto."
+          }
+        },
+        "b2": {
+          "type": "pillar",
+          "settings": {
+            "title": "Transparencia",
+            "text": "Precio final con IVA, plazo estimado y condiciones de devolución visibles antes de pagar."
+          }
+        },
+        "b3": {
+          "type": "pillar",
+          "settings": {
+            "title": "Envío directo",
+            "text": "Los productos salen del almacén de cada proveedor hacia tu dirección."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "pillars"
+  ]
+}

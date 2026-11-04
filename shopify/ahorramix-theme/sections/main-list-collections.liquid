@@ -1,0 +1,25 @@
+<section class="container listing" {{ section.shopify_attributes }}>
+  <header class="page-head">
+    <h1 class="page-title">{{ section.settings.title }}</h1>
+  </header>
+  <div class="cols cols--cards">
+    {%- for c in collections -%}
+      {%- unless c.handle == 'frontpage' -%}
+        <a href="{{ c.url }}" class="col-card">
+          <span class="col-card__media">
+            {%- if c.featured_image -%}{{ c.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', alt: c.title }}{%- elsif c.products.first.featured_image -%}{{ c.products.first.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', alt: c.title }}{%- else -%}<span class="col-card__initial">{{ c.title | slice: 0 }}</span>{%- endif -%}
+          </span>
+          <span class="col-card__name">{{ c.title }}</span>
+          <span class="col-card__count">{{ 'collections.count' | t: count: c.products_count }}</span>
+        </a>
+      {%- endunless -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Todas las categorías",
+  "settings": [{ "type": "text", "id": "title", "label": "Título", "default": "Todas las categorías" }]
+}
+{% endschema %}

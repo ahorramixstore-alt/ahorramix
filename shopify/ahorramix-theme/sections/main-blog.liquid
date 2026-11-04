@@ -1,0 +1,31 @@
+{%- if template.name == 'article' -%}
+<article class="container narrow listing" {{ section.shopify_attributes }}>
+  <header class="page-head">
+    <a href="{{ blog.url }}" class="sec-link">{{ 'blogs.back' | t }}</a>
+    <h1 class="page-title">{{ article.title }}</h1>
+    <p class="muted">{{ article.published_at | date: format: 'date' }}</p>
+  </header>
+  {%- if article.image -%}{{ article.image | image_url: width: 1400 | image_tag: class: 'article__img', alt: article.image.alt | default: article.title }}{%- endif -%}
+  <div class="rte">{{ article.content }}</div>
+</article>
+{%- else -%}
+{%- paginate blog.articles by 12 -%}
+<section class="container listing" {{ section.shopify_attributes }}>
+  <header class="page-head"><h1 class="page-title">{{ blog.title }}</h1></header>
+  <div class="cols cols--cards">
+    {%- for a in blog.articles -%}
+      <a href="{{ a.url }}" class="col-card">
+        <span class="col-card__media">{%- if a.image -%}{{ a.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: a.title }}{%- else -%}<span class="col-card__initial">{{ a.title | slice: 0 }}</span>{%- endif -%}</span>
+        <span class="col-card__name">{{ a.title }}</span>
+        <span class="col-card__text">{{ a.excerpt_or_content | strip_html | truncate: 120 }}</span>
+      </a>
+    {%- endfor -%}
+  </div>
+  {%- if paginate.pages > 1 -%}<nav class="pager">{{ paginate | default_pagination }}</nav>{%- endif -%}
+</section>
+{%- endpaginate -%}
+{%- endif -%}
+
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

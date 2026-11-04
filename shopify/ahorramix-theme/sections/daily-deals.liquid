@@ -1,0 +1,56 @@
+{%- assign c = section.settings.collection -%}
+{%- if c == blank and section.settings.handle != blank -%}{%- assign c = collections[section.settings.handle] -%}{%- endif -%}
+{%- if c != blank and c.id != blank and c.products.size > 0 -%}
+<section id="ofertas-del-dia" class="container block-space" {{ section.shopify_attributes }}>
+  <div class="deals" data-countdown="{{ section.settings.ends_at | escape }}" data-countdown-hide="{{ section.settings.hide_when_over }}">
+    <div class="deals__glow" aria-hidden="true"></div>
+    <div class="deals__intro">
+      <p class="eyebrow eyebrow--yellow">{% render 'icon', name: 'flame', size: 16 %} {{ section.settings.eyebrow }}</p>
+      <h2 class="deals__title">{{ section.settings.title }}</h2>
+      {%- if section.settings.ends_at != blank -%}
+        <div class="deals__clock" data-countdown-clock hidden>
+          <div><b data-h>00</b><small>horas</small></div>
+          <div><b data-m>00</b><small>min</small></div>
+          <div><b data-s>00</b><small>seg</small></div>
+        </div>
+      {%- endif -%}
+      <a href="{{ c.url }}" class="btn btn--white">{{ section.settings.cta }}</a>
+    </div>
+    <div class="deals__list">
+      {%- for product in c.products limit: 4 -%}
+        {%- liquid
+          assign pct = 0
+          if product.compare_at_price > product.price
+            assign pct = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round
+          endif
+        -%}
+        <a href="{{ product.url }}" class="deal">
+          <span class="deal__media">
+            {%- if product.featured_media -%}{{ product.featured_media | image_url: width: 500 | image_tag: loading: 'lazy', alt: product.featured_media.alt | default: product.title }}{%- else -%}<img src="{{ 'sin-imagen.jpg' | asset_url }}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">{%- endif -%}
+            {%- if pct > 0 -%}<span class="badge badge--sale">−{{ pct }}%</span>{%- endif -%}
+          </span>
+          <span class="deal__name">{{ product.title }}</span>
+          {% render 'price', product: product, show_save: true %}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Ofertas del día",
+  "class": "section-deals",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Colección de ofertas del día", "info": "Productos con «Precio de comparación» para mostrar el descuento. La sección se oculta si está vacía." },
+    { "type": "text", "id": "handle", "label": "O identificador (handle) de la colección", "default": "ofertas-del-dia" },
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Ofertas del día" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Precios rebajados por tiempo limitado" },
+    { "type": "text", "id": "ends_at", "label": "Fin de la oferta", "info": "Formato 2026-12-31T23:59:00+01:00. Vacío = sin cuenta atrás." },
+    { "type": "checkbox", "id": "hide_when_over", "label": "Ocultar la sección cuando termine", "default": true },
+    { "type": "text", "id": "cta", "label": "Botón", "default": "Ver todas las ofertas" }
+  ],
+  "presets": [{ "name": "Ofertas del día" }]
+}
+{% endschema %}

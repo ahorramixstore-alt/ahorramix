@@ -1,0 +1,30 @@
+{%- paginate search.results by 24 -%}
+<section class="container listing" {{ section.shopify_attributes }}>
+  <header class="page-head">
+    <h1 class="page-title">{{ 'search.title' | t }}</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search search--page">
+      <input type="hidden" name="type" value="product">
+      <label class="visually-hidden" for="SearchPage">{{ 'general.search' | t }}</label>
+      <input id="SearchPage" class="search__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search_placeholder' | t }}">
+      <button class="search__btn" type="submit" aria-label="{{ 'general.search' | t }}">{% render 'icon', name: 'search', size: 18 %}</button>
+    </form>
+    {%- if search.performed -%}
+      <p class="muted">{% if search.results_count > 0 %}{{ 'search.results' | t: count: search.results_count, terms: search.terms }}{% else %}{{ 'search.none' | t: terms: search.terms }}{% endif %}</p>
+    {%- endif -%}
+  </header>
+  {%- if search.performed and search.results_count > 0 -%}
+    <div class="rail rail--grid">
+      {%- for item in search.results -%}
+        {%- if item.object_type == 'product' -%}{% render 'product-card', product: item %}{%- else -%}
+          <a class="col-card" href="{{ item.url }}"><span class="col-card__name">{{ item.title }}</span></a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}<nav class="pager" aria-label="Paginación">{{ paginate | default_pagination: previous: '←', next: '→' }}</nav>{%- endif -%}
+  {%- endif -%}
+</section>
+{%- endpaginate -%}
+
+{% schema %}
+{ "name": "Resultados de búsqueda", "settings": [] }
+{% endschema %}

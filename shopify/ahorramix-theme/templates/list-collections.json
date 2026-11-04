@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+        "title": "Todas las categorías"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

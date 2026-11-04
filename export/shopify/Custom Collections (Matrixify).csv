@@ -1,0 +1,46 @@
+﻿Handle,Command,Title,Body HTML,Sort Order,Published,Metafield: description_tag [string]
+hogar-y-cocina,MERGE,Hogar y cocina,"<p>Decoración, iluminación, textil y cocina.</p>",best-selling,TRUE,"Decoración, iluminación, textil y cocina."
+decoracion,MERGE,Decoración,,best-selling,TRUE,Decoración en Ahorramix: precios con IVA incluido.
+iluminacion,MERGE,Iluminación,,best-selling,TRUE,Iluminación en Ahorramix: precios con IVA incluido.
+cocina,MERGE,Cocina,,best-selling,TRUE,Cocina en Ahorramix: precios con IVA incluido.
+textil-del-hogar,MERGE,Textil del hogar,,best-selling,TRUE,Textil del hogar en Ahorramix: precios con IVA incluido.
+orden-y-almacenaje,MERGE,Orden y almacenaje,,best-selling,TRUE,Orden y almacenaje en Ahorramix: precios con IVA incluido.
+electronica,MERGE,Electrónica,"<p>Audio, relojes inteligentes y accesorios.</p>",best-selling,TRUE,"Audio, relojes inteligentes y accesorios."
+audio,MERGE,Audio,,best-selling,TRUE,Audio en Ahorramix: precios con IVA incluido.
+relojes-inteligentes,MERGE,Relojes inteligentes,,best-selling,TRUE,Relojes inteligentes en Ahorramix: precios con IVA incluido.
+carga-y-cables,MERGE,Carga y cables,,best-selling,TRUE,Carga y cables en Ahorramix: precios con IVA incluido.
+accesorios-para-movil,MERGE,Accesorios para móvil,,best-selling,TRUE,Accesorios para móvil en Ahorramix: precios con IVA incluido.
+fotografia,MERGE,Fotografía,,best-selling,TRUE,Fotografía en Ahorramix: precios con IVA incluido.
+informatica-y-oficina,MERGE,Informática y oficina,<p>Accesorios de ordenador y escritorio.</p>,best-selling,TRUE,Accesorios de ordenador y escritorio.
+accesorios-de-pc,MERGE,Accesorios de PC,,best-selling,TRUE,Accesorios de PC en Ahorramix: precios con IVA incluido.
+organizacion-de-escritorio,MERGE,Organización de escritorio,,best-selling,TRUE,Organización de escritorio en Ahorramix: precios con IVA incluido.
+papeleria,MERGE,Papelería,,best-selling,TRUE,Papelería en Ahorramix: precios con IVA incluido.
+moda,MERGE,Moda,"<p>Calzado, bolsos, gafas y accesorios.</p>",best-selling,TRUE,"Calzado, bolsos, gafas y accesorios."
+bolsos-y-mochilas,MERGE,Bolsos y mochilas,,best-selling,TRUE,Bolsos y mochilas en Ahorramix: precios con IVA incluido.
+calzado,MERGE,Calzado,,best-selling,TRUE,Calzado en Ahorramix: precios con IVA incluido.
+gafas-y-accesorios,MERGE,Gafas y accesorios,,best-selling,TRUE,Gafas y accesorios en Ahorramix: precios con IVA incluido.
+joyeria-y-relojes,MERGE,Joyería y relojes,,best-selling,TRUE,Joyería y relojes en Ahorramix: precios con IVA incluido.
+belleza-y-bienestar,MERGE,Belleza y bienestar,<p>Cuidado personal y bienestar.</p>,best-selling,TRUE,Cuidado personal y bienestar.
+cuidado-personal,MERGE,Cuidado personal,,best-selling,TRUE,Cuidado personal en Ahorramix: precios con IVA incluido.
+yoga-y-relajacion,MERGE,Yoga y relajación,,best-selling,TRUE,Yoga y relajación en Ahorramix: precios con IVA incluido.
+salud-y-masaje,MERGE,Salud y masaje,,best-selling,TRUE,Salud y masaje en Ahorramix: precios con IVA incluido.
+deportes-y-aire-libre,MERGE,Deportes y aire libre,"<p>Fitness, camping y ciclismo.</p>",best-selling,TRUE,"Fitness, camping y ciclismo."
+fitness,MERGE,Fitness,,best-selling,TRUE,Fitness en Ahorramix: precios con IVA incluido.
+camping-y-senderismo,MERGE,Camping y senderismo,,best-selling,TRUE,Camping y senderismo en Ahorramix: precios con IVA incluido.
+ciclismo,MERGE,Ciclismo,,best-selling,TRUE,Ciclismo en Ahorramix: precios con IVA incluido.
+mascotas,MERGE,Mascotas,"<p>Juguetes, camas y accesorios.</p>",best-selling,TRUE,"Juguetes, camas y accesorios."
+juguetes-para-mascotas,MERGE,Juguetes para mascotas,,best-selling,TRUE,Juguetes para mascotas en Ahorramix: precios con IVA incluido.
+camas-para-mascotas,MERGE,Camas para mascotas,,best-selling,TRUE,Camas para mascotas en Ahorramix: precios con IVA incluido.
+comederos-y-bebederos,MERGE,Comederos y bebederos,,best-selling,TRUE,Comederos y bebederos en Ahorramix: precios con IVA incluido.
+bebe-e-infantil,MERGE,Bebé e infantil,<p>Juguetes y puericultura.</p>,best-selling,TRUE,Juguetes y puericultura.
+juguetes,MERGE,Juguetes,,best-selling,TRUE,Juguetes en Ahorramix: precios con IVA incluido.
+puericultura,MERGE,Puericultura,,best-selling,TRUE,Puericultura en Ahorramix: precios con IVA incluido.
+jardin-y-bricolaje,MERGE,Jardín y bricolaje,"<p>Jardín, terraza y herramientas.</p>",best-selling,TRUE,"Jardín, terraza y herramientas."
+jardin-y-terraza,MERGE,Jardín y terraza,,best-selling,TRUE,Jardín y terraza en Ahorramix: precios con IVA incluido.
+herramientas,MERGE,Herramientas,,best-selling,TRUE,Herramientas en Ahorramix: precios con IVA incluido.
+coche-y-moto,MERGE,Coche y moto,<p>Accesorios para el vehículo.</p>,best-selling,TRUE,Accesorios para el vehículo.
+accesorios-de-coche,MERGE,Accesorios de coche,,best-selling,TRUE,Accesorios de coche en Ahorramix: precios con IVA incluido.
+limpieza-del-coche,MERGE,Limpieza del coche,,best-selling,TRUE,Limpieza del coche en Ahorramix: precios con IVA incluido.
+viaje-y-equipaje,MERGE,Viaje y equipaje,<p>Maletas y accesorios de viaje.</p>,best-selling,TRUE,Maletas y accesorios de viaje.
+maletas,MERGE,Maletas,,best-selling,TRUE,Maletas en Ahorramix: precios con IVA incluido.
+accesorios-de-viaje,MERGE,Accesorios de viaje,,best-selling,TRUE,Accesorios de viaje en Ahorramix: precios con IVA incluido.

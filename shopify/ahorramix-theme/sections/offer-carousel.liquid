@@ -1,0 +1,94 @@
+<section class="container offers" {{ section.shopify_attributes }}>
+  <div class="offers__grid">
+    <div class="offers__main" data-carousel data-autoplay="{{ section.settings.autoplay | times: 1000 }}">
+      <div class="offers__track" data-carousel-track>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'slide' -%}
+            {%- assign b = block.settings -%}
+            <div class="offer" style="--bg: {{ b.bg }}; --ink: {{ b.ink }};" data-carousel-slide {{ block.shopify_attributes }}>
+              <div class="offer__copy">
+                {%- if b.eyebrow != blank -%}<p class="eyebrow">{{ b.eyebrow }}</p>{%- endif -%}
+                <h2 class="offer__title">{{ b.title }}</h2>
+                {%- if b.text != blank -%}<p class="offer__text">{{ b.text }}</p>{%- endif -%}
+                {%- if b.cta != blank -%}<a href="{{ b.link | default: routes.all_products_collection_url }}" class="offer__cta">{{ b.cta }} {% render 'icon', name: 'arrow-right', size: 16 %}</a>{%- endif -%}
+              </div>
+              <div class="offer__media">
+                {%- if b.image != blank -%}
+                  {{ b.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '450, 700, 900', sizes: '(min-width: 1024px) 33vw, 100vw', alt: b.image.alt | default: b.title }}
+                {%- elsif b.default_image != blank -%}
+                  <img src="{{ b.default_image | asset_url }}" alt="{{ b.title | escape }}" loading="lazy" width="900" height="900">
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div class="offers__nav">
+        <div class="offers__dots" data-carousel-dots></div>
+        <button type="button" class="round-btn" data-carousel-prev aria-label="{{ 'general.previous' | t }}">{% render 'icon', name: 'arrow-left', size: 16 %}</button>
+        <button type="button" class="round-btn" data-carousel-next aria-label="{{ 'general.next' | t }}">{% render 'icon', name: 'arrow-right', size: 16 %}</button>
+      </div>
+    </div>
+    <div class="offers__tiles">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'tile' -%}
+          {%- assign b = block.settings -%}
+          <a href="{{ b.link | default: routes.collections_url }}" class="tile" style="--bg: {{ b.bg }};" {{ block.shopify_attributes }}>
+            {%- if b.image != blank -%}
+              {{ b.image | image_url: width: 500 | image_tag: loading: 'lazy', class: 'tile__img', alt: '' }}
+            {%- elsif b.default_image != blank -%}
+              <img src="{{ b.default_image | asset_url }}" alt="" class="tile__img" loading="lazy" width="500" height="500">
+            {%- endif -%}
+            <span class="tile__copy">
+              {%- if b.eyebrow != blank -%}<span class="eyebrow">{{ b.eyebrow }}</span>{%- endif -%}
+              <span class="tile__title">{{ b.title }}</span>
+            </span>
+            <span class="tile__arrow">{% render 'icon', name: 'arrow-up-right', size: 16 %}</span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Carrusel de ofertas",
+  "class": "section-offers",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "range", "id": "autoplay", "label": "Cambio automático (segundos)", "min": 3, "max": 12, "step": 1, "default": 6 }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Banner del carrusel",
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Decoración" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Hasta −24 % en jarrones y cerámica" },
+        { "type": "text", "id": "text", "label": "Texto", "default": "Piezas para dar carácter a tu salón." },
+        { "type": "text", "id": "cta", "label": "Botón · texto", "default": "Ver decoración" },
+        { "type": "url", "id": "link", "label": "Botón · enlace" },
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "default_image", "label": "Imagen incluida en el tema (nombre del archivo)", "info": "Solo se usa si no eliges una imagen arriba." },
+        { "type": "color", "id": "bg", "label": "Color de fondo", "default": "#FF5A1F" },
+        { "type": "color", "id": "ink", "label": "Color del texto", "default": "#0E1015" }
+      ]
+    },
+    {
+      "type": "tile",
+      "name": "Tarjeta lateral",
+      "limit": 2,
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Hoy" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Ofertas del día" },
+        { "type": "url", "id": "link", "label": "Enlace" },
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "default_image", "label": "Imagen incluida en el tema (nombre del archivo)" },
+        { "type": "color", "id": "bg", "label": "Color de fondo", "default": "#FFE3EC" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Carrusel de ofertas", "blocks": [{ "type": "slide" }, { "type": "tile" }] }]
+}
+{% endschema %}

@@ -1,0 +1,68 @@
+<section class="container block-space" {{ section.shopify_attributes }}>
+  <div class="sec-head">
+    <div>
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="sec-title">{{ section.settings.title }}</h2>
+    </div>
+    {%- if section.settings.show_all -%}<a href="{{ routes.collections_url }}" class="sec-link">{{ 'general.see_all' | t }}</a>{%- endif -%}
+  </div>
+  <div class="cols cols--{{ section.settings.style }}">
+    {%- for block in section.blocks -%}
+      {%- assign c = block.settings.collection -%}
+      {%- if c == blank and block.settings.handle != blank -%}{%- assign c = collections[block.settings.handle] -%}{%- endif -%}
+      {%- if c.id == blank -%}{%- assign c = blank -%}{%- endif -%}
+      {%- assign title = block.settings.title | default: c.title -%}
+      <a href="{% if c != blank %}{{ c.url }}{% else %}{{ routes.collections_url }}{% endif %}" class="col-card" {{ block.shopify_attributes }}>
+        <span class="col-card__media">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 500 | image_tag: loading: 'lazy', alt: title }}
+          {%- elsif c.featured_image -%}
+            {{ c.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', alt: title }}
+          {%- elsif c.products.first.featured_image -%}
+            {{ c.products.first.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', alt: title }}
+          {%- elsif block.settings.default_image != blank -%}
+            <img src="{{ block.settings.default_image | asset_url }}" alt="{{ title | escape }}" loading="lazy" width="500" height="500">
+          {%- else -%}
+            <span class="col-card__initial">{{ title | slice: 0 }}</span>
+          {%- endif -%}
+        </span>
+        <span class="col-card__name">{{ title }}</span>
+        {%- if section.settings.style == 'cards' and block.settings.text != blank -%}<span class="col-card__text">{{ block.settings.text }}</span>{%- endif -%}
+        {%- if c != blank and section.settings.show_count -%}<span class="col-card__count">{{ 'collections.count' | t: count: c.products_count }}</span>{%- endif -%}
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lista de categorías",
+  "class": "section-collections",
+  "max_blocks": 24,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Explora por categoría" },
+    { "type": "select", "id": "style", "label": "Estilo", "default": "tiles", "options": [
+      { "value": "tiles", "label": "Miniaturas cuadradas" },
+      { "value": "cards", "label": "Tarjetas grandes con texto" }
+    ] },
+    { "type": "checkbox", "id": "show_count", "label": "Mostrar número de productos", "default": true },
+    { "type": "checkbox", "id": "show_all", "label": "Mostrar enlace «Ver todo»", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Categoría",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Colección" },
+        { "type": "text", "id": "handle", "label": "O identificador (handle) de la colección", "info": "Se usa si no eliges una colección arriba. Ej.: hogar-y-cocina" },
+        { "type": "text", "id": "title", "label": "Nombre (vacío = el de la colección)" },
+        { "type": "text", "id": "text", "label": "Descripción corta (estilo tarjetas)" },
+        { "type": "image_picker", "id": "image", "label": "Imagen (vacío = la de la colección)" },
+        { "type": "text", "id": "default_image", "label": "Imagen incluida en el tema (nombre del archivo)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Lista de categorías", "blocks": [{ "type": "collection" }, { "type": "collection" }, { "type": "collection" }, { "type": "collection" }] }]
+}
+{% endschema %}

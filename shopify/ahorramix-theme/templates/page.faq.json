@@ -1,0 +1,86 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "eyebrow": "Ayuda"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {},
+      "blocks": {
+        "b1": {
+          "type": "question",
+          "settings": {
+            "question": "¿Cuánto tarda en llegar mi pedido?",
+            "answer": "<p>Cada ficha de producto muestra el plazo estimado facilitado por el proveedor. El plazo empieza a contar cuando se confirma el pago.</p>"
+          }
+        },
+        "b2": {
+          "type": "question",
+          "settings": {
+            "question": "¿Por qué puedo recibir mi pedido en varios paquetes?",
+            "answer": "<p>Trabajamos con varios proveedores que envían directamente desde sus almacenes. Si tu pedido incluye productos de distintos proveedores, pueden llegar por separado.</p>"
+          }
+        },
+        "b3": {
+          "type": "question",
+          "settings": {
+            "question": "¿Cuánto cuesta el envío?",
+            "answer": "<p>Los gastos de envío se calculan en el checkout según tu dirección y los productos, antes de que confirmes el pago.</p>"
+          }
+        },
+        "b4": {
+          "type": "question",
+          "settings": {
+            "question": "¿Puedo devolver un producto?",
+            "answer": "<p>Sí. Como consumidor tienes derecho de desistimiento en los términos legales. Consulta plazos, costes y procedimiento en la política de devoluciones.</p>"
+          }
+        },
+        "b5": {
+          "type": "question",
+          "settings": {
+            "question": "¿Cómo sigo mi pedido?",
+            "answer": "<p>Cuando el proveedor envíe tu pedido recibirás un correo con el número de seguimiento. También podrás consultarlo en tu cuenta.</p>"
+          }
+        },
+        "b6": {
+          "type": "question",
+          "settings": {
+            "question": "¿Qué métodos de pago aceptáis?",
+            "answer": "<p>Los métodos de pago disponibles se muestran en el checkout.</p>"
+          }
+        },
+        "b7": {
+          "type": "question",
+          "settings": {
+            "question": "¿Los precios incluyen IVA?",
+            "answer": "<p>Sí, todos los precios mostrados incluyen el IVA aplicable. Los gastos de envío se indican aparte en el checkout.</p>"
+          }
+        },
+        "b8": {
+          "type": "question",
+          "settings": {
+            "question": "¿Cómo contacto con vosotros?",
+            "answer": "<p>Escríbenos desde la página de contacto o al correo indicado al pie de la web.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "faq"
+  ]
+}
